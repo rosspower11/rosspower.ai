@@ -70,7 +70,7 @@ export function SiteHeader() {
     <header className="pointer-events-none fixed inset-x-0 top-3 z-50 flex justify-center px-4 tablet:top-4">
       <div
         className={cn(
-          "pointer-events-auto flex h-14 items-center gap-6 rounded-2xl border py-1.5 pr-1.5 pl-5 backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300 laptop:gap-10",
+          "pointer-events-auto flex h-14 items-center gap-6 rounded-[14px] border py-1.5 pr-1.5 pl-5 backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300 laptop:gap-10",
           overDark
             ? "border-cream/15 bg-ink/45 text-cream shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
             : "border-ink/10 bg-cream/75 text-ink shadow-[0_8px_32px_rgba(16,19,23,0.10)]",
@@ -90,7 +90,6 @@ export function SiteHeader() {
           <span className="hidden tablet:contents">
             <Button href={bookLink.href} variant={overDark ? "cream" : "ink"} size="sm">
               {bookLink.label}
-              <ArrowUpRight />
             </Button>
           </span>
           <button
@@ -99,7 +98,7 @@ export function SiteHeader() {
             aria-haspopup="dialog"
             aria-expanded={open}
             aria-label="Open menu"
-            className="flex size-11 flex-col items-center justify-center gap-1.5 rounded-xl laptop:hidden"
+            className="flex size-11 flex-col items-center justify-center gap-1.5 rounded-lg laptop:hidden"
           >
             <span className="h-px w-5 bg-current" />
             <span className="h-px w-5 bg-current" />
@@ -121,7 +120,7 @@ export function SiteHeader() {
               onClick={close}
               autoFocus
               aria-label="Close menu"
-              className="relative flex size-11 items-center justify-center rounded-xl border border-cream/20"
+              className="relative flex size-11 items-center justify-center rounded-lg border border-cream/20"
             >
               <span className="absolute h-px w-5 rotate-45 bg-cream" />
               <span className="absolute h-px w-5 -rotate-45 bg-cream" />

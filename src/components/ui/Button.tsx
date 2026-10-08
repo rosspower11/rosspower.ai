@@ -22,7 +22,7 @@ export function Button({ variant = "ink", size = "md", className, ...rest }: But
   return (
     <Link
       className={cn(
-        "inline-flex min-h-11 items-center justify-center gap-2.5 rounded-xl border font-semibold tracking-[0.08em] whitespace-nowrap uppercase transition-colors",
+        "inline-flex min-h-11 items-center justify-center gap-2.5 rounded-lg border font-semibold tracking-[0.08em] whitespace-nowrap uppercase transition-colors",
         size === "md" ? "px-6 py-3.5 text-[14px]" : "px-4 py-2.5 text-[13px]",
         variants[variant],
         className,
