@@ -1,44 +1,78 @@
 # rosspower.ai
 
-The personal site for **Ross Power** — AI keynote speaker, workshop facilitator
-and mentor. A single, self-contained static page (HTML + inline Tailwind CSS +
-vanilla JS). No build step, no dependencies.
+The personal site for **Ross Power**: AI keynote speaker, workshop facilitator,
+educator and founder of AI Powered.
+
+Built with **Next.js 16** (App Router), **Tailwind CSS v4** and TypeScript.
+Hosted on **Vercel**.
+
+## Develop locally
+
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build
+npm run lint
+```
+
+`/styleguide` (not indexed) shows the type scale, colours, buttons and the
+Container padding at the current breakpoint.
 
 ## Structure
 
 ```
-index.html   The entire site (markup, styles and scripts inlined)
+src/
+  app/
+    layout.tsx         Shared shell: fonts, metadata, SiteHeader + SiteFooter
+    page.tsx           Homepage (composes the sections below)
+    globals.css        Design tokens, breakpoints, type scale
+    styleguide/        Internal reference page
+  components/
+    layout/            Section, Container, SiteHeader, SiteFooter
+    home/              Homepage sections (Hero, Stats, About, Speaking, …)
+    ui/                Button, Eyebrow, MediaFrame, icons
+  content/
+    nav.ts             Header/footer links. Add new pages here.
+    home.ts            All homepage copy and image paths
+public/images/         Photos (ross/, events/)
+legacy/index.html      The previous single-file site, kept for reference only
 ```
 
-## Develop locally
+## Layout rules
 
-It's just a static file, so open it directly or serve it:
+Every block is **Section › Container › content**:
 
-```bash
-# open directly
-open index.html
+- `Section` is full-bleed and owns only the background (`tone`).
+- `Container` is max 1440px wide and owns the padding:
 
-# or serve on http://localhost:8000
-python3 -m http.server 8000
-```
+| Breakpoint | Vertical | Horizontal |
+| --- | --- | --- |
+| ≥1440 (`desktop`) | 96px | 80px |
+| ≥1200 (`laptop`) | 72px | 56px |
+| ≥810 (`tablet`) | 56px | 42px |
+| base (390) | 42px | 24px |
+
+## Type
+
+| Style | Font | 1440 / 1200 / 810 / 390 |
+| --- | --- | --- |
+| H1 | Anton, uppercase | 264 / 216 / 144 / 72 |
+| H2 | Instrument Serif (italic `.voice` accents) | 80 / 68 / 56 / 40 |
+| H3 | Helvetica 700 | 40 / 36 / 32 / 28 |
+| H4 | Helvetica 700 | 32 / 28 / 24 / 22 |
+| H5 | Helvetica 700 | 24 / 22 / 20 / 18 |
+| H6 | Helvetica 700 | 18 / 18 / 16 / 16 |
+| P lg / P / P sm | Helvetica 400 | 20·17·15 → 18·16·14 |
+| Label | Helvetica 600 | 13 → 12 |
+
+Bare `h1`–`h6` and `p` pick these up automatically; the `type-*` utilities apply
+them to any element.
 
 ## Hosting
 
-Deployed on **Cloudflare Pages**, connected to this GitHub repo. Every push to
-`main` triggers an automatic deploy. The site is served at
-[rosspower.ai](https://rosspower.ai) via a custom domain on the Cloudflare zone.
+Deployed on **Vercel**, connected to this GitHub repo:
 
-### Cloudflare Pages settings
+- `main` → production (rosspower.ai)
+- `preview` and every other branch → a Vercel preview URL
 
-| Setting | Value |
-| --- | --- |
-| Production branch | `main` |
-| Build command | _(none)_ |
-| Build output directory | `/` |
-
-## Editing content
-
-All copy and the repeated card/marquee/carousel content live in the `<script>`
-block near the bottom of `index.html` (`topics`, `formats`, `tags`, the marquee
-lists and the carousel builders). Static copy (hero, about, CTA) is inline in
-the markup above it.
+No `vercel.json` is needed; Vercel detects Next.js.
