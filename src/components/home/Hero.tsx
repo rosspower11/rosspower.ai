@@ -41,10 +41,10 @@ export function Hero() {
       {/* Exactly one screen tall; content starts below the header. */}
       <Container
         flush="both"
-        className="relative flex min-h-svh flex-col pt-[calc(var(--header-h)+32px)] tablet:h-svh tablet:min-h-[832px] tablet:pt-[calc(var(--header-h)+40px)] laptop:min-h-[752px]"
+        className="relative flex min-h-svh flex-col pt-[calc(var(--header-h)+48px)] tablet:h-svh tablet:min-h-[832px] tablet:pt-[calc(var(--header-h)+72px)] laptop:min-h-[752px]"
       >
-        <Flare className="top-[calc(var(--header-h)+24px)] left-(--section-px) size-24 tablet:size-40 laptop:top-[calc(var(--header-h)+56px)] laptop:size-56" />
-        <Flare className="top-[calc(var(--header-h)+112px)] right-(--section-px) size-16 tablet:size-32 laptop:top-[calc(var(--header-h)+144px)] laptop:size-44" />
+        <Flare className="top-[calc(var(--header-h)+24px)] left-(--section-px) size-24 tablet:size-40 laptop:top-[calc(var(--header-h)+88px)] laptop:size-56" />
+        <Flare className="top-[calc(var(--header-h)+112px)] right-(--section-px) size-16 tablet:size-32 laptop:top-[calc(var(--header-h)+176px)] laptop:size-44" />
 
         {/* Name */}
         <div className="relative z-0 flex flex-col items-center text-center">
@@ -52,7 +52,7 @@ export function Hero() {
             {hero.label}
           </p>
           <h1
-            className="mt-3 whitespace-nowrap text-cream tablet:mt-4"
+            className="mt-5 whitespace-nowrap text-cream tablet:mt-8"
             style={{
               textShadow:
                 "0 0 16px rgba(143,179,217,0.55), 0 0 56px rgba(143,179,217,0.35), 0 0 140px rgba(143,179,217,0.3)",
@@ -65,7 +65,7 @@ export function Hero() {
         {/* Phones: the figure fills the space between the name and the scroll cue. Tablet up: positioned against the hero. */}
         <div className="flex flex-1 flex-col tablet:contents">
           {/* Ross, standing in front of his name. Edge to edge on phones, scales with the screen height above. */}
-          <div className="relative z-10 -mt-[44px] max-h-[960px] min-h-[380px] w-[calc(100%+2*var(--section-px))] max-w-[520px] flex-1 self-center tablet:absolute tablet:max-h-none tablet:min-h-0 tablet:top-[calc(var(--header-h)+56px)] tablet:left-1/2 tablet:mt-0 tablet:aspect-[682/1024] tablet:h-[calc(100%-48px)] tablet:w-auto tablet:max-w-none tablet:-translate-x-1/2 laptop:top-[calc(var(--header-h)+84px)] laptop:h-[calc(100%+8px)] desktop:top-[calc(var(--header-h)+96px)] desktop:h-[calc(100%+48px)]">
+          <div className="relative z-10 -mt-[44px] max-h-[960px] min-h-[380px] w-[calc(100%+2*var(--section-px))] max-w-[520px] flex-1 self-center tablet:absolute tablet:max-h-none tablet:min-h-0 tablet:top-[calc(var(--header-h)+104px)] tablet:left-1/2 tablet:mt-0 tablet:aspect-[682/1024] tablet:h-[calc(100%-48px)] tablet:w-auto tablet:max-w-none tablet:-translate-x-1/2 laptop:top-[calc(var(--header-h)+132px)] laptop:h-[calc(100%+8px)] desktop:top-[calc(var(--header-h)+144px)] desktop:h-[calc(100%+48px)]">
             <Image
               src="/images/ross/ross-cutout.png"
               alt="Ross Power"

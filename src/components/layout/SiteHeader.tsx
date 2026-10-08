@@ -16,7 +16,7 @@ const DARK_TOP = new Set(["/"]);
 function Brand({ onClick, light = true }: { onClick?: () => void; light?: boolean }) {
   return (
     <Link href="/" onClick={onClick} aria-label="Ross Power, home" className="flex items-center py-2">
-      <Logo className="w-[124px] tablet:w-[140px]" color={light ? "#ffffff" : "#101317"} />
+      <Logo className="w-[116px] tablet:w-[128px]" color={light ? "#ffffff" : "#101317"} />
     </Link>
   );
 }
@@ -33,7 +33,7 @@ export function SiteHeader() {
     const update = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
-        const probe = 36; // middle of the 72px header
+        const probe = 40; // vertical middle of the floating bar
         let dark = false;
         for (const el of document.querySelectorAll<HTMLElement>("[data-tone]")) {
           const r = el.getBoundingClientRect();
@@ -66,16 +66,19 @@ export function SiteHeader() {
   const close = () => setOpen(false);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300",
-        overDark ? "border-cream/10 bg-ink/25 text-cream" : "border-ink/10 bg-cream/55 text-ink",
-      )}
-    >
-      <div className="mx-auto flex h-18 w-full max-w-site items-center justify-between gap-6 px-(--section-px)">
+    // A floating bar, centred and only as wide as its contents. The outer strip ignores clicks.
+    <header className="pointer-events-none fixed inset-x-0 top-3 z-50 flex justify-center px-4 tablet:top-4">
+      <div
+        className={cn(
+          "pointer-events-auto flex h-14 items-center gap-6 rounded-2xl border py-1.5 pr-1.5 pl-5 backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300 laptop:gap-10",
+          overDark
+            ? "border-cream/15 bg-ink/45 text-cream shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
+            : "border-ink/10 bg-cream/75 text-ink shadow-[0_8px_32px_rgba(16,19,23,0.10)]",
+        )}
+      >
         <Brand light={overDark} />
 
-        <nav aria-label="Main" className="hidden items-center gap-8 laptop:flex">
+        <nav aria-label="Main" className="hidden items-center gap-7 laptop:flex">
           {mainNav.map((link) => (
             <Link key={link.href} href={link.href} className="text-[15px] opacity-75 transition-opacity hover:opacity-100">
               {link.label}
@@ -96,7 +99,7 @@ export function SiteHeader() {
             aria-haspopup="dialog"
             aria-expanded={open}
             aria-label="Open menu"
-            className="flex size-11 flex-col items-center justify-center gap-1.5 rounded-xl border border-current/20 laptop:hidden"
+            className="flex size-11 flex-col items-center justify-center gap-1.5 rounded-xl laptop:hidden"
           >
             <span className="h-px w-5 bg-current" />
             <span className="h-px w-5 bg-current" />
@@ -108,7 +111,7 @@ export function SiteHeader() {
         ref={dialogRef}
         onClose={close}
         aria-label="Site menu"
-        className="m-0 h-dvh max-h-none w-full max-w-none bg-ink p-0 text-cream backdrop:bg-ink"
+        className="pointer-events-auto m-0 h-dvh max-h-none w-full max-w-none bg-ink p-0 text-cream backdrop:bg-ink"
       >
         <div className="mx-auto flex h-full w-full max-w-site flex-col px-(--section-px)">
           <div className="flex h-18 items-center justify-between">
