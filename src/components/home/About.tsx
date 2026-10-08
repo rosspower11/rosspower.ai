@@ -45,11 +45,11 @@ export function About() {
             />
 
             {/* Laptop up: title left, bio right. Tablet: stacked. */}
-            <div className="absolute inset-x-0 bottom-0 flex flex-col gap-6 p-6 [--voice:var(--color-wash)] tablet:p-10 laptop:grid laptop:grid-cols-12 laptop:items-end laptop:gap-x-10 laptop:p-14">
+            <div className="absolute inset-x-0 bottom-0 flex flex-col gap-6 p-6 [--voice:var(--color-wash)] tablet:p-10 laptop:grid laptop:grid-cols-12 laptop:items-end laptop:gap-x-8 laptop:p-12">
               <h2 id="about-title" className="text-cream laptop:col-span-6">
                 Meet your speaker, <span className="voice">Ross Power</span>
               </h2>
-              <div className="hidden tablet:block laptop:col-span-5 laptop:col-start-8">
+              <div className="hidden tablet:block laptop:col-span-6 laptop:col-start-7">
                 <Bio className="text-cream/85" />
               </div>
             </div>
