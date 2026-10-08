@@ -5,7 +5,7 @@ import { StatCounter } from "./StatCounter";
 
 export function Stats() {
   return (
-    <Section id="numbers" aria-label="Ross in numbers" className="border-b border-ink/15">
+    <Section id="numbers" aria-label="Ross in numbers">
       <Container>
         <ul className="grid grid-cols-2 gap-y-10 laptop:grid-cols-4">
           {stats.map((s, i) => (
