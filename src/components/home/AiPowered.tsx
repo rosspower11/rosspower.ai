@@ -13,10 +13,11 @@ export function AiPowered() {
         <div className="flex flex-col gap-5 laptop:col-span-6">
           <Eyebrow>{aiPowered.eyebrow}</Eyebrow>
           <h2 id="aip-title">
-            AI Powered<span className="text-blue">.</span>
+            AI <span className="voice">Powered</span>
+            <span className="text-blue">.</span>
           </h2>
           <p className="type-p-lg measure">{aiPowered.body}</p>
-          <p className="type-h3 voice text-blue">{aiPowered.closing}</p>
+          <p className="type-h3 voice">{aiPowered.closing}</p>
           <Button href={contact.aiPowered} variant="ink" className="mt-2 self-start">
             Visit AI Powered
             <ArrowUpRight />

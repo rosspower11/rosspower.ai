@@ -78,7 +78,7 @@ export function SiteHeader() {
       >
         <Brand light={overDark} />
 
-        <nav aria-label="Main" className="hidden items-center gap-7 laptop:flex">
+        <nav aria-label="Main" className="hidden items-center gap-5 laptop:flex">
           {mainNav.map((link) => (
             <Link key={link.href} href={link.href} className="text-[15px] opacity-75 transition-opacity hover:opacity-100">
               {link.label}

@@ -21,6 +21,9 @@
   --color-stone: #c9cdd2;
   --color-sand: #e1dccf;
   --color-card: #f6f3ec;
+  /* From the Ross Power design system on the canvas: second colour for titles. */
+  --color-wash: #b7c6e2;
+  --color-mid: #4a6284;
   --color-transparent: transparent;
   --color-current: currentColor;
 
@@ -179,7 +182,9 @@
 }
 
 /* Serif italic accent inside any heading ("meet your speaker, *ross power*"). */
+/* The second colour in every title: wash on dark grounds, mid on light ones (set per Section). */
 @utility voice {
+  color: var(--voice, currentColor);
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;

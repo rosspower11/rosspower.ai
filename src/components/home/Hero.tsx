@@ -63,8 +63,13 @@ export function Hero() {
           >
             <span className="sr-only">{hero.name}</span>
             <span aria-hidden>
+              {/* Second word in wash, like every other title's second half. */}
               {hero.name.split("").map((char, i) => (
-                <span key={i} className="type-char" style={vars({ "--i": i })}>
+                <span
+                  key={i}
+                  className={i > hero.name.indexOf(" ") ? "type-char text-wash" : "type-char"}
+                  style={vars({ "--i": i })}
+                >
                   {char}
                 </span>
               ))}

@@ -13,12 +13,10 @@ export const stats = [
 ];
 
 export const about = {
-  eyebrow: "Who's Ross",
   bio: [
     "Raised in an entrepreneurial family and always the one asking the questions, Ross is the founder of AI Powered, an educator and a speaker.",
     "He takes complex ideas and makes them simple. Right now that means AI, for keynote crowds, workshop rooms and podcast audiences from Bali to London.",
   ],
-  quote: "Confidence comes from doing.",
   photo: { src: "/images/ross/dsc00011.jpg", alt: "Ross presenting to a seated room in Bali" },
 };
 

@@ -1,12 +1,13 @@
 import type { ComponentPropsWithoutRef, ElementType } from "react";
 import { cn } from "@/lib/cn";
 
+// --voice colours the second half of titles (.voice): wash reads on ink, mid on light grounds.
 const tones = {
-  cream: "bg-cream text-ink",
-  ice: "bg-ice text-ink",
-  sky: "bg-sky text-ink",
-  sand: "bg-sand text-ink",
-  ink: "bg-ink text-cream",
+  cream: "bg-cream text-ink [--voice:var(--color-mid)]",
+  ice: "bg-ice text-ink [--voice:var(--color-mid)]",
+  sky: "bg-sky text-ink [--voice:var(--color-mid)]",
+  sand: "bg-sand text-ink [--voice:var(--color-mid)]",
+  ink: "bg-ink text-cream [--voice:var(--color-wash)]",
 } as const;
 
 export type SectionTone = keyof typeof tones;
