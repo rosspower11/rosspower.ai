@@ -27,5 +27,6 @@ export function Section<T extends ElementType = "section">({
   ...rest
 }: SectionProps<T>) {
   const Tag = as ?? "section";
-  return <Tag className={cn("w-full", tones[tone], className)} {...rest} />;
+  // data-tone lets the fixed header switch to light-on-dark over ink sections.
+  return <Tag data-tone={tone} className={cn("w-full", tones[tone], className)} {...rest} />;
 }

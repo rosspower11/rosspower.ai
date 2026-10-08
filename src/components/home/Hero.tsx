@@ -1,10 +1,7 @@
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { Button } from "@/components/ui/Button";
-import { ArrowDown, Play } from "@/components/ui/Icon";
 import { hero } from "@/content/home";
-import { bookLink } from "@/content/nav";
 
 const HERO_MASK =
   "linear-gradient(180deg, #000 58%, transparent 96%), linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%)";
@@ -22,7 +19,8 @@ function Flare({ className }: { className?: string }) {
 
 export function Hero() {
   return (
-    <Section tone="ink" aria-label="Introduction" className="relative isolate overflow-hidden">
+    // Pulled up under the fixed, transparent header so the hero fills the whole screen.
+    <Section tone="ink" aria-label="Introduction" className="relative isolate -mt-(--header-h) overflow-hidden">
       {/* Stage light: a cone from above, a pool behind the figure, a faint grid. */}
       <div
         aria-hidden
@@ -40,17 +38,17 @@ export function Hero() {
         className="absolute inset-0 -z-10 opacity-[0.07] [background-image:linear-gradient(rgba(238,233,223,1)_1px,transparent_1px),linear-gradient(90deg,rgba(238,233,223,1)_1px,transparent_1px)] [background-size:80px_80px] [mask-image:radial-gradient(70%_60%_at_50%_40%,#000,transparent)]"
       />
 
-      {/* Fills the screen under the 72px sticky header. */}
+      {/* Exactly one screen tall; content starts below the header. */}
       <Container
         flush="both"
-        className="relative flex min-h-[calc(100svh-4.5rem)] flex-col pt-8 tablet:h-[calc(100svh-4.5rem)] tablet:min-h-[760px] tablet:pt-10 laptop:min-h-[680px]"
+        className="relative flex min-h-svh flex-col pt-[calc(var(--header-h)+32px)] tablet:h-svh tablet:min-h-[832px] tablet:pt-[calc(var(--header-h)+40px)] laptop:min-h-[752px]"
       >
-        <Flare className="top-6 left-(--section-px) size-24 tablet:size-40 laptop:top-14 laptop:size-56" />
-        <Flare className="top-28 right-(--section-px) size-16 tablet:size-32 laptop:top-36 laptop:size-44" />
+        <Flare className="top-[calc(var(--header-h)+24px)] left-(--section-px) size-24 tablet:size-40 laptop:top-[calc(var(--header-h)+56px)] laptop:size-56" />
+        <Flare className="top-[calc(var(--header-h)+112px)] right-(--section-px) size-16 tablet:size-32 laptop:top-[calc(var(--header-h)+144px)] laptop:size-44" />
 
         {/* Name */}
         <div className="relative z-0 flex flex-col items-center text-center">
-          <p className="type-label tracking-[0.4em] text-cream/80 uppercase tablet:text-[15px] laptop:text-[18px]">
+          <p className="type-label tracking-[0.3em] text-cream/80 uppercase tablet:text-[15px] tablet:tracking-[0.4em] laptop:text-[18px]">
             {hero.label}
           </p>
           <h1
@@ -64,10 +62,10 @@ export function Hero() {
           </h1>
         </div>
 
-        {/* Phones: figure + quote + actions stack at the bottom. Tablet up: positioned against the hero. */}
-        <div className="mt-auto flex flex-col tablet:contents">
-          {/* Ross, standing in front of his name. Edge to edge on phones, scales with the hero height above. */}
-          <div className="relative z-10 -mt-[44px] aspect-[4/5] w-[calc(100%+2*var(--section-px))] max-w-[520px] self-center tablet:absolute tablet:top-[56px] tablet:left-1/2 tablet:mt-0 tablet:aspect-[682/1024] tablet:h-[calc(100%+24px)] tablet:w-auto tablet:max-w-none tablet:-translate-x-1/2 laptop:top-[84px] laptop:h-[calc(100%+80px)] desktop:top-[96px] desktop:h-[calc(100%+120px)]">
+        {/* Phones: the figure fills the space between the name and the scroll cue. Tablet up: positioned against the hero. */}
+        <div className="flex flex-1 flex-col tablet:contents">
+          {/* Ross, standing in front of his name. Edge to edge on phones, scales with the screen height above. */}
+          <div className="relative z-10 -mt-[44px] max-h-[960px] min-h-[380px] w-[calc(100%+2*var(--section-px))] max-w-[520px] flex-1 self-center tablet:absolute tablet:max-h-none tablet:min-h-0 tablet:top-[calc(var(--header-h)+56px)] tablet:left-1/2 tablet:mt-0 tablet:aspect-[682/1024] tablet:h-[calc(100%-48px)] tablet:w-auto tablet:max-w-none tablet:-translate-x-1/2 laptop:top-[calc(var(--header-h)+84px)] laptop:h-[calc(100%+8px)] desktop:top-[calc(var(--header-h)+96px)] desktop:h-[calc(100%+48px)]">
             <Image
               src="/images/ross/ross-cutout.png"
               alt="Ross Power"
@@ -86,27 +84,15 @@ export function Hero() {
             />
           </div>
 
-          {/* Quote (left on laptop+) and actions (always centred at the bottom) */}
-          <div className="relative z-20 -mt-24 flex flex-col items-center gap-6 pb-(--section-py) text-center tablet:absolute tablet:inset-x-(--section-px) tablet:bottom-0 tablet:mt-0 laptop:grid laptop:grid-cols-[1fr_auto_1fr] laptop:items-end laptop:text-left">
-            <figure className="flex max-w-[360px] flex-col gap-2 laptop:max-w-[320px] laptop:justify-self-start">
-              <blockquote>
-                <p className="font-serif text-[28px] leading-[1.05] text-cream italic tablet:text-[32px] desktop:text-[36px]">
-                  “{hero.quote}”
-                </p>
-              </blockquote>
-              <figcaption className="type-label text-cream/60">Ross Power</figcaption>
-            </figure>
-            <div className="flex w-full flex-col gap-3 tablet:w-auto tablet:flex-row">
-              <Button href={bookLink.href} variant="accent">
-                {bookLink.label}
-                <ArrowDown />
-              </Button>
-              <Button href="/#speaking" variant="outline-light">
-                Watch Ross speak
-                <Play className="size-3.5" />
-              </Button>
-            </div>
-          </div>
+          <a
+            href="#numbers"
+            className="group relative z-20 -mt-16 flex flex-col items-center gap-3 self-center pb-6 text-cream/70 transition-colors hover:text-cream tablet:absolute tablet:bottom-0 tablet:left-1/2 tablet:mt-0 tablet:-translate-x-1/2 tablet:pb-8"
+          >
+            <span className="type-label tracking-[0.2em] uppercase">{hero.scrollCue}</span>
+            <span aria-hidden className="relative h-12 w-px overflow-hidden bg-cream/20">
+              <span className="scroll-cue-dot absolute inset-x-0 top-0 h-1/2 bg-cream" />
+            </span>
+          </a>
         </div>
       </Container>
     </Section>

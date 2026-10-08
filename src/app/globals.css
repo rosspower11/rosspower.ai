@@ -39,10 +39,12 @@
    Layout + type scale, stepped at each breakpoint
    ------------------------------------------------------------------ */
 :root {
+  --header-h: 72px;
   --section-py: 42px;
   --section-px: 24px;
 
-  --fs-h1: 72px;
+  /* 72px at 390; below that, shrink so a one-line name still fits the container. */
+  --fs-h1: min(72px, calc((100vw - 2 * var(--section-px)) / 4.66));
   --fs-h2: 40px;
   --fs-h3: 28px;
   --fs-h4: 22px;
@@ -191,6 +193,11 @@
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    /* Anchor jumps land below the fixed header. */
+    scroll-padding-top: var(--header-h);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
   }
   body {
     background: var(--color-cream);
@@ -232,6 +239,14 @@
 .marquee-track {
   animation: marquee 40s linear infinite;
 }
+@keyframes scroll-cue {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+.scroll-cue-dot {
+  animation: scroll-cue 1.8s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+}
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
+  .marquee-track,
+  .scroll-cue-dot { animation: none; }
 }

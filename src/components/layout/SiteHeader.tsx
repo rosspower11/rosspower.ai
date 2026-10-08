@@ -2,10 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ArrowUpRight } from "@/components/ui/Icon";
 import { bookLink, contact, mainNav } from "@/content/nav";
+import { cn } from "@/lib/cn";
+
+/** Pages whose first section is dark, so the header starts in its light-on-dark state. */
+const DARK_TOP = new Set(["/"]);
 
 function Brand({ onClick }: { onClick?: () => void }) {
   return (
@@ -21,6 +26,33 @@ function Brand({ onClick }: { onClick?: () => void }) {
 export function SiteHeader() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const [overDark, setOverDark] = useState(() => DARK_TOP.has(pathname));
+
+  // Match the section under the header: every Section carries data-tone.
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const probe = 36; // middle of the 72px header
+        let dark = false;
+        for (const el of document.querySelectorAll<HTMLElement>("[data-tone]")) {
+          const r = el.getBoundingClientRect();
+          if (r.top <= probe && r.bottom > probe) dark = el.dataset.tone === "ink";
+        }
+        setOverDark(dark);
+      });
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -36,13 +68,18 @@ export function SiteHeader() {
   const close = () => setOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-ink/10 bg-cream/90 text-ink backdrop-blur-md">
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300",
+        overDark ? "border-cream/10 bg-ink/25 text-cream" : "border-ink/10 bg-cream/55 text-ink",
+      )}
+    >
       <div className="mx-auto flex h-18 w-full max-w-site items-center justify-between gap-6 px-(--section-px)">
         <Brand />
 
         <nav aria-label="Main" className="hidden items-center gap-8 laptop:flex">
           {mainNav.map((link) => (
-            <Link key={link.href} href={link.href} className="text-[15px] text-ink/70 transition-colors hover:text-ink">
+            <Link key={link.href} href={link.href} className="text-[15px] opacity-75 transition-opacity hover:opacity-100">
               {link.label}
             </Link>
           ))}
@@ -50,7 +87,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <span className="hidden tablet:contents">
-            <Button href={bookLink.href} variant="ink" size="sm">
+            <Button href={bookLink.href} variant={overDark ? "cream" : "ink"} size="sm">
               {bookLink.label}
               <ArrowUpRight />
             </Button>
@@ -61,10 +98,10 @@ export function SiteHeader() {
             aria-haspopup="dialog"
             aria-expanded={open}
             aria-label="Open menu"
-            className="flex size-11 flex-col items-center justify-center gap-1.5 rounded-xl border border-ink/20 laptop:hidden"
+            className="flex size-11 flex-col items-center justify-center gap-1.5 rounded-xl border border-current/20 laptop:hidden"
           >
-            <span className="h-px w-5 bg-ink" />
-            <span className="h-px w-5 bg-ink" />
+            <span className="h-px w-5 bg-current" />
+            <span className="h-px w-5 bg-current" />
           </button>
         </div>
       </div>

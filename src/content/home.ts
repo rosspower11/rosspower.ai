@@ -1,7 +1,7 @@
 export const hero = {
   label: "Founder · Speaker · Educator",
   name: "Ross Power",
-  quote: "Making AI simple, practical and human.",
+  scrollCue: "Scroll to see more",
 };
 
 // TODO(ross): confirm each figure and its source before launch.
