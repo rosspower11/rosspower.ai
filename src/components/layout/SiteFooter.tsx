@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import { ArrowUpRight } from "@/components/ui/Icon";
+import { Logo } from "@/components/ui/Logo";
 import { bookLink, contact, mainNav } from "@/content/nav";
 
 export function SiteFooter() {
@@ -11,6 +12,7 @@ export function SiteFooter() {
       <Container flush="bottom" className="flex flex-col gap-12">
         <div className="grid gap-10 tablet:grid-cols-2 laptop:grid-cols-12">
           <div className="flex flex-col gap-5 laptop:col-span-6">
+            <Logo className="w-[160px]" />
             <p className="type-h2 text-cream">
               Making AI <span className="voice">simple.</span>
             </p>

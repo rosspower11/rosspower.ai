@@ -1,24 +1,22 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ArrowUpRight } from "@/components/ui/Icon";
+import { Logo } from "@/components/ui/Logo";
 import { bookLink, contact, mainNav } from "@/content/nav";
 import { cn } from "@/lib/cn";
 
 /** Pages whose first section is dark, so the header starts in its light-on-dark state. */
 const DARK_TOP = new Set(["/"]);
 
-function Brand({ onClick }: { onClick?: () => void }) {
+/** AI Powered wordmark: white over dark sections, ink over light ones. */
+function Brand({ onClick, light = true }: { onClick?: () => void; light?: boolean }) {
   return (
-    <Link href="/" onClick={onClick} className="flex items-center gap-3">
-      <span className="relative size-9 overflow-hidden rounded-full bg-stone ring-1 ring-current/20">
-        <Image src="/images/ross/ross-headshot-bw.jpg" alt="" fill sizes="36px" className="object-cover object-[50%_20%]" />
-      </span>
-      <span className="text-[17px] font-semibold tracking-[-0.01em]">Ross Power</span>
+    <Link href="/" onClick={onClick} aria-label="Ross Power, home" className="flex items-center py-2">
+      <Logo className="w-[124px] tablet:w-[140px]" color={light ? "#ffffff" : "#101317"} />
     </Link>
   );
 }
@@ -75,7 +73,7 @@ export function SiteHeader() {
       )}
     >
       <div className="mx-auto flex h-18 w-full max-w-site items-center justify-between gap-6 px-(--section-px)">
-        <Brand />
+        <Brand light={overDark} />
 
         <nav aria-label="Main" className="hidden items-center gap-8 laptop:flex">
           {mainNav.map((link) => (

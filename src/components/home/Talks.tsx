@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ArrowUpRight } from "@/components/ui/Icon";
 import { podcast, talks } from "@/content/home";
@@ -54,13 +55,10 @@ export function Talks() {
             </h3>
             <p className="measure">{podcast.body}</p>
           </div>
-          <Link
-            href={bookLink.href}
-            className="inline-flex min-h-11 items-center gap-2.5 self-start rounded-xl bg-ink px-6 py-3.5 font-semibold whitespace-nowrap text-cream hover:bg-ink/85 tablet:self-auto"
-          >
+          <Button href={bookLink.href} variant="ink" className="self-start tablet:self-auto">
             Invite Ross on
             <ArrowUpRight />
-          </Link>
+          </Button>
         </div>
       </Container>
     </Section>
