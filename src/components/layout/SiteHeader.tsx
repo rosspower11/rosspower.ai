@@ -10,7 +10,7 @@ import { bookLink, contact, mainNav } from "@/content/nav";
 function Brand({ onClick }: { onClick?: () => void }) {
   return (
     <Link href="/" onClick={onClick} className="flex items-center gap-3">
-      <span className="relative size-9 overflow-hidden rounded-full bg-stone ring-1 ring-cream/30">
+      <span className="relative size-9 overflow-hidden rounded-full bg-stone ring-1 ring-current/20">
         <Image src="/images/ross/ross-headshot-bw.jpg" alt="" fill sizes="36px" className="object-cover object-[50%_20%]" />
       </span>
       <span className="text-[17px] font-semibold tracking-[-0.01em]">Ross Power</span>
@@ -36,13 +36,13 @@ export function SiteHeader() {
   const close = () => setOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-cream/10 bg-ink/90 text-cream backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-ink/10 bg-cream/90 text-ink backdrop-blur-md">
       <div className="mx-auto flex h-18 w-full max-w-site items-center justify-between gap-6 px-(--section-px)">
         <Brand />
 
         <nav aria-label="Main" className="hidden items-center gap-8 laptop:flex">
           {mainNav.map((link) => (
-            <Link key={link.href} href={link.href} className="text-[15px] text-cream/80 transition-colors hover:text-cream">
+            <Link key={link.href} href={link.href} className="text-[15px] text-ink/70 transition-colors hover:text-ink">
               {link.label}
             </Link>
           ))}
@@ -50,7 +50,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <span className="hidden tablet:contents">
-            <Button href={bookLink.href} variant="cream" size="sm">
+            <Button href={bookLink.href} variant="ink" size="sm">
               {bookLink.label}
               <ArrowUpRight />
             </Button>
@@ -61,10 +61,10 @@ export function SiteHeader() {
             aria-haspopup="dialog"
             aria-expanded={open}
             aria-label="Open menu"
-            className="flex size-11 flex-col items-center justify-center gap-1.5 rounded-xl border border-cream/20 laptop:hidden"
+            className="flex size-11 flex-col items-center justify-center gap-1.5 rounded-xl border border-ink/20 laptop:hidden"
           >
-            <span className="h-px w-5 bg-cream" />
-            <span className="h-px w-5 bg-cream" />
+            <span className="h-px w-5 bg-ink" />
+            <span className="h-px w-5 bg-ink" />
           </button>
         </div>
       </div>

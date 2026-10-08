@@ -40,9 +40,10 @@ export function Hero() {
         className="absolute inset-0 -z-10 opacity-[0.07] [background-image:linear-gradient(rgba(238,233,223,1)_1px,transparent_1px),linear-gradient(90deg,rgba(238,233,223,1)_1px,transparent_1px)] [background-size:80px_80px] [mask-image:radial-gradient(70%_60%_at_50%_40%,#000,transparent)]"
       />
 
+      {/* Fills the screen under the 72px sticky header. */}
       <Container
         flush="both"
-        className="relative flex flex-col pt-8 tablet:pt-10 laptop:h-[820px] desktop:h-[900px]"
+        className="relative flex min-h-[calc(100svh-4.5rem)] flex-col pt-8 tablet:h-[calc(100svh-4.5rem)] tablet:min-h-[760px] tablet:pt-10 laptop:min-h-[680px]"
       >
         <Flare className="top-6 left-(--section-px) size-24 tablet:size-40 laptop:top-14 laptop:size-56" />
         <Flare className="top-28 right-(--section-px) size-16 tablet:size-32 laptop:top-36 laptop:size-44" />
@@ -63,41 +64,48 @@ export function Hero() {
           </h1>
         </div>
 
-        {/* Ross, standing in front of his name. Edge to edge on phones. */}
-        <div className="relative z-10 -mt-[44px] aspect-[4/5] w-[calc(100%+2*var(--section-px))] max-w-[520px] self-center tablet:-mt-[124px] tablet:w-[600px] tablet:max-w-none laptop:absolute laptop:top-[90px] laptop:left-1/2 laptop:mt-0 laptop:aspect-auto laptop:h-[920px] laptop:w-[613px] laptop:-translate-x-1/2 desktop:top-[100px] desktop:h-[1000px] desktop:w-[666px]">
-          <Image
-            src="/images/ross/ross-cutout.png"
-            alt="Ross Power"
-            fill
-            priority
-            sizes="(min-width: 1440px) 666px, (min-width: 1200px) 613px, (min-width: 810px) 600px, (min-width: 520px) 520px, 100vw"
-            className="object-cover object-top"
-            style={{
-              filter: "drop-shadow(0 0 32px rgba(143,179,217,0.5))",
-              // Fade the bottom and both sides so the photo's frame never shows.
-              maskImage: HERO_MASK,
-              WebkitMaskImage: HERO_MASK,
-              maskComposite: "intersect",
-              WebkitMaskComposite: "source-in",
-            }}
-          />
-        </div>
-
-        {/* Intro (left) and actions (right) */}
-        <div className="relative z-20 -mt-28 flex flex-col gap-6 pb-(--section-py) tablet:-mt-40 tablet:flex-row tablet:items-end tablet:justify-between laptop:absolute laptop:inset-x-(--section-px) laptop:bottom-0 laptop:mt-0">
-          <div className="flex max-w-[360px] flex-col gap-3 laptop:max-w-[300px] desktop:max-w-[340px]">
-            <h2 className="type-h4 text-cream">{hero.introTitle}</h2>
-            <p className="type-p-sm text-cream/75">{hero.intro}</p>
+        {/* Phones: figure + quote + actions stack at the bottom. Tablet up: positioned against the hero. */}
+        <div className="mt-auto flex flex-col tablet:contents">
+          {/* Ross, standing in front of his name. Edge to edge on phones, scales with the hero height above. */}
+          <div className="relative z-10 -mt-[44px] aspect-[4/5] w-[calc(100%+2*var(--section-px))] max-w-[520px] self-center tablet:absolute tablet:top-[56px] tablet:left-1/2 tablet:mt-0 tablet:aspect-[682/1024] tablet:h-[calc(100%+24px)] tablet:w-auto tablet:max-w-none tablet:-translate-x-1/2 laptop:top-[84px] laptop:h-[calc(100%+80px)] desktop:top-[96px] desktop:h-[calc(100%+120px)]">
+            <Image
+              src="/images/ross/ross-cutout.png"
+              alt="Ross Power"
+              fill
+              priority
+              sizes="(min-width: 810px) 680px, (min-width: 520px) 520px, 100vw"
+              className="object-cover object-top"
+              style={{
+                filter: "drop-shadow(0 0 32px rgba(143,179,217,0.5))",
+                // Fade the bottom and both sides so the photo's frame never shows.
+                maskImage: HERO_MASK,
+                WebkitMaskImage: HERO_MASK,
+                maskComposite: "intersect",
+                WebkitMaskComposite: "source-in",
+              }}
+            />
           </div>
-          <div className="flex flex-col gap-3 tablet:w-[220px]">
-            <Button href={bookLink.href} variant="accent" className="justify-between">
-              {bookLink.label}
-              <ArrowDown />
-            </Button>
-            <Button href="/#speaking" variant="outline-light" className="justify-between">
-              Watch Ross speak
-              <Play className="size-3.5" />
-            </Button>
+
+          {/* Quote (left on laptop+) and actions (always centred at the bottom) */}
+          <div className="relative z-20 -mt-24 flex flex-col items-center gap-6 pb-(--section-py) text-center tablet:absolute tablet:inset-x-(--section-px) tablet:bottom-0 tablet:mt-0 laptop:grid laptop:grid-cols-[1fr_auto_1fr] laptop:items-end laptop:text-left">
+            <figure className="flex max-w-[360px] flex-col gap-2 laptop:max-w-[320px] laptop:justify-self-start">
+              <blockquote>
+                <p className="font-serif text-[28px] leading-[1.05] text-cream italic tablet:text-[32px] desktop:text-[36px]">
+                  “{hero.quote}”
+                </p>
+              </blockquote>
+              <figcaption className="type-label text-cream/60">Ross Power</figcaption>
+            </figure>
+            <div className="flex w-full flex-col gap-3 tablet:w-auto tablet:flex-row">
+              <Button href={bookLink.href} variant="accent">
+                {bookLink.label}
+                <ArrowDown />
+              </Button>
+              <Button href="/#speaking" variant="outline-light">
+                Watch Ross speak
+                <Play className="size-3.5" />
+              </Button>
+            </div>
           </div>
         </div>
       </Container>

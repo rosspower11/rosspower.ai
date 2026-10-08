@@ -1,9 +1,7 @@
 export const hero = {
   label: "Founder · Speaker · Educator",
   name: "Ross Power",
-  introTitle: "Making AI simple, practical and human.",
-  intro:
-    "Keynotes, workshops and mentoring that help rooms full of people stop feeling behind and start actually building with AI.",
+  quote: "Making AI simple, practical and human.",
 };
 
 // TODO(ross): confirm each figure and its source before launch.
