@@ -12,9 +12,9 @@ export function Stats() {
             <li
               key={s.label}
               className={[
-                "flex flex-col gap-2 pr-4 tablet:pr-8",
-                i % 2 === 1 ? "border-l border-ink/15 pl-4 tablet:pl-8" : "",
-                i === 2 ? "laptop:border-l laptop:border-ink/15 laptop:pl-8" : "",
+                "flex flex-col items-center gap-2 px-3 text-center tablet:px-8",
+                i % 2 === 1 ? "border-l border-ink/15" : "",
+                i === 2 ? "laptop:border-l laptop:border-ink/15" : "",
               ].join(" ")}
             >
               <span className="font-serif text-[52px] leading-none tracking-[-0.02em] tabular-nums tablet:text-[72px] desktop:text-[88px]">
