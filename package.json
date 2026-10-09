@@ -1,26 +1,17 @@
 {
-  "name": "rosspower-ai",
-  "version": "0.1.0",
+  "name": "rosspower",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "next": "16.2.10",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.10",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "dev:web": "npm run dev -w @rosspower/web",
+    "dev:links": "npm run dev -w @rosspower/links",
+    "build": "npm run build --workspaces --if-present",
+    "build:web": "npm run build -w @rosspower/web",
+    "build:links": "npm run build -w @rosspower/links",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
   }
 }

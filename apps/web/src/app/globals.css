@@ -1,0 +1,184 @@
+@import "tailwindcss";
+/* Shared tokens, type scale and base styles (packages/ui). */
+@import "@rosspower/ui/theme.css";
+/* Generate the classes used inside the shared components too. */
+@source "../../../../packages/ui/src";
+
+/* ------------------------------------------------------------------
+   Motion
+   ------------------------------------------------------------------ */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+/* AI Powered card icons: gentle loops, faster while the card is hovered. */
+.aip-page {
+  transform-box: view-box;
+  transform-origin: 24px 24px;
+  animation: aip-page 3.2s ease-in-out infinite;
+}
+@keyframes aip-page {
+  0%, 35% { transform: scaleX(1); opacity: 1; }
+  60% { transform: scaleX(-1); opacity: 0.6; }
+  61%, 100% { transform: scaleX(1); opacity: 0; }
+}
+.aip-gear-a,
+.aip-gear-b {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.aip-gear-a { animation: aip-spin 8s linear infinite; }
+.aip-gear-b { animation: aip-spin 5.8s linear infinite reverse; }
+@keyframes aip-spin { to { transform: rotate(360deg); } }
+.aip-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: aip-ring 2.4s ease-out infinite;
+}
+.aip-ring-2 { animation-delay: 1.2s; }
+@keyframes aip-ring {
+  from { transform: scale(0.9); opacity: 0.7; }
+  to { transform: scale(2); opacity: 0; }
+}
+.aip-card:hover .aip-page,
+.aip-card:hover .aip-ring { animation-duration: 1.4s; }
+.aip-card:hover .aip-gear-a { animation-duration: 2.4s; }
+.aip-card:hover .aip-gear-b { animation-duration: 1.75s; }
+@media (prefers-reduced-motion: reduce) {
+  .aip-page,
+  .aip-gear-a,
+  .aip-gear-b,
+  .aip-ring { animation: none; }
+  .aip-ring { opacity: 0; }
+}
+
+/* Speaking: timer line under the active format. */
+@keyframes speaking-progress {
+  from { width: 0; }
+  to { width: 100%; }
+}
+.speaking-progress {
+  animation: speaking-progress linear forwards;
+}
+
+@keyframes scroll-cue {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+.scroll-cue-dot {
+  animation: scroll-cue 1.8s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+}
+/* ------------------------------------------------------------------
+   Hero entrance: eyebrow → name types out → glow → Ross rises → cue
+   Timings (ms): --type-start 450, 85 per letter, ~1300 when typed.
+   ------------------------------------------------------------------ */
+.hero-fade {
+  opacity: 0;
+  animation: hero-fade-up 900ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Each letter appears instantly at its turn; a caret rides on the newest one. */
+.type-char {
+  position: relative;
+  opacity: 0;
+  animation: type-in 1ms linear forwards;
+  animation-delay: calc(var(--type-start) + var(--i) * 85ms);
+}
+@keyframes type-in { to { opacity: 1; } }
+.type-char::after {
+  content: "";
+  position: absolute;
+  /* Trimmed to Anton's cap height inside the inline box. */
+  top: 0.24em;
+  bottom: 0.25em;
+  right: -0.07em;
+  width: 0.05em;
+  background: var(--color-accent);
+  box-shadow: 0 0 12px var(--color-accent);
+  opacity: 0;
+  animation: caret-step 85ms steps(1, end) forwards;
+  animation-delay: calc(var(--type-start) + var(--i) * 85ms);
+}
+@keyframes caret-step {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+/* The last letter keeps the caret blinking a few times, then it goes. */
+.type-char:last-child::after {
+  animation: caret-blink 1400ms steps(1, end) forwards;
+  animation-delay: calc(var(--type-start) + var(--i) * 85ms);
+}
+@keyframes caret-blink {
+  0%, 25%, 50%, 75% { opacity: 1; }
+  12.5%, 37.5%, 62.5%, 100% { opacity: 0; }
+}
+/* Glow switches on once the name is complete. */
+.type-glow {
+  animation: type-glow 1200ms ease-out forwards;
+  animation-delay: calc(var(--type-start) + var(--count) * 85ms);
+}
+@keyframes type-glow {
+  from { text-shadow: 0 0 0 rgba(143, 179, 217, 0); }
+  to {
+    text-shadow:
+      0 0 16px rgba(143, 179, 217, 0.55),
+      0 0 56px rgba(143, 179, 217, 0.35),
+      0 0 140px rgba(143, 179, 217, 0.3);
+  }
+}
+
+.hero-rise {
+  opacity: 0;
+  animation: hero-rise 1400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+@keyframes hero-rise {
+  from { opacity: 0; transform: translate3d(0, 56px, 0) scale(1.04); }
+  to { opacity: 1; transform: none; }
+}
+
+.hero-twinkle {
+  opacity: 0;
+  animation: hero-twinkle 1200ms ease-out forwards;
+  animation-delay: var(--delay, 0ms);
+}
+@keyframes hero-twinkle {
+  0% { opacity: 0; transform: scale(0.2) rotate(-45deg); }
+  60% { opacity: 1; }
+  100% { opacity: 1; transform: none; }
+}
+
+/* Parallax: HeroMotion writes --hero-y (px scrolled) on the hero section. */
+.parallax-slow { transform: translate3d(0, calc(var(--hero-y, 0) * 0.45px), 0); }
+.parallax-mid { transform: translate3d(0, calc(var(--hero-y, 0) * 0.2px), 0); }
+.parallax-bg { transform: translate3d(0, calc(var(--hero-y, 0) * 0.3px), 0); }
+.parallax-fade { opacity: calc(1 - var(--hero-y, 0) / 600); }
+.parallax-fade-fast { opacity: calc(1 - var(--hero-y, 0) / 220); }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .scroll-cue-dot { animation: none; }
+  .hero-fade,
+  .type-char,
+  .hero-rise,
+  .hero-twinkle {
+    animation: none;
+    opacity: 1;
+  }
+  .type-char::after { animation: none; }
+  .type-glow {
+    animation: none;
+    text-shadow:
+      0 0 16px rgba(143, 179, 217, 0.55),
+      0 0 56px rgba(143, 179, 217, 0.35),
+      0 0 140px rgba(143, 179, 217, 0.3);
+  }
+}

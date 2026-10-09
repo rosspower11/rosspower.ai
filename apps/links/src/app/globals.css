@@ -1,0 +1,21 @@
+@import "tailwindcss";
+/* Shared tokens, type scale and base styles (packages/ui). */
+@import "@rosspower/ui/theme.css";
+/* Generate the classes used inside the shared components too. */
+@source "../../../../packages/ui/src";
+
+/*
+ * The page is always a phone-width column, so the type scale stays at its phone sizes
+ * on every screen instead of stepping up at the site's breakpoints.
+ */
+:root {
+  --fs-h2: 40px;
+  --fs-h3: 24px;
+  --fs-h4: 20px;
+  --fs-h5: 18px;
+  --fs-h6: 16px;
+  --fs-p: 16px;
+  --fs-p-sm: 14px;
+  --fs-label: 12px;
+  --voice: var(--color-mid);
+}

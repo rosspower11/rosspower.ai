@@ -1,0 +1,240 @@
+/*
+ * Ross Power design system, shared by every app in the monorepo.
+ * Import after tailwindcss:  @import "tailwindcss"; @import "@rosspower/ui/theme.css";
+ * and add  @source "<path to>/packages/ui/src";  so classes used in shared components are generated.
+ */
+
+/* ------------------------------------------------------------------
+   Design tokens (Option 4 "Stage, light")
+   ------------------------------------------------------------------ */
+@theme {
+  /* Breakpoints: mobile-first, 390 is the base. */
+  --breakpoint-*: initial;
+  --breakpoint-tablet: 810px;
+  --breakpoint-laptop: 1200px;
+  --breakpoint-desktop: 1440px;
+
+  --color-*: initial;
+  --color-cream: #eee9df;
+  --color-ink: #101317;
+  --color-ice: #dde7f2;
+  --color-sky: #bfd7ea;
+  --color-accent: #8fb3d9;
+  /* Decorative only (marks, full stops). Under 4.5:1 on cream, never small text. */
+  --color-blue: #4f7fb3;
+  --color-stone: #c9cdd2;
+  --color-sand: #e1dccf;
+  --color-card: #f6f3ec;
+  /* From the Ross Power design system on the canvas: second colour for titles. */
+  --color-wash: #b7c6e2;
+  --color-mid: #4a6284;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-display: var(--font-anton), Impact, "Arial Narrow", sans-serif;
+  --font-serif: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
+
+  --radius-card: 24px;
+  --radius-panel: 32px;
+  --radius-pill: 999px;
+
+  --container-site: 1440px;
+}
+
+/* ------------------------------------------------------------------
+   Layout + type scale, stepped at each breakpoint
+   ------------------------------------------------------------------ */
+:root {
+  --header-h: 72px;
+  --section-py: 42px;
+  --section-px: 24px;
+
+  /* 72px at 390; below that, shrink so a one-line name still fits the container. */
+  --fs-h1: min(72px, calc((100vw - 2 * var(--section-px)) / 4.66));
+  --fs-h2: 40px;
+  --fs-h3: 24px;
+  --fs-h4: 20px;
+  --fs-h5: 18px;
+  --fs-h6: 16px;
+  --fs-p-lg: 18px;
+  --fs-p: 16px;
+  --fs-p-sm: 14px;
+  --fs-label: 12px;
+}
+
+@media (min-width: 810px) {
+  :root {
+    --section-py: 56px;
+    --section-px: 42px;
+
+    --fs-h1: 144px;
+    --fs-h2: 48px;
+    --fs-h3: 26px;
+    --fs-h4: 22px;
+    --fs-h5: 20px;
+    --fs-h6: 16px;
+    --fs-p: 16px;
+    --fs-p-sm: 14px;
+    --fs-label: 13px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --section-py: 72px;
+    --section-px: 56px;
+
+    --fs-h1: 216px;
+    --fs-h2: 56px;
+    --fs-h3: 30px;
+    --fs-h4: 24px;
+    --fs-h5: 22px;
+    --fs-h6: 18px;
+    --fs-p: 17px;
+    --fs-p-sm: 15px;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --section-py: 96px;
+    --section-px: 80px;
+
+    --fs-h1: 264px;
+    --fs-h2: 64px;
+    --fs-h3: 32px;
+    --fs-h4: 26px;
+    --fs-h5: 24px;
+  }
+}
+
+/* Type styles as utilities, so they work with variants (e.g. tablet:type-h3). */
+@utility type-h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h1);
+  line-height: 0.85;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+@utility type-h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+/* Medium, not bold: Helvetica Neue has no 600, and 600 would render as Bold. */
+@utility type-h3 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--fs-h3);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+@utility type-h4 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--fs-h4);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+@utility type-h5 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--fs-h5);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+@utility type-h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--fs-h6);
+  line-height: 1.3;
+  text-wrap: balance;
+}
+/* Section subtitle: the intro under each section title. 18px / 1.5 at every size. */
+@utility type-p-lg {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--fs-p-lg);
+  line-height: 1.5;
+}
+@utility type-p {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--fs-p);
+  line-height: 1.6;
+}
+@utility type-p-sm {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--fs-p-sm);
+  line-height: 1.5;
+}
+@utility type-label {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--fs-label);
+  line-height: 1.4;
+}
+
+/* Serif italic accent inside any heading ("meet your speaker, *ross power*"). */
+/* The second colour in every title: wash on dark grounds, mid on light ones (set per Section). */
+@utility voice {
+  color: var(--voice, currentColor);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+@utility measure {
+  max-width: 66ch;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    /* Anchor jumps land below the fixed header. */
+    scroll-padding-top: var(--header-h);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--fs-p);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  h1 { @apply type-h1; }
+  h2 { @apply type-h2; }
+  h3 { @apply type-h3; }
+  h4 { @apply type-h4; }
+  h5 { @apply type-h5; }
+  h6 { @apply type-h6; }
+  p { @apply type-p; }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+}
+

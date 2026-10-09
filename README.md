@@ -1,42 +1,63 @@
 # rosspower.ai
 
-The personal site for **Ross Power**: AI keynote speaker, workshop facilitator,
-educator and founder of AI Powered.
+Ross Power's sites: AI keynote speaker, workshop facilitator, educator and
+founder of AI Powered. One repo, two Next.js 16 apps (App Router, Tailwind CSS v4,
+TypeScript) sharing one design system. Hosted on **Vercel**.
 
-Built with **Next.js 16** (App Router), **Tailwind CSS v4** and TypeScript.
-Hosted on **Vercel**.
+| App | Folder | Production (`main`) | Preview (`preview` branch) |
+| --- | --- | --- | --- |
+| Landing page | `apps/web` | rosspower.ai | preview.rosspower.ai |
+| Link in bio (static) | `apps/links` | links.rosspower.ai | preview.links.rosspower.ai |
+
+Preview domains are team-only (Vercel login). Every push to `preview` updates both
+previews; production changes only when a PR is merged into `main`.
 
 ## Develop locally
 
 ```bash
-npm install
-npm run dev        # http://localhost:3000
-npm run build      # production build
+npm install          # once, at the repo root (npm workspaces)
+npm run dev:web      # http://localhost:3000
+npm run dev:links    # http://links.localhost:3300
+npm run build        # builds both apps (links → apps/links/out)
 npm run lint
+npm run typecheck
 ```
 
-`/styleguide` (not indexed) shows the type scale, colours, buttons and the
-Container padding at the current breakpoint.
+`*.localhost` always points at your own machine, so no hosts-file setup is needed.
+`/styleguide` on the web app (not indexed) shows the type scale, colours, buttons
+and the Container padding at the current breakpoint.
 
 ## Structure
 
 ```
-src/
-  app/
-    layout.tsx         Shared shell: fonts, metadata, SiteHeader + SiteFooter
-    page.tsx           Homepage (composes the sections below)
-    globals.css        Design tokens, breakpoints, type scale
-    styleguide/        Internal reference page
-  components/
-    layout/            Section, Container, SiteHeader, SiteFooter
-    home/              Homepage sections (Hero, Stats, About, Speaking, …)
-    ui/                Button, Eyebrow, MediaFrame, icons
-  content/
-    nav.ts             Header/footer links. Add new pages here.
-    home.ts            All homepage copy and image paths
-public/images/         Photos (ross/, events/)
-legacy/index.html      The previous single-file site, kept for reference only
+packages/ui/                 @rosspower/ui: shared by both apps
+  src/styles/theme.css       Design tokens, breakpoints, type scale, base styles
+  src/components/            Button, Eyebrow, Logo, icons, WhatsAppFloat
+  src/content/brand.ts       Socials (+ follower counts), contact, discovery booking
+apps/web/                    rosspower.ai
+  src/app/                   layout, homepage, styleguide; globals.css = site animations
+  src/components/layout/     Section, Container, SiteHeader, SiteFooter
+  src/components/home/       Homepage sections (Hero, Stats, About, Speaking, …)
+  src/content/nav.ts         Header/footer links. Add new pages here.
+  src/content/home.ts        All homepage copy and image paths
+  public/images/             Photos (ross/, events/, stories/)
+  legacy/index.html          The previous single-file site, kept for reference only
+apps/links/                  links.rosspower.ai (static export)
+  src/content/links.ts       Profile, every link and its photo. Edit links here.
+  src/components/            Profile, link cards (feature, tile, row, social)
+  public/images/             Pre-sized photos (no image optimiser on a static export)
 ```
+
+Both apps import the theme first in their `globals.css`:
+
+```css
+@import "tailwindcss";
+@import "@rosspower/ui/theme.css";
+@source "../../../../packages/ui/src";
+```
+
+The links page pins the type scale to its phone sizes, because it is always a
+phone-width column.
 
 ## Layout rules
 
@@ -71,9 +92,11 @@ them to any element.
 
 ## Hosting
 
-Deployed on **Vercel**, connected to this GitHub repo:
+Two Vercel projects (team `rosspowers-projects`) on this GitHub repo:
 
-- `main` → production (rosspower.ai)
-- `preview` and every other branch → a Vercel preview URL
+- `rosspower-ai`: Root Directory `apps/web`, Framework Next.js
+- `rosspower-links`: Root Directory `apps/links`, Framework Next.js
 
-No `vercel.json` is needed; Vercel detects Next.js.
+Each skips builds when neither its folder nor `packages/ui` changed. DNS for
+rosspower.ai is at a third-party provider: each subdomain is a CNAME to
+`cname.vercel-dns.com`.
