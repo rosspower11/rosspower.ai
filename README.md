@@ -60,17 +60,21 @@ phone-width column.
 
 ## Images
 
-Every photo and the AI Powered logo live in the Cloudflare R2 bucket **`rosspower-ai`**,
-served from `https://pub-8596e123de1148b6a30317d1ffd26184.r2.dev`. Code refers to them
-as `asset("images/events/sam00373.jpg")` (`packages/ui/src/lib/asset.ts`); set
-`NEXT_PUBLIC_ASSETS_URL` to move them to another host, e.g. a custom domain.
-Only favicons and `og.png` stay in each app's `public/`.
+Every photo and the AI Powered logo live in the Cloudflare R2 bucket **`rosspower-ai`**.
+Pages load them from their own domain at `/assets/…`: the root `vercel.json` proxies
+`/assets/*` to the bucket's public URL (and each app's `next.config.ts` does the same under
+`next dev`). Code refers to them as `asset("images/events/sam00373.jpg")`
+(`packages/ui/src/lib/asset.ts`). Only favicons and `og.png` stay in each app's `public/`.
+
+Never link `*.r2.dev` directly: Indonesian ISPs block it ("Internet Positif"), so photos
+fail for visitors there. `next/image` optimisation is off, because Vercel's `/_next/image`
+isn't served in the Services deployment; the photos are already web-sized.
 
 | Folder in the bucket | Used by |
 | --- | --- |
 | `images/ross/`, `images/events/`, `images/stories/` | rosspower.ai |
 | `images/profile/`, `images/links/` | links.rosspower.ai (pre-sized: the static export has no image optimiser) |
-| `images/brand/ai-powered-logo.png` | Both (CSS mask, so the bucket allows CORS GET from any origin) |
+| `images/brand/ai-powered-logo.png` | Both (CSS mask) |
 
 Add an image (needs a Cloudflare API token with R2 write access):
 

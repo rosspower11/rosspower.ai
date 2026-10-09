@@ -7,7 +7,7 @@ type LogoProps = { className?: string; color?: string };
 
 /**
  * The "ai powered" wordmark (1024×176 PNG, in the R2 assets bucket), used as a mask so it can be any colour.
- * Cross-origin masks need CORS: the bucket allows GET from any origin.
+ * It loads from the site's own /assets path, so the mask is same-origin.
  * White by default; pass `color` to recolour it for light grounds.
  */
 export function Logo({ className, color = "#ffffff" }: LogoProps) {

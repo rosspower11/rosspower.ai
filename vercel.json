@@ -1,15 +1,37 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "services": {
-    "web": { "root": "apps/web", "framework": "nextjs" },
-    "links": { "root": "apps/links", "framework": "nextjs" }
+    "web": {
+      "root": "apps/web",
+      "framework": "nextjs"
+    },
+    "links": {
+      "root": "apps/links",
+      "framework": "nextjs"
+    }
   },
   "rewrites": [
     {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "(?:preview\\.)?links\\.rosspower\\.ai" }],
-      "destination": { "service": "links" }
+      "source": "/assets/:path*",
+      "destination": "https://pub-8596e123de1148b6a30317d1ffd26184.r2.dev/:path*"
     },
-    { "source": "/(.*)", "destination": { "service": "web" } }
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:preview\\.)?links\\.rosspower\\.ai"
+        }
+      ],
+      "destination": {
+        "service": "links"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "web"
+      }
+    }
   ]
 }
