@@ -9,8 +9,8 @@ TypeScript) sharing one design system. Hosted on **Vercel**.
 | Landing page | `apps/web` | rosspower.ai | preview.rosspower.ai |
 | Link in bio (static) | `apps/links` | links.rosspower.ai | preview.links.rosspower.ai |
 
-Preview domains are team-only (Vercel login). Every push to `preview` updates both
-previews; production changes only when a PR is merged into `main`.
+Every push to `preview` updates both previews; production changes only when a PR
+is merged into `main`.
 
 ## Develop locally
 
@@ -92,11 +92,17 @@ them to any element.
 
 ## Hosting
 
-Two Vercel projects (team `rosspowers-projects`) on this GitHub repo:
+One Vercel project, `rosspower-ai` (team `rosspowers-projects`), deploys both apps
+together using [Vercel Services](https://vercel.com/docs/services):
 
-- `rosspower-ai`: Root Directory `apps/web`, Framework Next.js
-- `rosspower-links`: Root Directory `apps/links`, Framework Next.js
+- Project settings: Root Directory = repo root, Framework Preset = Services
+- `vercel.json` defines two services, `web` (`apps/web`) and `links` (`apps/links`),
+  and routes by host: `links.rosspower.ai` and `preview.links.rosspower.ai` go to
+  `links`; everything else goes to `web`
+- `main` → production (rosspower.ai, links.rosspower.ai);
+  `preview` branch → preview.rosspower.ai and preview.links.rosspower.ai
+- Generated `*.vercel.app` preview URLs only show the web app (they have no
+  links hostname); use preview.links.rosspower.ai for the links page
 
-Each skips builds when neither its folder nor `packages/ui` changed. DNS for
-rosspower.ai is at a third-party provider: each subdomain is a CNAME to
+DNS for rosspower.ai is at a third-party provider: each subdomain is a CNAME to
 `cname.vercel-dns.com`.
