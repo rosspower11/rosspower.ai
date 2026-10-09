@@ -3,13 +3,14 @@ import { Section } from "@/components/layout/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { book } from "@/content/home";
 import { contact } from "@/content/nav";
-import { CalEmbed } from "./CalEmbed";
+import { BookingEmbed } from "./BookingEmbed";
 
 export function Book() {
   return (
     <Section id="book" tone="ice" aria-labelledby="book-title">
-      <Container className="grid gap-10 laptop:grid-cols-12 laptop:gap-x-10">
-        <div className="flex flex-col gap-5 laptop:col-span-4">
+      {/* Vertical: centred title block, then the calendar. */}
+      <Container className="flex flex-col gap-10 tablet:gap-14">
+        <div className="mx-auto mb-6 flex max-w-[640px] flex-col items-center gap-5 text-center">
           <Eyebrow>{book.eyebrow}</Eyebrow>
           <h2 id="book-title">
             Bring AI to <span className="voice">your stage</span>
@@ -22,8 +23,14 @@ export function Book() {
             </a>
           </p>
         </div>
-        <div className="laptop:col-span-8">
-          <CalEmbed calLink={book.calLink} namespace={book.calNamespace} />
+        <div className="mx-auto w-full max-w-[960px]">
+          <BookingEmbed
+            iframeSrc={book.discovery.iframeSrc}
+            iframeId={`${book.discovery.calendarId}_rosspower-home`}
+            scriptSrc={book.discovery.scriptSrc}
+            title="Book a discovery call with Ross"
+            fullPageHref={book.discovery.url}
+          />
         </div>
       </Container>
     </Section>

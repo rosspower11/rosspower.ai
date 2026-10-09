@@ -23,12 +23,12 @@ const colours = [
 
 const scale = [
   { name: "H1", cls: "type-h1", spec: "Anton · 264 / 216 / 144 / 72", sample: "Ross Power" },
-  { name: "H2", cls: "type-h2", spec: "Instrument Serif · 80 / 68 / 56 / 40", sample: "meet your speaker" },
-  { name: "H3", cls: "type-h3", spec: "Helvetica 700 · 40 / 36 / 32 / 28", sample: "Confidence comes from doing." },
-  { name: "H4", cls: "type-h4", spec: "Helvetica 700 · 32 / 28 / 24 / 22", sample: "AI for Private Equity" },
+  { name: "H2", cls: "type-h2", spec: "Instrument Serif · 64 / 56 / 48 / 40", sample: "meet your speaker" },
+  { name: "H3", cls: "type-h3", spec: "Helvetica 500 · 32 / 30 / 26 / 24", sample: "Confidence comes from doing." },
+  { name: "H4", cls: "type-h4", spec: "Helvetica 700 · 26 / 24 / 22 / 20", sample: "AI for Private Equity" },
   { name: "H5", cls: "type-h5", spec: "Helvetica 700 · 24 / 22 / 20 / 18", sample: "making ai simple" },
   { name: "H6", cls: "type-h6", spec: "Helvetica 700 · 18 / 18 / 16 / 16", sample: "programmes that teach you" },
-  { name: "P lg", cls: "type-p-lg", spec: "Helvetica 400 · 20 / 20 / 19 / 18", sample: "Keynotes, workshops and panels for founders, teams and leaders." },
+  { name: "Subtitle", cls: "type-p-lg", spec: "Helvetica 400 · 18 at all sizes · 1.5", sample: "Keynotes, workshops and panels for founders, teams and leaders." },
   { name: "P", cls: "type-p", spec: "Helvetica 400 · 17 / 17 / 16 / 16", sample: "Practical AI your listeners can use the same day, founder stories from Bali to London." },
   { name: "P sm", cls: "type-p-sm", spec: "Helvetica 400 · 15 / 15 / 14 / 14", sample: "Bali, September 2026" },
   { name: "Label", cls: "type-label", spec: "Helvetica 600 · 13 / 13 / 13 / 12", sample: "hosting a podcast?" },

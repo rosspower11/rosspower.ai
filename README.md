@@ -57,12 +57,13 @@ Every block is **Section › Container › content**:
 | Style | Font | 1440 / 1200 / 810 / 390 |
 | --- | --- | --- |
 | H1 | Anton, uppercase | 264 / 216 / 144 / 72 |
-| H2 | Instrument Serif (italic `.voice` accents) | 80 / 68 / 56 / 40 |
-| H3 | Helvetica 700 | 40 / 36 / 32 / 28 |
-| H4 | Helvetica 700 | 32 / 28 / 24 / 22 |
+| H2 | Instrument Serif (italic `.voice` accents) | 64 / 56 / 48 / 40 |
+| H3 | Helvetica 500 (Medium) | 32 / 30 / 26 / 24 |
+| H4 | Helvetica 700 | 26 / 24 / 22 / 20 |
 | H5 | Helvetica 700 | 24 / 22 / 20 / 18 |
 | H6 | Helvetica 700 | 18 / 18 / 16 / 16 |
-| P lg / P / P sm | Helvetica 400 | 20·17·15 → 18·16·14 |
+| Subtitle (`type-p-lg`) | Helvetica 400 | 18 at all sizes, line height 1.5 |
+| P / P sm | Helvetica 400 | 17·15 → 16·14 |
 | Label | Helvetica 600 | 13 → 12 |
 
 Bare `h1`–`h6` and `p` pick these up automatically; the `type-*` utilities apply

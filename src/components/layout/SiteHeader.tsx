@@ -66,11 +66,12 @@ export function SiteHeader() {
   const close = () => setOpen(false);
 
   return (
-    // A floating bar, centred and only as wide as its contents. The outer strip ignores clicks.
-    <header className="pointer-events-none fixed inset-x-0 top-3 z-50 flex justify-center px-4 tablet:top-4">
+    // A floating bar 16px from the top. Phones: full width, 20px from each side.
+    // Tablet up: centred and only as wide as its contents. The outer strip ignores clicks.
+    <header className="pointer-events-none fixed inset-x-5 top-4 z-50 flex justify-center tablet:inset-x-0 tablet:px-4">
       <div
         className={cn(
-          "pointer-events-auto flex h-14 items-center gap-6 rounded-[14px] border py-1.5 pr-1.5 pl-5 backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300 laptop:gap-10",
+          "pointer-events-auto flex h-14 w-full items-center justify-between gap-6 rounded-[14px] border py-1.5 pr-1.5 pl-5 backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300 tablet:w-auto tablet:justify-start laptop:gap-[60px]",
           overDark
             ? "border-cream/15 bg-ink/45 text-cream shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
             : "border-ink/10 bg-cream/75 text-ink shadow-[0_8px_32px_rgba(16,19,23,0.10)]",
@@ -87,6 +88,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          {/* No Book Ross button on phones: it lives at the bottom of the menu instead. */}
           <span className="hidden tablet:contents">
             <Button href={bookLink.href} variant={overDark ? "cream" : "ink"} size="sm">
               {bookLink.label}
@@ -112,8 +114,9 @@ export function SiteHeader() {
         aria-label="Site menu"
         className="pointer-events-auto m-0 h-dvh max-h-none w-full max-w-none bg-ink p-0 text-cream backdrop:bg-ink"
       >
-        <div className="mx-auto flex h-full w-full max-w-site flex-col px-(--section-px)">
-          <div className="flex h-18 items-center justify-between">
+        <div className="mx-auto flex h-full w-full max-w-site flex-col px-5 tablet:px-(--section-px)">
+          {/* Phones: the same bar, in the same spot, so the close button replaces the menu button. */}
+          <div className="mt-4 flex h-14 shrink-0 items-center justify-between rounded-[14px] border border-cream/15 py-1.5 pr-1.5 pl-5 tablet:mt-0 tablet:h-18 tablet:rounded-none tablet:border-0 tablet:p-0">
             <Brand onClick={close} />
             <button
               type="button"
@@ -127,7 +130,7 @@ export function SiteHeader() {
             </button>
           </div>
 
-          <nav aria-label="Menu" className="my-auto flex flex-col py-10">
+          <nav aria-label="Menu" className="my-auto flex flex-col py-8">
             {mainNav.map((link, i) => (
               <Link
                 key={link.href}
@@ -141,11 +144,12 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="flex flex-col gap-4 pb-8 tablet:flex-row tablet:items-center tablet:justify-between">
-            <a href={`mailto:${contact.email}`} className="type-p-sm text-cream/70 hover:text-cream">
+          {/* Pinned to the bottom: contact, then a full-width Book Ross on phones. */}
+          <div className="flex flex-col gap-5 pb-[max(20px,env(safe-area-inset-bottom))] tablet:flex-row tablet:items-center tablet:justify-between tablet:pb-8">
+            <a href={`mailto:${contact.email}`} className="type-p-sm text-center text-cream/70 hover:text-cream tablet:text-left">
               {contact.email}
             </a>
-            <Button href={bookLink.href} onClick={close} variant="accent">
+            <Button href={bookLink.href} onClick={close} variant="cream" className="w-full tablet:w-auto">
               {bookLink.label}
               <ArrowUpRight />
             </Button>

@@ -24,7 +24,8 @@ export function About() {
       <Container flush="top" className="flex flex-col gap-8">
         {/* Tall photo with the title and bio floating on it (phones: title only). Grows as it scrolls in. */}
         <ScrollScale>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-panel bg-stone text-cream tablet:aspect-auto tablet:h-[760px] laptop:h-[720px] desktop:h-[800px]">
+          {/* data-tone: the photo is dark, so the floating nav switches to light-on-dark over it. */}
+          <div data-tone="ink" className="relative aspect-[4/5] overflow-hidden rounded-panel bg-stone text-cream tablet:aspect-auto tablet:h-[760px] laptop:h-[720px] desktop:h-[800px]">
             <Image
               src={about.photo.src}
               alt={about.photo.alt}

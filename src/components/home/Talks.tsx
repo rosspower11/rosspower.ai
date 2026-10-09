@@ -11,7 +11,7 @@ export function Talks() {
   return (
     <Section id="talks" aria-labelledby="talks-title">
       <Container className="flex flex-col gap-10 tablet:gap-14">
-        <div className="grid gap-5 laptop:grid-cols-12 laptop:gap-x-10">
+        <div className="mb-6 grid gap-5 laptop:grid-cols-12 laptop:gap-x-10">
           <div className="flex flex-col gap-5 laptop:col-span-6">
             <Eyebrow>Talks</Eyebrow>
             <h2 id="talks-title">
@@ -49,9 +49,9 @@ export function Talks() {
 
         <div className="flex flex-col gap-6 rounded-panel bg-ice p-7 tablet:flex-row tablet:items-center tablet:justify-between tablet:p-10 laptop:p-12">
           <div className="flex flex-col gap-3">
-            <Eyebrow>{podcast.eyebrow}</Eyebrow>
+            {/* All sans: the second half takes the title's second colour, no serif. */}
             <h3 className="type-h3">
-              Get Ross on <span className="voice">your show</span>
+              Get Ross on <span className="text-(--voice)">your show</span>
             </h3>
             <p className="measure">{podcast.body}</p>
           </div>

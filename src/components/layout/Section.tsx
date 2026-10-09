@@ -7,6 +7,7 @@ const tones = {
   ice: "bg-ice text-ink [--voice:var(--color-mid)]",
   sky: "bg-sky text-ink [--voice:var(--color-mid)]",
   sand: "bg-sand text-ink [--voice:var(--color-mid)]",
+  wash: "bg-wash text-ink [--voice:var(--color-mid)]",
   ink: "bg-ink text-cream [--voice:var(--color-wash)]",
 } as const;
 
