@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { hero } from "@/content/home";
 import { HeroMotion } from "./HeroMotion";
+import { asset } from "@rosspower/ui/lib/asset";
 
 /** Inline CSS custom properties, typed. */
 const vars = (v: Record<string, string | number>) => v as CSSProperties;
@@ -80,7 +81,7 @@ export function Hero() {
             <div className="parallax-mid absolute inset-0">
               <div className="hero-rise absolute inset-0" style={vars({ "--delay": "1050ms" })}>
                 <Image
-                  src="/images/ross/ross-cutout.png"
+                  src={asset("images/ross/ross-cutout.png")}
                   alt="Ross Power"
                   fill
                   priority

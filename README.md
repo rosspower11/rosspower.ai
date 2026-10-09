@@ -34,18 +34,17 @@ packages/ui/                 @rosspower/ui: shared by both apps
   src/styles/theme.css       Design tokens, breakpoints, type scale, base styles
   src/components/            Button, Eyebrow, Logo, icons, WhatsAppFloat
   src/content/brand.ts       Socials (+ follower counts), contact, discovery booking
+  src/lib/asset.ts           asset("images/…") → URL in the R2 assets bucket
 apps/web/                    rosspower.ai
   src/app/                   layout, homepage, styleguide; globals.css = site animations
   src/components/layout/     Section, Container, SiteHeader, SiteFooter
   src/components/home/       Homepage sections (Hero, Stats, About, Speaking, …)
   src/content/nav.ts         Header/footer links. Add new pages here.
   src/content/home.ts        All homepage copy and image paths
-  public/images/             Photos (ross/, events/, stories/)
   legacy/index.html          The previous single-file site, kept for reference only
 apps/links/                  links.rosspower.ai (static export)
   src/content/links.ts       Profile, every link and its photo. Edit links here.
   src/components/            Profile, link cards (feature, tile, row, social)
-  public/images/             Pre-sized photos (no image optimiser on a static export)
 ```
 
 Both apps import the theme first in their `globals.css`:
@@ -58,6 +57,29 @@ Both apps import the theme first in their `globals.css`:
 
 The links page pins the type scale to its phone sizes, because it is always a
 phone-width column.
+
+## Images
+
+Every photo and the AI Powered logo live in the Cloudflare R2 bucket **`rosspower-ai`**,
+served from `https://pub-8596e123de1148b6a30317d1ffd26184.r2.dev`. Code refers to them
+as `asset("images/events/sam00373.jpg")` (`packages/ui/src/lib/asset.ts`); set
+`NEXT_PUBLIC_ASSETS_URL` to move them to another host, e.g. a custom domain.
+Only favicons and `og.png` stay in each app's `public/`.
+
+| Folder in the bucket | Used by |
+| --- | --- |
+| `images/ross/`, `images/events/`, `images/stories/` | rosspower.ai |
+| `images/profile/`, `images/links/` | links.rosspower.ai (pre-sized: the static export has no image optimiser) |
+| `images/brand/ai-powered-logo.png` | Both (CSS mask, so the bucket allows CORS GET from any origin) |
+
+Add an image (needs a Cloudflare API token with R2 write access):
+
+```bash
+wrangler r2 object put rosspower-ai/images/events/new-photo.jpg --file ./new-photo.jpg \
+  --content-type image/jpeg --cache-control "public, max-age=31536000, immutable" --remote
+```
+
+Files are cached for a year, so upload a changed photo under a new name.
 
 ## Layout rules
 
