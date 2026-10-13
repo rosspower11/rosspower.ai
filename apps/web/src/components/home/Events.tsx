@@ -9,17 +9,13 @@ export function Events() {
   return (
     <Section id="events" tone="ink" aria-labelledby="events-title">
       <Container className="flex flex-col gap-10 tablet:gap-14">
-        {/* Title row: title left, intro right (laptop up). */}
-        <div className="mb-6 grid gap-5 laptop:grid-cols-12 laptop:gap-x-10">
-          <div className="flex flex-col gap-5 laptop:col-span-6">
-            <Eyebrow>{pastEvents.eyebrow}</Eyebrow>
-            <h2 id="events-title">
-              Rooms Ross has <span className="voice">already filled</span>
-            </h2>
-          </div>
-          <p className="type-p-lg measure text-cream/75 laptop:col-span-5 laptop:col-start-8 laptop:self-end">
-            {pastEvents.intro}
-          </p>
+        {/* Centred header, like the other homepage sections. */}
+        <div className="mx-auto mb-6 flex max-w-[640px] flex-col items-center gap-5 text-center">
+          <Eyebrow>{pastEvents.eyebrow}</Eyebrow>
+          <h2 id="events-title">
+            Past <span className="voice">speeches</span>
+          </h2>
+          <p className="type-p-lg text-cream/75">{pastEvents.body}</p>
         </div>
 
         {/*

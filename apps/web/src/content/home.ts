@@ -62,64 +62,70 @@ export const formats = [
   },
 ];
 
-/** Talk topics carried over from the previous site. */
+/** "Ready to have a chat?": copy from the build pack, "Section copy: 04. Talks and Podcast". */
+export const talksIntro = {
+  eyebrow: "Talks",
+  body: "On your stage, on your panel or on your podcast. Pick the conversation your audience needs and Ross will shape it around them.",
+};
+
+/** The four talks, in this order. Every "book this talk" goes to the booking calendar. */
 export const talks = [
   {
     kind: "Keynote",
-    title: "Everyone will learn AI eventually.",
-    body: "The advantage goes to those who learn it first. A high-energy keynote on why this moment is different, and how to become a participant, not a witness.",
+    title: "Three Intelligences: human, artificial and divine",
+    body: "AI gives us back time, and the real question is what we do with it. Your audience leaves with a simple way to work backwards from the outcome they want, and a clear order to put things in: peace, then people, then tools.",
   },
   {
     kind: "Keynote",
-    title: "Confidence comes from doing.",
-    body: "Most people are stuck asking questions and getting answers. Ross walks audiences through the six levels of AI fluency, from Chat to Command.",
+    title: "The Humans Decide",
+    body: "Organisations buy the AI tools long before anyone works out how their teams will use them. Leaders leave knowing why adoption starts with people, and how to close that gap in their own teams.",
   },
   {
-    kind: "Talk",
-    title: "The AI-powered operator.",
-    body: "How founders and teams reclaim hours every week: leads, content, business materials and admin, run through one operating system instead of a dozen tabs.",
+    kind: "Executive briefing",
+    title: "Context: what the human brain can teach us about AI",
+    body: "The brain is a context machine, and most teams build their AI on sand. Your room leaves with the foundations of using AI well, explained in plain English.",
   },
   {
     kind: "Workshop",
-    title: "From overwhelmed to AI-powered.",
-    body: "A hands-on workshop for your team. We build something real together, live, so people leave with working skills and the belief they can keep evolving.",
+    title: "From Chat to Command",
+    body: "The six levels of working with AI, from Chat to Command, with live builds the room follows along with. Everyone leaves with a personal operating system they can use the next day.",
   },
 ];
 
+/** "Past speeches": copy from the build pack, "Section copy: 05. Past Speeches". Only these three events. */
 export const pastEvents = {
   eyebrow: "Past events",
-  intro: "A few of the rooms from the past year, from HR leaders in Bali to private equity in London.",
+  body: "The rooms Ross has already filled, from London to Bali.",
 };
 
-// HR APAC uses its own keynote photo. TODO(ross): photos from AI for Private Equity (pe-london.jpg)
-// and the Productize Yourself tour (productize-yourself-bali.jpg); they are not in the Drive folder yet.
+// HR APAC uses its own keynote photo. TODO(ross): pe-london.jpg (AI for Private Equity) isn't in Drive yet,
+// so London shows a stand-in photo from a Bali workshop. Productize uses a Productize Yourself event photo.
 export const events = [
   {
     title: "HR APAC Forum",
-    role: "Keynote",
-    meta: "Bali · September 2026",
+    role: "Keynote, The four secrets of an AI-ready team",
+    meta: "Bali, September 2026",
     src: asset("images/events/hr-apac-forum.jpg"),
     alt: "Ross giving his keynote at HR APAC Forum in Bali",
   },
   {
     title: "AI for Private Equity",
     role: "Host, keynote and panel moderator",
-    meta: "London · June 2026",
+    meta: "London, June 2026",
     src: asset("images/events/sam00408.jpg"),
-    alt: "Ross presenting to a full room",
+    alt: "Ross hosting AI for Private Equity in London",
   },
   {
     title: "Productize Yourself tour",
     role: "Four events, 200+ people in three weeks",
-    meta: "Bali · early 2026",
+    meta: "Bali, early 2026",
     src: asset("images/events/event-02.jpg"),
-    alt: "Ross on stage at a Productize Yourself event",
+    alt: "A packed room at the Productize Yourself tour in Bali",
   },
 ];
 
 export const podcast = {
   body: "Practical AI your listeners can use the same day, founder stories from Bali to London, and real numbers from the rooms he runs.",
-  // TODO(ross): add five to seven podcast angles from the podcast playbook.
 };
 
 export const aiPowered = {
@@ -156,8 +162,7 @@ export const aiPowered = {
  * Student quotes from AI Powered case studies (aipowered-website src/lib/page-content/stories.ts),
  * with the portraits used there. Quotes are verbatim; a leading "…" marks the ones that start mid-sentence.
  */
-// TODO(ross): approve the short outcome lines, condensed from each case study's outcome line,
-// and confirm these quotes and photos can be used on rosspower.ai as well as aipowered.xyz.
+// TODO(ross): confirm these quotes and photos can be used on rosspower.ai as well as aipowered.xyz.
 export const quotes = {
   eyebrow: "Success stories",
   intro: "Founders, coaches and consultants who learned AI with Ross, in their own words.",
@@ -166,63 +171,54 @@ export const quotes = {
       quote: "…he's very good at making AI accessible.",
       name: "Ashley",
       role: "Executive coach, Ashley Blackmore Coaching",
-      outcome: "Got AI to sound like him",
       photo: asset("images/stories/ashley.jpg"),
     },
     {
       quote: "I feel like I have a whole team behind me.",
       name: "Doris",
       role: "1:1 coach",
-      outcome: "Built her coaching site and offer",
       photo: asset("images/stories/doris.jpg"),
     },
     {
       quote: "Previously, we would ask somebody to do that for us. Now we can actually do it ourselves.",
       name: "Daniel",
       role: "Business owner",
-      outcome: "Rebuilt his company website himself",
       photo: asset("images/stories/daniel.jpg"),
     },
     {
       quote: "…it's something that I wasn't expecting to be able to deliver before the cohort.",
       name: "Charlie",
       role: "Climate consultant",
-      outcome: "Shipped a client portal with Claude",
       photo: asset("images/stories/charlie.jpg"),
     },
     {
       quote: "…it's fundamentally changed how I run my business.",
       name: "Eliot",
       role: "Co-founder, Maximy",
-      outcome: "Changed how he runs his business",
       photo: asset("images/stories/eliot.jpg"),
     },
     {
       quote: "…can see that I can do a lot of stuff that I thought I had to outsource to people…",
       name: "Simon",
       role: "Marketing and PR professional",
-      outcome: "Built his own dashboard with Claude",
       photo: asset("images/stories/simon.jpg"),
     },
     {
       quote: "I didn't need to add anything to it or hire anybody else to like patch it up.",
       name: "James",
       role: "Sports apparel consultant",
-      outcome: "Built his new business's website",
       photo: asset("images/stories/james.jpg"),
     },
     {
       quote: "…it definitely brought me up to speed. So I feel so much more confident… in the working world.",
       name: "Jamie",
       role: "Connection facilitator",
-      outcome: "Builds client presentations with Claude",
       photo: asset("images/stories/jamie.jpg"),
     },
     {
       quote: "I was attending his cohort for AI and I created all my business.",
       name: "Miri",
       role: "Programme participant",
-      outcome: "Built her whole business in the cohort",
       photo: asset("images/stories/miri.jpg"),
     },
   ],

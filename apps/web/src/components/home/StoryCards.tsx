@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "@rosspower/ui/components/Icon";
 
-type Story = { quote: string; name: string; role: string; outcome: string; photo: string };
+type Story = { quote: string; name: string; role: string; photo: string };
 
 const INTERVAL = 4500;
 
@@ -76,13 +76,8 @@ export function StoryCards({ items }: { items: Story[] }) {
             key={s.name}
             className="flex min-h-[320px] w-[82%] shrink-0 snap-start flex-col rounded-card border border-ink/10 bg-card p-6 tablet:w-[340px] laptop:min-h-[340px] laptop:w-[360px] laptop:p-7"
           >
-            {/* Outcome line over a dashed rule. */}
-            <p className="type-label flex items-center gap-2 border-b border-dashed border-ink/20 pb-4 text-mid">
-              <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-mid" />
-              {s.outcome}
-            </p>
 
-            <blockquote className="type-p-lg mt-5 text-ink/85">{s.quote}</blockquote>
+            <blockquote className="type-p-lg text-ink/85">{s.quote}</blockquote>
 
             <div className="mt-auto flex items-end justify-between gap-4 pt-8">
               <div className="flex flex-col gap-0.5">
