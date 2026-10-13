@@ -6,6 +6,9 @@ import type { FeatureLink, RowLink, TileLink } from "@/content/links";
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
+/** Cards only render links that have a URL (see `live` in content/links.ts). */
+type Live<T> = T & { href: string };
+
 /** "aipowered.xyz" from "https://www.aipowered.xyz/events". */
 const domain = (href: string) => new URL(href).hostname.replace(/^www\./, "");
 
@@ -19,7 +22,7 @@ function GlassArrow() {
 }
 
 /** Full-width image card: photo with a dark foot, label, title and one line over it. */
-export function FeatureCard({ link }: { link: FeatureLink }) {
+export function FeatureCard({ link }: { link: Live<FeatureLink> }) {
   return (
     <a
       href={link.href}
@@ -56,7 +59,7 @@ export function FeatureCard({ link }: { link: FeatureLink }) {
 }
 
 /** Half-width image card with its title in a frosted pill (two to a row). */
-export function TileCard({ link }: { link: TileLink }) {
+export function TileCard({ link }: { link: Live<TileLink> }) {
   return (
     <a
       href={link.href}
@@ -79,8 +82,8 @@ export function TileCard({ link }: { link: TileLink }) {
   );
 }
 
-/** Plain card: thumbnail, title, one line and the destination's domain. */
-export function RowCard({ link }: { link: RowLink }) {
+/** Plain horizontal card: thumbnail, title, a one-line subtitle and the destination's domain. */
+export function RowCard({ link }: { link: Live<RowLink> }) {
   return (
     <a
       href={link.href}
@@ -92,7 +95,7 @@ export function RowCard({ link }: { link: RowLink }) {
       </span>
       <span className="flex min-w-0 flex-1 flex-col gap-1">
         <span className="text-[16px] leading-[1.25] font-bold tracking-[-0.01em]">{link.title}</span>
-        <span className="line-clamp-2 text-[13px] leading-[1.4] text-ink/65">{link.desc}</span>
+        <span className="text-[13px] leading-[1.4] text-ink/65">{link.desc}</span>
         <span className="mt-0.5 flex items-center gap-1.5 text-[12px] text-ink/45">
           <LinkChain />
           {domain(link.href)}
@@ -102,6 +105,26 @@ export function RowCard({ link }: { link: RowLink }) {
         <ArrowUpRight />
       </span>
     </a>
+  );
+}
+
+/** Partner link: a plain full-width button with the disclosure line directly under it. */
+export function PartnerButton({ title, href, disclosure }: { title: string; href: string; disclosure: string }) {
+  return (
+    <div className="flex flex-col gap-2">
+      <a
+        href={href}
+        {...external}
+        rel="noopener noreferrer sponsored"
+        className="group flex min-h-14 items-center justify-between gap-4 rounded-card border border-ink/10 bg-card py-3 pr-3 pl-5 transition-[border-color,box-shadow] duration-300 hover:border-ink/25 hover:shadow-[0_10px_30px_rgba(16,19,23,0.08)]"
+      >
+        <span className="text-[16px] leading-[1.25] font-bold tracking-[-0.01em]">{title}</span>
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-ink/15 transition-colors group-hover:border-ink group-hover:bg-ink group-hover:text-cream">
+          <ArrowUpRight />
+        </span>
+      </a>
+      <p className="px-5 text-[12px] leading-[1.45] text-ink/55">{disclosure}</p>
+    </div>
   );
 }
 

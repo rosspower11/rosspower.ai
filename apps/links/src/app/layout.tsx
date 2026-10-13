@@ -10,7 +10,7 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
-const title = "Ross Power · Links";
+const title = "Ross Power | links";
 const description =
   "Book a call with Ross, explore AI Powered's programmes and solutions, and follow along on YouTube, Instagram, LinkedIn and X.";
 

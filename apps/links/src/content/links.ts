@@ -2,22 +2,31 @@ import { contact, discoveryBooking, socials } from "@rosspower/ui/content/brand"
 import { asset } from "@rosspower/ui/lib/asset";
 
 /**
- * Everything on links.rosspower.ai. Offer descriptions are aipowered.xyz's own copy
- * (aipowered-website src/lib/page-content/hubs.ts, seo.ts, public/llms.txt), in the third person.
+ * Everything on links.rosspower.ai. Subtitles are one short line, condensed from aipowered.xyz's
+ * own copy (aipowered-website src/lib/page-content/hubs.ts, seo.ts, public/llms.txt).
  * Photos come from aipowered-website/public/images, pre-sized, and live in the R2 assets bucket.
  */
 
 type Photo = { src: string; alt: string };
 
+/**
+ * A link's URL, or null while it's still to be added (a "[link]" in the brief).
+ * Links without a URL stay hidden, and so does a section with none left.
+ */
+type Href = string | null;
+
 /** Full-width image card. */
-export type FeatureLink = { kind: "feature"; label: string; title: string; desc: string; href: string; image: Photo };
+export type FeatureLink = { kind: "feature"; label: string; title: string; desc: string; href: Href; image: Photo };
 /** Half-width image card, two to a row. */
-export type TileLink = { kind: "tile"; title: string; href: string; image: Photo };
+export type TileLink = { kind: "tile"; title: string; href: Href; image: Photo };
 /** Plain card: thumbnail, title, one line, domain. */
-export type RowLink = { kind: "row"; title: string; desc: string; href: string; image: Photo };
+export type RowLink = { kind: "row"; title: string; desc: string; href: Href; image: Photo };
 
 export type LinkItem = FeatureLink | TileLink | RowLink;
 export type LinkSection = { title: string; items: LinkItem[] };
+
+/** Keep only the links that have a URL. */
+export const live = <T extends { href: Href }>(links: T[]) => links.filter((l): l is T & { href: string } => !!l.href);
 
 const AIP = contact.aiPowered;
 
@@ -32,6 +41,11 @@ export const profile = {
   },
 };
 
+/**
+ * The main list, top to bottom.
+ * New lead magnets (free tools, quizzes, guides) go at the very top, as the first item of
+ * "Work with Ross", newest first.
+ */
 export const sections: LinkSection[] = [
   {
     title: "Work with Ross",
@@ -40,19 +54,19 @@ export const sections: LinkSection[] = [
         kind: "feature",
         label: "20 min · With Ross",
         title: "Book a discovery call",
-        desc: "Tell Ross where you are with AI, and find the right next step for you or your team.",
+        desc: "Find the right next step for you or your team.",
         href: discoveryBooking.url,
         image: { src: asset("images/links/discovery.jpg"), alt: "Ross helping a workshop participant at their laptop" },
       },
       {
         kind: "tile",
-        title: "Book Ross to speak",
+        title: "Book to speak",
         href: "https://rosspower.ai/#book",
         image: { src: asset("images/links/speaking.jpg"), alt: "Ross on stage pointing to the room" },
       },
       {
         kind: "tile",
-        title: "Get your AI Game Plan",
+        title: "AI Game Plan",
         href: `${AIP}/game-plan`,
         image: { src: asset("images/links/game-plan.jpg"), alt: "Ross explaining a prompt on a big screen" },
       },
@@ -64,21 +78,21 @@ export const sections: LinkSection[] = [
       {
         kind: "row",
         title: "AI Audit & Strategy",
-        desc: "A 90-minute audit with Ross, then a written strategy you can run or build out.",
+        desc: "Audit and written AI strategy",
         href: `${AIP}/founders/ai-audit`,
         image: { src: asset("images/links/ai-audit.jpg"), alt: "Ross presenting beside a projector screen" },
       },
       {
         kind: "row",
         title: "The AI-Powered Business",
-        desc: "Your website, marketing, CRM and automations, built by Ross's team. All yours.",
+        desc: "Website, CRM, automations",
         href: `${AIP}/founders/ai-powered-business`,
         image: { src: asset("images/links/ai-powered-business.jpg"), alt: "Ross presenting to a workshop" },
       },
       {
         kind: "row",
         title: "Claude Programme",
-        desc: "Cohort 4.0 is underway. Join the waitlist to hear first about what comes next.",
+        desc: "Waitlist for the next cohort",
         href: `${AIP}/founders/claude-programme`,
         image: { src: asset("images/links/claude-programme.jpg"), alt: "A live Claude Programme session on video call" },
       },
@@ -90,14 +104,14 @@ export const sections: LinkSection[] = [
       {
         kind: "row",
         title: "TeamOS",
-        desc: "90 days to upgrade your leaders and team, on one system: Claude, ClickUp and Granola.",
+        desc: "Claude, ClickUp, Granola",
         href: `${AIP}/organisations/teamos`,
         image: { src: asset("images/links/teamos.jpg"), alt: "A full room of laptops at an AI Powered workshop" },
       },
       {
         kind: "row",
         title: "AI Future Leaders",
-        desc: "Find your rising AI talent and train them into the leaders who bring everyone along.",
+        desc: "Turn AI talent into leaders",
         href: `${AIP}/organisations/ai-future-leaders`,
         image: { src: asset("images/links/ai-future-leaders.jpg"), alt: "A packed evening event at a garden venue" },
       },
@@ -110,20 +124,31 @@ export const sections: LinkSection[] = [
         kind: "feature",
         label: "Ross's company",
         title: "AI Powered",
-        desc: "AI Powered, not AI replaced. Programmes, solutions and events for founders and organisations.",
+        desc: "AI Powered, not AI replaced.",
         href: AIP,
         image: { src: asset("images/links/ai-powered.jpg"), alt: "Ross speaking at an AI Powered event in a bamboo hall" },
       },
       {
         kind: "row",
         title: "Events",
-        desc: "Come learn AI in the room: live workshops, founder sessions and community events.",
+        desc: "Live AI workshops",
         href: `${AIP}/events`,
         image: { src: asset("images/links/events.jpg"), alt: "Ross smiling during a session in a bamboo hall" },
       },
     ],
   },
 ];
+
+/** "tools i use": partner links. Each shows the disclosure line directly under its button. */
+export const partners = {
+  title: "tools i use",
+  disclosure: "Heads up, I may earn a commission if you sign up through my link.",
+  links: [
+    // Always "HighLevel": one word, capital H and L.
+    // TODO(ross): add the HighLevel affiliate link; the section stays hidden until then.
+    { title: "HighLevel", href: null as Href },
+  ],
+};
 
 /** "Follow along": one card per profile, with its follower count. */
 const socialOrder = ["YouTube", "Instagram", "LinkedIn", "X"] as const;
