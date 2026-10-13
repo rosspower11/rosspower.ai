@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Serif } from "next/font/google";
+import { profile } from "@/content/links";
 import "./globals.css";
 
 /** Titles and the italic "voice" accents. Body is Helvetica (system), as on rosspower.ai. */
@@ -10,9 +11,11 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
-const title = "Ross Power | links";
-const description =
-  "Book a call with Ross, explore AI Powered's programmes and solutions, and follow along on YouTube, Instagram, LinkedIn and X.";
+const title = "Ross Power | Links";
+const description = "A founder of AI Powered, speaker and Educator. Making AI simple, practical and human";
+
+/** Share thumbnail: the cover photo at the top of the page (1200×630, served from /assets). */
+const shareImage = { url: profile.cover.src, width: 1200, height: 630, alt: profile.cover.alt };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://links.rosspower.ai"),
@@ -33,9 +36,9 @@ export const metadata: Metadata = {
     title,
     description,
     url: "/",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Ross Power — Make AI simple, practical & human." }],
+    images: [shareImage],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
+  twitter: { card: "summary_large_image", title, description, images: [shareImage] },
 };
 
 export const viewport: Viewport = {
