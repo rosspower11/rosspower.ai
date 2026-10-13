@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Anton, Instrument_Serif } from "next/font/google";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SmoothAnchors } from "@/components/layout/SmoothAnchors";
 import { asset } from "@rosspower/ui/lib/asset";
 import "./globals.css";
 
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en-GB" className={`${anton.variable} ${instrumentSerif.variable}`}>
       <body className="flex min-h-dvh flex-col">
         <SiteHeader />
+        <SmoothAnchors />
         {/* The header is fixed, so pages start below it. Full-bleed heroes pull back up with -mt-(--header-h). */}
         <main className="flex-1 pt-(--header-h)">{children}</main>
         <SiteFooter />
