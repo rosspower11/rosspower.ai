@@ -3,7 +3,8 @@ import { asset } from "@rosspower/ui/lib/asset";
 
 export const hero = {
   label: "Founder · Speaker · Educator",
-  name: "Ross Power",
+  /** The H1, and the only all-caps text on the site. */
+  name: "ROSS POWER",
   scrollCue: "Scroll to see more",
 };
 

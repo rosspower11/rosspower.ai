@@ -19,13 +19,14 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
-const title = "Ross Power — AI Keynote Speaker & Mentor";
+/** Homepage SEO, from the build pack (00. START HERE). */
+const title = "Ross Power | AI speaker, educator and founder of AI Powered";
 const description =
-  "Keynotes, workshops and mentoring that help rooms full of people stop feeling behind and start actually building with AI.";
+  "Book Ross Power, the AI speaker who makes AI simple. Keynotes, workshops, panels and podcasts for founders, teams and leaders, from Bali to London.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.rosspower.ai"),
-  title: { default: "Ross Power — AI Keynote Speaker", template: "%s · Ross Power" },
+  title: { default: title, template: "%s | Ross Power" },
   description,
   alternates: { canonical: "/" },
   icons: {
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     title,
     description,
     url: "/",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Ross Power — Make AI simple, practical & human." }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Ross Power: making AI simple, practical and human" }],
   },
   twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
 };
