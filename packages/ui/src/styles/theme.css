@@ -205,9 +205,8 @@
     /* Anchor jumps land below the fixed header. */
     scroll-padding-top: var(--header-h);
   }
-  @media (prefers-reduced-motion: no-preference) {
-    html { scroll-behavior: smooth; }
-  }
+  /* In-page links glide to their section, for every visitor (including "reduce motion"). */
+  html { scroll-behavior: smooth; }
   body {
     background: var(--color-cream);
     color: var(--color-ink);
