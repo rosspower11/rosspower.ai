@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Serif } from "next/font/google";
+import { asset } from "@rosspower/ui/lib/asset";
 import { profile } from "@/content/links";
 import "./globals.css";
 
@@ -15,7 +16,7 @@ const title = "Ross Power | Links";
 const description = "A founder of AI Powered, speaker and Educator. Making AI simple, practical and human";
 
 /** Share thumbnail: the cover photo at the top of the page (1200×630, served from /assets). */
-const shareImage = { url: profile.cover.src, width: 1200, height: 630, alt: profile.cover.alt };
+const shareImage = { url: asset("images/profile/cover.jpg"), width: 1200, height: 630, alt: profile.cover.alt };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://links.rosspower.ai"),

@@ -91,14 +91,15 @@ export const pastEvents = {
   intro: "A few of the rooms from the past year, from HR leaders in Bali to private equity in London.",
 };
 
-// TODO(ross): swap each photo for one taken at that event.
+// HR APAC uses its own keynote photo. TODO(ross): photos from AI for Private Equity (pe-london.jpg)
+// and the Productize Yourself tour (productize-yourself-bali.jpg); they are not in the Drive folder yet.
 export const events = [
   {
     title: "HR APAC Forum",
     role: "Keynote",
     meta: "Bali · September 2026",
-    src: asset("images/events/sam00290.jpg"),
-    alt: "Ross speaking to a room",
+    src: asset("images/events/hr-apac-forum.jpg"),
+    alt: "Ross giving his keynote at HR APAC Forum in Bali",
   },
   {
     title: "AI for Private Equity",

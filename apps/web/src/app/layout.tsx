@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Anton, Instrument_Serif } from "next/font/google";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { asset } from "@rosspower/ui/lib/asset";
 import "./globals.css";
 
 /** H1 only: the big all-caps display line. */
@@ -24,6 +25,14 @@ const title = "Ross Power | AI speaker, educator and founder of AI Powered";
 const description =
   "Book Ross Power, the AI speaker who makes AI simple. Keynotes, workshops, panels and podcasts for founders, teams and leaders, from Bali to London.";
 
+/** Share image: a still from the HR APAC keynote with the name on it (1200×630, R2 via /assets). */
+const shareImage = {
+  url: asset("images/og/og-ross-power.jpg"),
+  width: 1200,
+  height: 630,
+  alt: "Ross Power on stage at HR APAC Forum, Bali",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.rosspower.ai"),
   title: { default: title, template: "%s | Ross Power" },
@@ -43,9 +52,9 @@ export const metadata: Metadata = {
     title,
     description,
     url: "/",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Ross Power: making AI simple, practical and human" }],
+    images: [shareImage],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
+  twitter: { card: "summary_large_image", title, description, images: [shareImage] },
 };
 
 export const viewport: Viewport = {
