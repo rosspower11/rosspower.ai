@@ -50,7 +50,7 @@ export function ShortBios({ items, portrait }: { items: ShortBio[]; portrait: st
           </article>
         ))}
       </div>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap justify-center gap-3">
         <button type="button" onClick={downloadBios} className={cn(pill, "border-ink bg-ink text-cream hover:bg-ink/85")}>
           Download bios (.txt)
         </button>

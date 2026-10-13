@@ -69,10 +69,11 @@ export default function BioPage() {
 
       <Section tone="ice" aria-labelledby="short-bios-title">
         <Container className="flex flex-col gap-10 tablet:gap-14">
-          <div className="flex flex-col gap-5 laptop:max-w-[640px]">
+          {/* Centred header, like the homepage sections. */}
+          <div className="mx-auto flex max-w-[640px] flex-col items-center gap-5 text-center">
             <Eyebrow>{bio.shortBios.eyebrow}</Eyebrow>
             <h2 id="short-bios-title" className="normal-case">
-              short <span className="voice">bios</span>
+              Short <span className="voice">bios</span>
             </h2>
             <p className="type-p-lg measure">{bio.shortBios.intro}</p>
           </div>
