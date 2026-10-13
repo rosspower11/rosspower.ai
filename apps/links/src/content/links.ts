@@ -145,8 +145,8 @@ export const partners = {
   disclosure: "Heads up, I may earn a commission if you sign up through my link.",
   links: [
     // Always "HighLevel": one word, capital H and L.
-    // TODO(ross): add the HighLevel affiliate link; the section stays hidden until then.
-    { title: "HighLevel", href: null as Href },
+    // TODO(ross): swap this dummy link (HighLevel's homepage) for the HighLevel affiliate link.
+    { title: "HighLevel", href: "https://www.gohighlevel.com/" as Href },
   ],
 };
 
