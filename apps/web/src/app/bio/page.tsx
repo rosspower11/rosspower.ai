@@ -49,7 +49,7 @@ export default function BioPage() {
               <Eyebrow>{bio.eyebrow}</Eyebrow>
               {/* Lowercase serif title: the hero's name is the only all-caps text on the site. */}
               <h1 id="bio-title" className="type-h2 normal-case">
-                about <span className="voice">ross power</span>
+                About <span className="voice">ross power</span>
               </h1>
             </div>
             <div className="flex flex-col gap-5">
