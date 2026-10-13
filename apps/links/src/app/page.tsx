@@ -1,7 +1,7 @@
 import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
 import { Logo } from "@rosspower/ui/components/Logo";
 import { WhatsAppFloat } from "@rosspower/ui/components/WhatsAppFloat";
-import { FeatureCard, PartnerButton, RowCard, SocialTile, TileCard } from "@/components/LinkCards";
+import { FeatureCard, RowCard, SocialTile, TileCard, ToolButton } from "@/components/LinkCards";
 import { Profile } from "@/components/Profile";
 import { follow, live, partners, sections, type LinkItem, type TileLink } from "@/content/links";
 
@@ -51,14 +51,14 @@ export default function LinksPage() {
         </section>
       ))}
 
-      {/* Partner links, each with its disclosure line. Hidden until a link is in. */}
+      {/* Tools Ross uses, each with its logo. */}
       {partnerLinks.length > 0 && (
         <section aria-label={partners.title} className="flex flex-col gap-3">
           <Eyebrow as="h2" className="px-3 pb-1">
             {partners.title}
           </Eyebrow>
           {partnerLinks.map((link) => (
-            <PartnerButton key={link.title} title={link.title} href={link.href} disclosure={partners.disclosure} />
+            <ToolButton key={link.title} title={link.title} href={link.href} affiliate={link.affiliate} />
           ))}
         </section>
       )}

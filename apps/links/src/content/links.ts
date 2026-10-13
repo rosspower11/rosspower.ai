@@ -139,14 +139,18 @@ export const sections: LinkSection[] = [
   },
 ];
 
-/** "tools i use": partner links. Each shows the disclosure line directly under its button. */
+/** "tools i use": the tools Ross uses, each with its logo (components/ToolLogos.tsx). */
 export const partners = {
   title: "tools i use",
-  disclosure: "Heads up, I may earn a commission if you sign up through my link.",
   links: [
-    // Always "HighLevel": one word, capital H and L.
+    // Always "HighLevel": one word, capital H and L. Affiliate link, so it's marked rel="sponsored".
     // TODO(ross): swap this dummy link (HighLevel's homepage) for the HighLevel affiliate link.
-    { title: "HighLevel", href: "https://www.gohighlevel.com/" as Href },
+    { title: "HighLevel" as const, href: "https://www.gohighlevel.com/" as Href, affiliate: true },
+    { title: "Claude" as const, href: "https://claude.ai/" as Href, affiliate: false },
+    { title: "Supabase" as const, href: "https://supabase.com/" as Href, affiliate: false },
+    { title: "Vercel" as const, href: "https://vercel.com/" as Href, affiliate: false },
+    { title: "PostHog" as const, href: "https://posthog.com/" as Href, affiliate: false },
+    { title: "Cloudflare" as const, href: "https://www.cloudflare.com/" as Href, affiliate: false },
   ],
 };
 

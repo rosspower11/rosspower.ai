@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import { ArrowUpRight, Instagram, LinkChain, LinkedIn, XLogo, YouTube } from "@rosspower/ui/components/Icon";
 import type { SocialLabel } from "@rosspower/ui/content/brand";
 import type { FeatureLink, RowLink, TileLink } from "@/content/links";
+import { toolLogos, type ToolName } from "./ToolLogos";
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -108,23 +109,24 @@ export function RowCard({ link }: { link: Live<RowLink> }) {
   );
 }
 
-/** Partner link: a plain full-width button with the disclosure line directly under it. */
-export function PartnerButton({ title, href, disclosure }: { title: string; href: string; disclosure: string }) {
+/** Tool link: logo tile, name and arrow, full width. Affiliate links are marked rel="sponsored". */
+export function ToolButton({ title, href, affiliate }: { title: ToolName; href: string; affiliate: boolean }) {
+  const Logo = toolLogos[title];
   return (
-    <div className="flex flex-col gap-2">
-      <a
-        href={href}
-        {...external}
-        rel="noopener noreferrer sponsored"
-        className="group flex min-h-14 items-center justify-between gap-4 rounded-card border border-ink/10 bg-card py-3 pr-3 pl-5 transition-[border-color,box-shadow] duration-300 hover:border-ink/25 hover:shadow-[0_10px_30px_rgba(16,19,23,0.08)]"
-      >
-        <span className="text-[16px] leading-[1.25] font-bold tracking-[-0.01em]">{title}</span>
-        <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-ink/15 transition-colors group-hover:border-ink group-hover:bg-ink group-hover:text-cream">
-          <ArrowUpRight />
-        </span>
-      </a>
-      <p className="px-5 text-[12px] leading-[1.45] text-ink/55">{disclosure}</p>
-    </div>
+    <a
+      href={href}
+      target="_blank"
+      rel={affiliate ? "noopener noreferrer sponsored" : "noopener noreferrer"}
+      className="group flex items-center gap-4 rounded-card border border-ink/10 bg-card p-3 pr-4 transition-[border-color,box-shadow] duration-300 hover:border-ink/25 hover:shadow-[0_10px_30px_rgba(16,19,23,0.08)]"
+    >
+      <span className="flex size-11 shrink-0 items-center justify-center rounded-[14px] border border-ink/10 bg-white">
+        <Logo className="size-6" />
+      </span>
+      <span className="flex-1 text-[16px] leading-[1.25] font-bold tracking-[-0.01em]">{title}</span>
+      <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-ink/15 transition-colors group-hover:border-ink group-hover:bg-ink group-hover:text-cream">
+        <ArrowUpRight />
+      </span>
+    </a>
   );
 }
 
