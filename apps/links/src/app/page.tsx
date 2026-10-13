@@ -3,7 +3,7 @@ import { Logo } from "@rosspower/ui/components/Logo";
 import { WhatsAppFloat } from "@rosspower/ui/components/WhatsAppFloat";
 import { FeatureCard, PartnerButton, RowCard, SocialTile, TileCard } from "@/components/LinkCards";
 import { Profile } from "@/components/Profile";
-import { follow, footer, live, partners, sections, type LinkItem, type TileLink } from "@/content/links";
+import { follow, live, partners, sections, type LinkItem, type TileLink } from "@/content/links";
 
 type Live<T> = T & { href: string };
 
@@ -76,17 +76,6 @@ export default function LinksPage() {
 
       <footer className="flex flex-col items-center gap-4 border-t border-ink/10 px-3 pt-8 text-center">
         <Logo className="w-[120px]" color="#101317" />
-        <div className="flex items-center gap-4 text-[14px]">
-          <a href={footer.site.href} className="font-semibold underline-offset-4 hover:underline">
-            {footer.site.label}
-          </a>
-          <span aria-hidden className="text-ink/30">
-            ·
-          </span>
-          <a href={`mailto:${footer.email}`} className="font-semibold underline-offset-4 hover:underline">
-            Email Ross
-          </a>
-        </div>
         <p className="text-[12px] text-ink/50">© {new Date().getFullYear()} Ross Power</p>
       </footer>
 

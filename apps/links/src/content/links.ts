@@ -154,8 +154,3 @@ export const partners = {
 const socialOrder = ["YouTube", "Instagram", "LinkedIn", "X"] as const;
 
 export const follow = socialOrder.map((label) => socials.find((s) => s.label === label)!);
-
-export const footer = {
-  site: { label: "rosspower.ai", href: "https://rosspower.ai" },
-  email: contact.email,
-};
