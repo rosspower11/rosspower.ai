@@ -74,12 +74,12 @@ export function StoryCards({ items }: { items: Story[] }) {
         {items.map((s) => (
           <li
             key={s.name}
-            className="flex min-h-[320px] w-[82%] shrink-0 snap-start flex-col rounded-card border border-ink/10 bg-card p-6 tablet:w-[340px] laptop:min-h-[340px] laptop:w-[360px] laptop:p-7"
+            className="flex w-[82%] shrink-0 snap-start flex-col rounded-card border border-ink/10 bg-card p-6 tablet:w-[340px] laptop:w-[360px] laptop:p-7"
           >
 
             <blockquote className="type-p-lg text-ink/85">{s.quote}</blockquote>
 
-            <div className="mt-auto flex items-end justify-between gap-4 pt-8">
+            <div className="mt-auto flex items-end justify-between gap-4 pt-6">
               <div className="flex flex-col gap-0.5">
                 <span className="type-h6">{s.name}</span>
                 <span className="type-p-sm text-ink/60">{s.role}</span>
