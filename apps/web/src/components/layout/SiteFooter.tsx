@@ -5,7 +5,7 @@ import { Section } from "@/components/layout/Section";
 import { Button } from "@rosspower/ui/components/Button";
 import { ArrowDown, Instagram, LinkedIn, XLogo, YouTube } from "@rosspower/ui/components/Icon";
 import { Logo } from "@rosspower/ui/components/Logo";
-import { bookLink, contact, mainNav, socials, type SocialLabel } from "@/content/nav";
+import { bookLink, mainNav, socials, type SocialLabel } from "@/content/nav";
 
 const socialIcons: Record<SocialLabel, ComponentType<{ className?: string }>> = {
   Instagram,
@@ -64,18 +64,6 @@ export function SiteFooter() {
             </nav>
             <div className="flex flex-col items-start gap-5">
               <span className={titleClass}>Contact</span>
-              <ul className="flex flex-col gap-2">
-                <li>
-                  <a href={`mailto:${contact.email}`} className={`${linkClass} break-words`}>
-                    {contact.email}
-                  </a>
-                </li>
-                <li>
-                  <a href={contact.aiPowered} className={linkClass}>
-                    aipowered.xyz
-                  </a>
-                </li>
-              </ul>
               <Button href={bookLink.href} variant="cream" size="sm" className="mt-1">
                 {bookLink.label}
               </Button>
