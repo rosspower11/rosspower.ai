@@ -78,7 +78,7 @@ export function TileCard({ link }: { link: Live<TileLink> }) {
         className="object-cover object-[50%_30%] transition-transform duration-700 ease-out group-hover:scale-[1.05]"
       />
       <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(16,19,23,0.55))]" />
-      <span className="relative flex w-full items-center justify-between gap-2 rounded-[14px] border border-cream/25 bg-ink/35 py-2 pr-2 pl-3 backdrop-blur-md">
+      <span className="relative flex w-fit max-w-full items-center gap-2 rounded-[14px] border border-cream/25 bg-ink/35 py-2 pr-2 pl-3 backdrop-blur-md">
         <span className="text-[13px] leading-[1.25] font-semibold">{link.title}</span>
         <ArrowUpRight className="size-4 shrink-0" />
       </span>
