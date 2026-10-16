@@ -39,13 +39,13 @@ export const metadata: Metadata = {
   title: { default: title, template: "%s | Ross Power" },
   description,
   alternates: { canonical: "/" },
+  // The "rp" mark, white on black, from the R2 assets bucket (images/brand).
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: asset("images/brand/favicon-32.png"), sizes: "32x32", type: "image/png" },
+      { url: asset("images/brand/favicon-16.png"), sizes: "16x16", type: "image/png" },
     ],
-    apple: "/apple-touch-icon.png",
+    apple: asset("images/brand/apple-touch-icon.png"),
   },
   openGraph: {
     type: "website",
