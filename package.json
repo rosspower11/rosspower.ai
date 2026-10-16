@@ -1,0 +1,17 @@
+{
+  "name": "rosspower",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev -w @rosspower/web",
+    "dev:links": "npm run dev -w @rosspower/links",
+    "build": "npm run build --workspaces --if-present",
+    "build:web": "npm run build -w @rosspower/web",
+    "build:links": "npm run build -w @rosspower/links",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  }
+}
