@@ -14,6 +14,8 @@ import { enquiryTypes, limits } from "@/content/contact";
 const TO = process.env.CONTACT_TO ?? "mary@aipowered.xyz";
 /** Who every enquiry says it's from, in the email and in Slack. */
 const SOURCE = "Ross Power Website - Contact";
+/** The form's page, linked from the "From" line in Slack. */
+const PAGE = "https://rosspower.ai/contact";
 const FROM = process.env.CONTACT_FROM ?? `${SOURCE} <onboarding@resend.dev>`;
 const EMAIL = /^[^\s@<>|]+@[^\s@<>|]+\.[^\s@<>|]+$/;
 
@@ -81,7 +83,7 @@ async function sendSlack(e: Enquiry) {
       text: slackEscape(`New enquiry from ${e.name} (${e.organisation}): ${e.type}`),
       blocks: [
         { type: "header", text: { type: "plain_text", text: `New enquiry: ${e.type}` } },
-        { type: "context", elements: [{ type: "mrkdwn", text: `*From:* ${SOURCE}` }] },
+        { type: "context", elements: [{ type: "mrkdwn", text: `*From:* <${PAGE}|${SOURCE}>` }] },
         // Every field, filled or not, one per line.
         {
           type: "section",
