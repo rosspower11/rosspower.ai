@@ -33,7 +33,8 @@ type ContactFormProps = {
 /**
  * The booking enquiry form, on rosspower.ai/contact and links.rosspower.ai/book.
  * Posts to /api/contact (served by the web app on both domains), which emails Mary and posts to Slack.
- * Fields go two across once the form itself is wide enough (container query), so it fits any column.
+ * Sized by its own width, not the screen (container queries): in a narrow column (phones, the links page)
+ * it keeps 20px padding and one field per row; from 512px wide it gets 28px padding and two fields across.
  */
 export function ContactForm({ source, thanks }: ContactFormProps) {
   const [status, setStatus] = useState<Status>("idle");
@@ -60,90 +61,94 @@ export function ContactForm({ source, thanks }: ContactFormProps) {
 
   if (status === "sent") {
     return (
-      <div role="status" className="flex flex-col gap-4 rounded-xl bg-card p-5 tablet:rounded-2xl tablet:p-7">
-        <h2 className="type-h3">{thanks.title}</h2>
-        <p className="type-p-lg text-ink/80">{thanks.body}</p>
+      <div className="@container/contact">
+        <div role="status" className="flex flex-col gap-4 rounded-xl bg-card p-5 @lg/contact:rounded-2xl @lg/contact:p-7">
+          <h2 className="type-h3">{thanks.title}</h2>
+          <p className="type-p-lg text-ink/80">{thanks.body}</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <form onSubmit={submit} className="@container flex flex-col gap-5 rounded-xl bg-card p-5 tablet:rounded-2xl tablet:p-7">
-      <div className="grid gap-5 @lg:grid-cols-2">
-        <Field label="Name">
-          <input name="name" required autoComplete="name" maxLength={limits.short} className={cn(control, "min-h-12")} />
-        </Field>
-        <Field label="Email">
-          <input
-            name="email"
-            type="email"
+    <div className="@container/contact">
+      <form onSubmit={submit} className="flex flex-col gap-5 rounded-xl bg-card p-5 @lg/contact:rounded-2xl @lg/contact:p-7">
+        <div className="grid gap-5 @lg/contact:grid-cols-2">
+          <Field label="Name">
+            <input name="name" required autoComplete="name" maxLength={limits.short} className={cn(control, "min-h-12")} />
+          </Field>
+          <Field label="Email">
+            <input
+              name="email"
+              type="email"
+              required
+              autoComplete="email"
+              maxLength={limits.short}
+              className={cn(control, "min-h-12")}
+            />
+          </Field>
+          <Field label="Organisation">
+            <input
+              name="organisation"
+              required
+              autoComplete="organization"
+              maxLength={limits.short}
+              className={cn(control, "min-h-12")}
+            />
+          </Field>
+          <Field label="Enquiry">
+            <select name="type" required defaultValue="" className={cn(control, "min-h-12 appearance-none bg-[length:12px] bg-[right_16px_center] bg-no-repeat pr-10")} style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23101317' stroke-width='1.5'/%3E%3C/svg%3E\")" }}>
+              <option value="" disabled>
+                Choose one
+              </option>
+              {enquiryTypes.map((t) => (
+                <option key={t}>{t}</option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Event date" optional>
+            <input name="date" placeholder="e.g. March 2027" maxLength={limits.short} className={cn(control, "min-h-12")} />
+          </Field>
+          <Field label="Location" optional>
+            <input name="location" placeholder="City, or online" maxLength={limits.short} className={cn(control, "min-h-12")} />
+          </Field>
+          <Field label="Audience size" optional>
+            <input name="audience" placeholder="e.g. 200 people" maxLength={limits.short} className={cn(control, "min-h-12")} />
+          </Field>
+        </div>
+        <Field label="Tell us about your event">
+          <textarea
+            name="message"
             required
-            autoComplete="email"
-            maxLength={limits.short}
-            className={cn(control, "min-h-12")}
+            rows={6}
+            maxLength={limits.message}
+            placeholder="Who is in the room, and what should they leave with?"
+            className={cn(control, "resize-y py-3")}
           />
         </Field>
-        <Field label="Organisation">
-          <input
-            name="organisation"
-            required
-            autoComplete="organization"
-            maxLength={limits.short}
-            className={cn(control, "min-h-12")}
-          />
-        </Field>
-        <Field label="Enquiry">
-          <select name="type" required defaultValue="" className={cn(control, "min-h-12 appearance-none bg-[length:12px] bg-[right_16px_center] bg-no-repeat pr-10")} style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23101317' stroke-width='1.5'/%3E%3C/svg%3E\")" }}>
-            <option value="" disabled>
-              Choose one
-            </option>
-            {enquiryTypes.map((t) => (
-              <option key={t}>{t}</option>
-            ))}
-          </select>
-        </Field>
-        <Field label="Event date" optional>
-          <input name="date" placeholder="e.g. March 2027" maxLength={limits.short} className={cn(control, "min-h-12")} />
-        </Field>
-        <Field label="Location" optional>
-          <input name="location" placeholder="City, or online" maxLength={limits.short} className={cn(control, "min-h-12")} />
-        </Field>
-        <Field label="Audience size" optional>
-          <input name="audience" placeholder="e.g. 200 people" maxLength={limits.short} className={cn(control, "min-h-12")} />
-        </Field>
-      </div>
-      <Field label="Tell us about your event">
-        <textarea
-          name="message"
-          required
-          rows={6}
-          maxLength={limits.message}
-          placeholder="Who is in the room, and what should they leave with?"
-          className={cn(control, "resize-y py-3")}
-        />
-      </Field>
 
-      {/* Hidden from people; bots fill it in and get dropped. */}
-      <input name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
+        {/* Hidden from people; bots fill it in and get dropped. */}
+        <input name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
 
-      {status === "error" ? (
-        <p role="alert" className="type-p-sm text-ink">
-          {error} Please try again, or email{" "}
-          <a href={`mailto:${contact.email}`} className="font-semibold underline underline-offset-4">
-            {contact.email}
-          </a>
-          .
-        </p>
-      ) : null}
+        {status === "error" ? (
+          <p role="alert" className="type-p-sm text-ink">
+            {error} Please try again, or email{" "}
+            <a href={`mailto:${contact.email}`} className="font-semibold underline underline-offset-4">
+              {contact.email}
+            </a>
+            .
+          </p>
+        ) : null}
 
-      <button
-        type="submit"
-        disabled={status === "sending"}
-        className="inline-flex min-h-12 items-center justify-center gap-2.5 self-start rounded-lg border border-ink bg-ink px-6 py-3.5 text-[14px] font-semibold tracking-[0.08em] text-cream uppercase transition-colors hover:bg-ink/85 disabled:opacity-60 @max-lg:w-full"
-      >
-        {status === "sending" ? "Sending" : "Send enquiry"}
-        <ArrowUpRight />
-      </button>
-    </form>
+        <button
+          type="submit"
+          disabled={status === "sending"}
+          className="inline-flex min-h-12 items-center justify-center gap-2.5 self-start rounded-lg border border-ink bg-ink px-6 py-3.5 text-[14px] font-semibold tracking-[0.08em] text-cream uppercase transition-colors hover:bg-ink/85 disabled:opacity-60 @max-lg/contact:w-full"
+        >
+          {status === "sending" ? "Sending" : "Send enquiry"}
+          <ArrowUpRight />
+        </button>
+      </form>
+    </div>
   );
 }
