@@ -7,14 +7,14 @@ import { contactSources, enquiryTypes, limits, type ContactSource } from "@rossp
  *
  * Env (Vercel project rosspower-ai):
  * - RESEND_API_KEY   Resend API key. Required for the email.
- * - CONTACT_FROM     Sender address on a domain verified in Resend, e.g. website@aipowered.xyz.
+ * - CONTACT_FROM     Optional sender address, defaults to contact@rosspower.ai (rosspower.ai is verified in Resend).
  *                    The name shown is where the enquiry came from, e.g. "Ross Power Website - Contact".
  * - CONTACT_TO       Optional, defaults to Mary.
  * - SLACK_WEBHOOK_URL Optional Slack incoming webhook for a lead alert.
  */
 const TO = process.env.CONTACT_TO ?? "mary@aipowered.xyz";
 /** Sender address on a domain verified in Resend; the display name is the enquiry's source. */
-const FROM_ADDRESS = process.env.CONTACT_FROM ?? "onboarding@resend.dev";
+const FROM_ADDRESS = process.env.CONTACT_FROM ?? "contact@rosspower.ai";
 const EMAIL = /^[^\s@<>|]+@[^\s@<>|]+\.[^\s@<>|]+$/;
 
 type Enquiry = {
