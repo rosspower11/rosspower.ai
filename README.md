@@ -62,13 +62,16 @@ phone-width column.
 ## Images
 
 Every photo, the Ross Power logo and the favicons live in the Cloudflare R2 bucket **`rosspower-ai`**.
-Pages load them from their own domain at `/assets/…`: the root `vercel.json` proxies
-`/assets/*` to the bucket's public URL (and each app's `next.config.ts` does the same under
-`next dev`). Code refers to them as `asset("images/events/sam00373.jpg")`
-(`packages/ui/src/lib/asset.ts`). Nothing image-like goes in an app's `public/`.
+The bucket is public only on its custom domain, **`assets.rosspower.ai`** (the `r2.dev` URL is
+switched off: Indonesian ISPs block `*.r2.dev`). Pages load images from their own domain at
+`/assets/…`: the root `vercel.json` proxies `/assets/*` to assets.rosspower.ai (and each app's
+`next.config.ts` does the same under `next dev`). Code refers to them as
+`asset("images/events/sam00373.jpg")` (`packages/ui/src/lib/asset.ts`). Nothing image-like goes
+in an app's `public/`.
 
-Never link `*.r2.dev` directly: Indonesian ISPs block it ("Internet Positif"), so photos
-fail for visitors there. `next/image` optimisation is off, because Vercel's `/_next/image`
+Videos use `video("videos/…")` instead, which links assets.rosspower.ai directly. Vercel's cache
+ignores Range requests, so a proxied video gets stuck on the first partial response (Safari's
+2-byte probe) for everyone. `next/image` optimisation is off, because Vercel's `/_next/image`
 isn't served in the Services deployment; the photos are already web-sized.
 
 | Folder in the bucket | Used by |
@@ -79,7 +82,7 @@ isn't served in the Services deployment; the photos are already web-sized.
 | `images/brand/rp-icon-dark.png`, `rp-icon-light.png` | Both: the "rp" mark, white on black and black on white (256px masters) |
 | `images/brand/favicon-32.png`, `favicon-16.png`, `apple-touch-icon.png` | Both: favicons, cut from `rp-icon-dark.png` |
 
-Add an image (needs a Cloudflare API token with R2 write access):
+Add an image or video (needs a Cloudflare API token with R2 write access):
 
 ```bash
 wrangler r2 object put rosspower-ai/images/events/new-photo.jpg --file ./new-photo.jpg \

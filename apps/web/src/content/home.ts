@@ -1,4 +1,4 @@
-import { asset } from "@rosspower/ui/lib/asset";
+import { asset, video } from "@rosspower/ui/lib/asset";
 
 /** The homepage hero: Ross's headline over the event video (like the aipowered.xyz hero). */
 export const hero = {
@@ -7,7 +7,7 @@ export const hero = {
   headline: ["The only limitation", "is your imagination."],
   /** The aipowered.xyz hero video (Ross at his events), re-encoded muted at 1600px for this site. */
   video: {
-    src: asset("videos/hero/hero-home.mp4"),
+    src: video("videos/hero/hero-home.mp4"),
     poster: asset("images/hero/hero-home-poster.jpg"),
   },
   secondaryCta: { label: "See the talks", href: "/#talks" },

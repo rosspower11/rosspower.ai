@@ -13,7 +13,7 @@
   "rewrites": [
     {
       "source": "/assets/:path*",
-      "destination": "https://pub-8596e123de1148b6a30317d1ffd26184.r2.dev/:path*"
+      "destination": "https://assets.rosspower.ai/:path*"
     },
     {
       "source": "/api/contact",
