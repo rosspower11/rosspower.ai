@@ -3,6 +3,8 @@ import Image from "next/image";
 import { ShortBios } from "@/components/bio/ShortBios";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { bioGraph } from "@/lib/structured-data";
 import { bio } from "@/content/bio";
 import { bookLink } from "@/content/nav";
 import { Button } from "@rosspower/ui/components/Button";
@@ -28,6 +30,7 @@ export const metadata: Metadata = {
 export default function BioPage() {
   return (
     <>
+      <JsonLd data={bioGraph} />
       <Section aria-labelledby="bio-title">
         {/* Laptop up: portrait left (stays in view), bio right. Phones: portrait, then bio. */}
         <Container className="grid gap-10 laptop:grid-cols-12 laptop:gap-x-10">

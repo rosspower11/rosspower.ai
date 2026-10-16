@@ -3,6 +3,9 @@ import { Anton, Instrument_Serif } from "next/font/google";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SmoothAnchors } from "@/components/layout/SmoothAnchors";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { SITE_URL } from "@/lib/site";
+import { siteGraph } from "@/lib/structured-data";
 import { asset } from "@rosspower/ui/lib/asset";
 import "./globals.css";
 
@@ -35,7 +38,7 @@ const shareImage = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.rosspower.ai"),
+  metadataBase: new URL(SITE_URL),
   title: { default: title, template: "%s | Ross Power" },
   description,
   alternates: { canonical: "/" },
@@ -68,6 +71,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en-GB" className={`${anton.variable} ${instrumentSerif.variable}`}>
       <body className="flex min-h-dvh flex-col">
+        <JsonLd data={siteGraph} />
         <SiteHeader />
         <SmoothAnchors />
         {/* The header is fixed, so pages start below it. Full-bleed heroes pull back up with -mt-(--header-h). */}

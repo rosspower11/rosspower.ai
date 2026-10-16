@@ -62,7 +62,7 @@ export const sections: LinkSection[] = [
       {
         kind: "tile",
         title: "Book to speak",
-        href: "https://rosspower.ai/contact",
+        href: "https://www.rosspower.ai/contact",
         image: { src: asset("images/links/v2/speaking.jpg"), alt: "Ross on stage pointing to the room" },
       },
       {

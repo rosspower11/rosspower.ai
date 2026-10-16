@@ -3,7 +3,7 @@ import { asset } from "@rosspower/ui/lib/asset";
 /** The /bio page. Final copy from the build pack, "Section copy: 02. Meet Ross". */
 export const bio = {
   meta: {
-    title: "Ross Power | AI speaker, educator and founder of AI Powered",
+    title: "About Ross Power | AI speaker, educator and founder of AI Powered",
     description:
       "Ross Power is an AI speaker and educator who makes AI simple. Founder of AI Powered, he has trained 130+ founders on Claude and speaks from Bali to London.",
   },

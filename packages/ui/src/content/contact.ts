@@ -11,7 +11,7 @@ export const limits = { short: 120, message: 3000 } as const;
 
 /** Where an enquiry came from: the "From" line (and its link) in Slack and the email. */
 export const contactSources = {
-  website: { label: "Ross Power Website - Contact", page: "https://rosspower.ai/contact" },
+  website: { label: "Ross Power Website - Contact", page: "https://www.rosspower.ai/contact" },
   links: { label: "Ross Power Links - Book a call", page: "https://links.rosspower.ai/book" },
 } as const;
 

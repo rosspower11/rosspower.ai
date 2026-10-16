@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { contactPage } from "@/content/contact";
+import { contactGraph } from "@/lib/structured-data";
 import { ContactForm } from "@rosspower/ui/components/ContactForm";
 import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
 import { asset } from "@rosspower/ui/lib/asset";
@@ -25,25 +27,28 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <Section aria-labelledby="contact-title">
-      {/*
-        Laptop up: title left (stays in view), form right. Phones: title, then form.
-        Extra top space under the header from tablet up; phones keep it tighter.
-      */}
-      <Container flush="top" className="grid gap-10 pt-[calc(var(--section-py)+16px)] tablet:pt-[calc(var(--header-h)+var(--section-py))] laptop:grid-cols-12 laptop:gap-x-10">
-        <div className="flex flex-col gap-5 laptop:col-span-5">
-          <div className="flex flex-col gap-5 laptop:sticky laptop:top-28">
-            <Eyebrow>{contactPage.eyebrow}</Eyebrow>
-            <h1 id="contact-title" className="type-h2 normal-case">
-              Bring AI to <span className="voice">your stage</span>
-            </h1>
-            <p className="type-p-lg measure">{contactPage.body}</p>
+    <>
+      <JsonLd data={contactGraph} />
+      <Section aria-labelledby="contact-title">
+        {/*
+          Laptop up: title left (stays in view), form right. Phones: title, then form.
+          Extra top space under the header from tablet up; phones keep it tighter.
+        */}
+        <Container flush="top" className="grid gap-10 pt-[calc(var(--section-py)+16px)] tablet:pt-[calc(var(--header-h)+var(--section-py))] laptop:grid-cols-12 laptop:gap-x-10">
+          <div className="flex flex-col gap-5 laptop:col-span-5">
+            <div className="flex flex-col gap-5 laptop:sticky laptop:top-28">
+              <Eyebrow>{contactPage.eyebrow}</Eyebrow>
+              <h1 id="contact-title" className="type-h2 normal-case">
+                Bring AI to <span className="voice">your stage</span>
+              </h1>
+              <p className="type-p-lg measure">{contactPage.body}</p>
+            </div>
           </div>
-        </div>
-        <div className="laptop:col-span-7">
-          <ContactForm source="website" thanks={contactPage.thanks} />
-        </div>
-      </Container>
-    </Section>
+          <div className="laptop:col-span-7">
+            <ContactForm source="website" thanks={contactPage.thanks} />
+          </div>
+        </Container>
+      </Section>
+    </>
   );
 }
