@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { CSSProperties } from "react";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
@@ -8,27 +7,28 @@ import { Button } from "@rosspower/ui/components/Button";
 import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
 import { ArrowUpRight } from "@rosspower/ui/components/Icon";
 import { HeroMotion } from "./HeroMotion";
+import { HeroVideo } from "./HeroVideo";
 
 /** Inline CSS custom properties, typed. */
 const vars = (v: Record<string, string | number>) => v as CSSProperties;
 
 /**
  * Homepage hero, laid out like the aipowered.xyz hero in our own style:
- * a full-screen stage photo under an ink wash, the headline bottom left, two buttons.
+ * a full-screen event video under an ink wash, the headline bottom left, two buttons.
  * The previous hero lives on in HeroSpotlight.tsx.
  */
 export function Hero() {
   const [first, second] = hero.headline;
 
   return (
-    // Pulled up under the fixed, transparent header so the photo fills the whole screen.
+    // Pulled up under the fixed, transparent header so the video fills the whole screen.
     <Section tone="ink" aria-labelledby="hero-title" className="relative isolate -mt-(--header-h) overflow-hidden">
       <HeroMotion />
 
-      {/* Stage photo: settles in from a slight zoom, then drifts slower than the page. */}
+      {/* Event video: settles in from a slight zoom, then drifts slower than the page. */}
       <div aria-hidden className="parallax-bg absolute inset-0 -z-10">
         <div className="hero-settle absolute inset-0">
-          <Image src={hero.photo.src} alt="" fill priority sizes="100vw" className="object-cover object-[50%_35%]" />
+          <HeroVideo src={hero.video.src} poster={hero.video.poster} />
         </div>
         {/* Ink wash: lighter at the top so the room shows, near-solid behind the words. */}
         <div

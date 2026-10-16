@@ -1,13 +1,14 @@
 import { asset } from "@rosspower/ui/lib/asset";
 
-/** The homepage hero: Ross's headline over a stage photo (like the aipowered.xyz hero). */
+/** The homepage hero: Ross's headline over the event video (like the aipowered.xyz hero). */
 export const hero = {
   eyebrow: "Founder · Speaker · Educator",
   /** The H1, in two lines; the second takes the italic accent. */
   headline: ["The only limitation", "is your imagination."],
-  photo: {
-    src: asset("images/events/hr-apac-forum.jpg"),
-    alt: "Ross Power speaking on stage at the HR Asia-Pacific Forum in Bali",
+  /** The aipowered.xyz hero video (Ross at his events), re-encoded muted at 1600px for this site. */
+  video: {
+    src: asset("videos/hero/hero-home.mp4"),
+    poster: asset("images/hero/hero-home-poster.jpg"),
   },
   secondaryCta: { label: "See the talks", href: "/#talks" },
 };
