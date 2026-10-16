@@ -67,7 +67,7 @@ export const talksIntro = {
   body: "On your stage, on your panel or on your podcast. Pick the conversation your audience needs and Ross will shape it around them.",
 };
 
-/** The four talks, in this order. Every "book this talk" opens the enquiry form. */
+/** The talks, in this order (keynotes first). Every "book this talk" opens the enquiry form. */
 export const talks = [
   {
     kind: "Keynote",
@@ -78,6 +78,11 @@ export const talks = [
     kind: "Keynote",
     title: "The Humans Decide",
     body: "Organisations buy the AI tools long before anyone works out how their teams will use them. Leaders leave knowing why adoption starts with people, and how to close that gap in their own teams.",
+  },
+  {
+    kind: "Keynote",
+    title: "The Only Limitation Is Your Imagination",
+    body: "With AI, what you can build is no longer limited by your skills, your budget or your team's size. Your audience leaves seeing what is now possible for them, and with the confidence to start on the idea they've been putting off.",
   },
   {
     kind: "Executive briefing",
