@@ -78,11 +78,10 @@ const typeEmoji: Record<string, string> = {
   "Something else": ":envelope_with_arrow:",
 };
 
-/** The Slack alert (Block Kit): who, what, the event details, then their message. */
+/** The Slack alert (Block Kit): title, the enquiry details, then where it came from. */
 function slackMessage(e: Enquiry) {
   const x = slackEscape;
   const emoji = typeEmoji[e.type] ?? ":envelope_with_arrow:";
-  const now = Math.floor(Date.now() / 1000);
   const detail = (label: string, value: string) => ({ type: "mrkdwn", text: `*${label}*\n${value ? x(value) : "_Not given_"}` });
   // Quote every line of the message, so it sits apart from the details.
   const quoted = x(e.message.slice(0, 2800))
@@ -93,14 +92,10 @@ function slackMessage(e: Enquiry) {
   return {
     // Notification preview (phone, desktop banner).
     text: x(`New ${e.type.toLowerCase()} enquiry from ${e.name}, ${e.organisation}`),
+    // Title, then the details, then where it came from, with a line between each.
     blocks: [
       { type: "header", text: { type: "plain_text", text: `${emoji} New ${e.type.toLowerCase()} enquiry`, emoji: true } },
-      {
-        type: "context",
-        elements: [
-          { type: "mrkdwn", text: `*From:* ${SOURCE}  ·  <!date^${now}^{date_short_pretty} at {time}|${new Date().toUTCString()}>` },
-        ],
-      },
+      { type: "divider" },
       {
         type: "section",
         text: {
@@ -117,8 +112,8 @@ function slackMessage(e: Enquiry) {
           detail("Audience size", e.audience),
         ],
       },
-      { type: "divider" },
       { type: "section", text: { type: "mrkdwn", text: `*Tell us about your event*\n${quoted}` } },
+      { type: "divider" },
       {
         type: "context",
         elements: [
@@ -126,8 +121,8 @@ function slackMessage(e: Enquiry) {
             type: "mrkdwn",
             // Only mention the email once Resend is set up, so the note is never wrong.
             text: process.env.RESEND_API_KEY
-              ? `Sent from rosspower.ai/contact  ·  Also emailed to ${TO}, reply there to answer ${x(e.name)}`
-              : "Sent from rosspower.ai/contact",
+              ? `From: ${SOURCE}  ·  Also emailed to ${TO}, reply there to answer ${x(e.name)}`
+              : `From: ${SOURCE}`,
           },
         ],
       },

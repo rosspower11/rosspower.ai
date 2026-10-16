@@ -27,8 +27,11 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <Section aria-labelledby="contact-title">
-      {/* Laptop up: title left (stays in view), form right. Phones: title, then form. */}
-      <Container className="grid gap-10 laptop:grid-cols-12 laptop:gap-x-10">
+      {/*
+        Laptop up: title left (stays in view), form right. Phones: title, then form.
+        Top padding clears the fixed header, then adds the usual section space.
+      */}
+      <Container flush="top" className="grid gap-10 pt-[calc(var(--header-h)+var(--section-py))] laptop:grid-cols-12 laptop:gap-x-10">
         <div className="flex flex-col gap-5 laptop:col-span-5">
           <div className="flex flex-col gap-5 laptop:sticky laptop:top-28">
             <Eyebrow>{contactPage.eyebrow}</Eyebrow>
