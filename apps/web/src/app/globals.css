@@ -156,6 +156,31 @@
   100% { opacity: 1; transform: none; }
 }
 
+/* Headline lines rise out of their own mask, one after the other (Hero.tsx). */
+.hero-line {
+  display: block;
+  overflow: hidden;
+  /* Room for descenders and the italic overhang inside the mask. */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.hero-line-inner {
+  display: inline-block;
+  transform: translate3d(0, 110%, 0);
+  animation: hero-line 950ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+@keyframes hero-line { to { transform: none; } }
+
+/* The hero photo settles from a slight zoom. */
+.hero-settle {
+  animation: hero-settle 2400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes hero-settle {
+  from { transform: scale(1.08); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
 /* Parallax: HeroMotion writes --hero-y (px scrolled) on the hero section. */
 .parallax-slow { transform: translate3d(0, calc(var(--hero-y, 0) * 0.45px), 0); }
 .parallax-mid { transform: translate3d(0, calc(var(--hero-y, 0) * 0.2px), 0); }
@@ -169,9 +194,14 @@
   .hero-fade,
   .type-char,
   .hero-rise,
-  .hero-twinkle {
+  .hero-twinkle,
+  .hero-settle {
     animation: none;
     opacity: 1;
+  }
+  .hero-line-inner {
+    animation: none;
+    transform: none;
   }
   .type-char::after { animation: none; }
   .type-glow {

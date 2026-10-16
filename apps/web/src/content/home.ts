@@ -1,6 +1,19 @@
 import { asset } from "@rosspower/ui/lib/asset";
 
+/** The homepage hero: Ross's headline over a stage photo (like the aipowered.xyz hero). */
 export const hero = {
+  eyebrow: "Founder · Speaker · Educator",
+  /** The H1, in two lines; the second takes the italic accent. */
+  headline: ["The only limitation", "is your imagination."],
+  photo: {
+    src: asset("images/events/hr-apac-forum.jpg"),
+    alt: "Ross Power speaking on stage at the HR Asia-Pacific Forum in Bali",
+  },
+  secondaryCta: { label: "See the talks", href: "/#talks" },
+};
+
+/** The previous hero (components/home/HeroSpotlight.tsx), kept so it can come back. */
+export const heroSpotlight = {
   label: "Founder · Speaker · Educator",
   /** The H1, and the only all-caps text on the site. */
   name: "ROSS POWER",
