@@ -15,7 +15,7 @@ const TO = process.env.CONTACT_TO ?? "mary@aipowered.xyz";
 /** Who every enquiry says it's from, in the email and in Slack. */
 const SOURCE = "Ross Power Website - Contact";
 const FROM = process.env.CONTACT_FROM ?? `${SOURCE} <onboarding@resend.dev>`;
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL = /^[^\s@<>|]+@[^\s@<>|]+\.[^\s@<>|]+$/;
 
 type Enquiry = {
   name: string;
@@ -69,6 +69,72 @@ async function sendEmail(e: Enquiry) {
   if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
 }
 
+/** One emoji per enquiry type, so the channel reads at a glance. */
+const typeEmoji: Record<string, string> = {
+  Keynote: ":microphone:",
+  Workshop: ":hammer_and_wrench:",
+  "Executive briefing": ":briefcase:",
+  Podcast: ":studio_microphone:",
+  "Something else": ":envelope_with_arrow:",
+};
+
+/** The Slack alert (Block Kit): who, what, the event details, then their message. */
+function slackMessage(e: Enquiry) {
+  const x = slackEscape;
+  const emoji = typeEmoji[e.type] ?? ":envelope_with_arrow:";
+  const now = Math.floor(Date.now() / 1000);
+  const detail = (label: string, value: string) => ({ type: "mrkdwn", text: `*${label}*\n${value ? x(value) : "_Not given_"}` });
+  // Quote every line of the message, so it sits apart from the details.
+  const quoted = x(e.message.slice(0, 2800))
+    .split("\n")
+    .map((line) => `>${line}`)
+    .join("\n");
+
+  return {
+    // Notification preview (phone, desktop banner).
+    text: x(`New ${e.type.toLowerCase()} enquiry from ${e.name}, ${e.organisation}`),
+    blocks: [
+      { type: "header", text: { type: "plain_text", text: `${emoji} New ${e.type.toLowerCase()} enquiry`, emoji: true } },
+      {
+        type: "context",
+        elements: [
+          { type: "mrkdwn", text: `*From:* ${SOURCE}  ·  <!date^${now}^{date_short_pretty} at {time}|${new Date().toUTCString()}>` },
+        ],
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: `*${x(e.name)}*  ·  ${x(e.organisation)}\n:email: <mailto:${e.email}|${x(e.email)}>`,
+        },
+      },
+      {
+        type: "section",
+        fields: [
+          detail("Enquiry", e.type),
+          detail("Event date", e.date),
+          detail("Location", e.location),
+          detail("Audience size", e.audience),
+        ],
+      },
+      { type: "divider" },
+      { type: "section", text: { type: "mrkdwn", text: `*Tell us about your event*\n${quoted}` } },
+      {
+        type: "context",
+        elements: [
+          {
+            type: "mrkdwn",
+            // Only mention the email once Resend is set up, so the note is never wrong.
+            text: process.env.RESEND_API_KEY
+              ? `Sent from rosspower.ai/contact  ·  Also emailed to ${TO}, reply there to answer ${x(e.name)}`
+              : "Sent from rosspower.ai/contact",
+          },
+        ],
+      },
+    ],
+  };
+}
+
 async function sendSlack(e: Enquiry) {
   const url = process.env.SLACK_WEBHOOK_URL;
   if (!url) return false;
@@ -76,23 +142,7 @@ async function sendSlack(e: Enquiry) {
   const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      // Notification preview; the blocks below are what shows in the channel.
-      text: slackEscape(`New enquiry from ${e.name} (${e.organisation}): ${e.type}`),
-      blocks: [
-        { type: "header", text: { type: "plain_text", text: `New enquiry: ${e.type}` } },
-        { type: "context", elements: [{ type: "mrkdwn", text: `*From:* ${SOURCE}` }] },
-        // Every field, filled or not, one per line.
-        {
-          type: "section",
-          text: { type: "mrkdwn", text: rows(e).map(([k, v]) => `*${k}:* ${slackEscape(v)}`).join("\n") },
-        },
-        {
-          type: "section",
-          text: { type: "mrkdwn", text: `*Tell us about your event:*\n${slackEscape(e.message).slice(0, 2800)}` },
-        },
-      ],
-    }),
+    body: JSON.stringify(slackMessage(e)),
   });
   if (!res.ok) throw new Error(`Slack ${res.status}: ${await res.text()}`);
   return true;
