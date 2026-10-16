@@ -1,4 +1,3 @@
-import { discoveryBooking } from "@rosspower/ui/content/brand";
 import { asset } from "@rosspower/ui/lib/asset";
 
 export const hero = {
@@ -68,7 +67,7 @@ export const talksIntro = {
   body: "On your stage, on your panel or on your podcast. Pick the conversation your audience needs and Ross will shape it around them.",
 };
 
-/** The four talks, in this order. Every "book this talk" goes to the booking calendar. */
+/** The four talks, in this order. Every "book this talk" opens the enquiry form. */
 export const talks = [
   {
     kind: "Keynote",
@@ -224,9 +223,3 @@ export const quotes = {
   ],
 };
 
-export const book = {
-  eyebrow: "Let's talk",
-  body: "Pick a time and tell Ross about your event or your goals. He'll come back with how he can help.",
-  /** The "Discovery with Ross" calendar, shared with links.rosspower.ai. */
-  discovery: discoveryBooking,
-};

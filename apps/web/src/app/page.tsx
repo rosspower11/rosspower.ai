@@ -1,6 +1,5 @@
 import { About } from "@/components/home/About";
 import { AiPowered } from "@/components/home/AiPowered";
-import { Book } from "@/components/home/Book";
 import { Events } from "@/components/home/Events";
 import { Hero } from "@/components/home/Hero";
 import { Quotes } from "@/components/home/Quotes";
@@ -19,7 +18,6 @@ export default function HomePage() {
       <Events />
       <AiPowered />
       <Quotes />
-      <Book />
     </>
   );
 }

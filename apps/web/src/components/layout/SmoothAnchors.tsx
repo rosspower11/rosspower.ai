@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 /**
- * Smooth scroll for every link to a section of the current page (nav, menu, footer, Book Ross),
+ * Smooth scroll for every link to a section of the current page (nav, menu, footer),
  * done in code so it works in every browser and whatever the visitor's motion setting.
  * Links to another page (e.g. /#about from /bio) navigate normally and land on the section.
  */
