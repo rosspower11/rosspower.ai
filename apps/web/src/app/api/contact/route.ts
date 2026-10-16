@@ -83,7 +83,6 @@ async function sendSlack(e: Enquiry) {
       text: slackEscape(`New enquiry from ${e.name} (${e.organisation}): ${e.type}`),
       blocks: [
         { type: "header", text: { type: "plain_text", text: `New enquiry: ${e.type}` } },
-        { type: "context", elements: [{ type: "mrkdwn", text: `*From:* <${PAGE}|${SOURCE}>` }] },
         // Every field, filled or not, one per line.
         {
           type: "section",
@@ -93,6 +92,8 @@ async function sendSlack(e: Enquiry) {
           type: "section",
           text: { type: "mrkdwn", text: `*Tell us about your event:*\n${slackEscape(e.message).slice(0, 2800)}` },
         },
+        // Where it came from, under the details.
+        { type: "context", elements: [{ type: "mrkdwn", text: `*From:* <${PAGE}|${SOURCE}>` }] },
       ],
     }),
   });
