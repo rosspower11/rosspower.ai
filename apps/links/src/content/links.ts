@@ -167,9 +167,9 @@ export const bookPage = {
     description: "Book a call with Ross Power. Tell us about you or your team and we'll come back to you.",
   },
   eyebrow: "Book a call",
-  body: "Tell us about you or your team and what you want from AI. Mary from Ross's team will come back to you within two working days.",
+  body: "Tell us what you want from AI. We'll reply within two working days.",
   thanks: {
     title: "Thank you",
-    body: "Your message is with Mary. She'll come back to you within two working days.",
+    body: "We've got your message and will come back to you within two working days.",
   },
 };
