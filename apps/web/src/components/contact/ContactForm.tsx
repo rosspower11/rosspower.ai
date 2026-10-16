@@ -49,7 +49,7 @@ export function ContactForm() {
 
   if (status === "sent") {
     return (
-      <div role="status" className="flex flex-col gap-4 rounded-panel bg-card p-7 tablet:p-10">
+      <div role="status" className="flex flex-col gap-4 rounded-xl bg-card p-5 tablet:rounded-2xl tablet:p-7">
         <h2 className="type-h3">{contactPage.thanks.title}</h2>
         <p className="type-p-lg text-ink/80">{contactPage.thanks.body}</p>
       </div>
@@ -57,7 +57,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={submit} className="flex flex-col gap-5 rounded-panel bg-card p-6 tablet:p-10">
+    <form onSubmit={submit} className="flex flex-col gap-5 rounded-xl bg-card p-5 tablet:rounded-2xl tablet:p-7">
       <div className="grid gap-5 tablet:grid-cols-2">
         <Field label="Name">
           <input name="name" required autoComplete="name" maxLength={limits.short} className={cn(control, "min-h-12")} />
