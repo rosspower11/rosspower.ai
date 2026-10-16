@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@rosspower/ui/components/Button";
 import { ArrowUpRight } from "@rosspower/ui/components/Icon";
 import { Logo } from "@rosspower/ui/components/Logo";
-import { bookLink, contact, mainNav } from "@/content/nav";
+import { bookLink, mainNav } from "@/content/nav";
 import { cn } from "@rosspower/ui/lib/cn";
 
 /** Pages whose first section is dark, so the header starts in its light-on-dark state. */
@@ -144,11 +144,8 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          {/* Pinned to the bottom: contact, then a full-width Book Ross on phones. */}
-          <div className="flex flex-col gap-5 pb-[max(20px,env(safe-area-inset-bottom))] tablet:flex-row tablet:items-center tablet:justify-between tablet:pb-8">
-            <a href={`mailto:${contact.email}`} className="type-p-sm text-center text-cream/70 hover:text-cream tablet:text-left">
-              {contact.email}
-            </a>
+          {/* Pinned to the bottom: Book Ross, full width on phones. */}
+          <div className="flex flex-col pb-[max(20px,env(safe-area-inset-bottom))] tablet:flex-row tablet:justify-end tablet:pb-8">
             <Button href={bookLink.href} onClick={close} variant="cream" className="w-full tablet:w-auto">
               {bookLink.label}
               <ArrowUpRight />

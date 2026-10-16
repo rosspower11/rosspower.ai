@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { contactPage } from "@/content/contact";
-import { contact } from "@/content/nav";
 import { ContactForm } from "@rosspower/ui/components/ContactForm";
 import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
 import { asset } from "@rosspower/ui/lib/asset";
@@ -39,12 +38,6 @@ export default function ContactPage() {
               Bring AI to <span className="voice">your stage</span>
             </h1>
             <p className="type-p-lg measure">{contactPage.body}</p>
-            <p className="type-p-sm text-ink/70">
-              Rather email?{" "}
-              <a href={`mailto:${contact.email}`} className="font-semibold text-ink underline underline-offset-4">
-                {contact.email}
-              </a>
-            </p>
           </div>
         </div>
         <div className="laptop:col-span-7">

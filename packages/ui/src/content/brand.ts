@@ -15,7 +15,6 @@ export const socials = [
 export type SocialLabel = (typeof socials)[number]["label"];
 
 export const contact = {
-  email: "ross@aipowered.xyz",
   /** "Speak to Ross directly", the same number as the WhatsApp button on aipowered.xyz. */
   whatsapp: "https://wa.me/447790598385",
   aiPowered: "https://aipowered.xyz",

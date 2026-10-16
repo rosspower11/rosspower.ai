@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, type FormEvent, type ReactNode } from "react";
-import { contact } from "../content/brand";
 import { enquiryTypes, limits, type ContactSource } from "../content/contact";
 import { cn } from "../lib/cn";
 import { ArrowUpRight } from "./Icon";
@@ -132,11 +131,7 @@ export function ContactForm({ source, thanks }: ContactFormProps) {
 
         {status === "error" ? (
           <p role="alert" className="type-p-sm text-ink">
-            {error} Please try again, or email{" "}
-            <a href={`mailto:${contact.email}`} className="font-semibold underline underline-offset-4">
-              {contact.email}
-            </a>
-            .
+            {error} Please try again.
           </p>
         ) : null}
 
