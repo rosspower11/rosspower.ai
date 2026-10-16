@@ -16,6 +16,12 @@
       "destination": "https://pub-8596e123de1148b6a30317d1ffd26184.r2.dev/:path*"
     },
     {
+      "source": "/api/contact",
+      "destination": {
+        "service": "web"
+      }
+    },
+    {
       "source": "/(.*)",
       "has": [
         {

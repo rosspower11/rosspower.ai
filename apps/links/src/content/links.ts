@@ -1,4 +1,4 @@
-import { contact, discoveryBooking, socials } from "@rosspower/ui/content/brand";
+import { contact, socials } from "@rosspower/ui/content/brand";
 import { asset } from "@rosspower/ui/lib/asset";
 
 /**
@@ -38,7 +38,7 @@ export const profile = {
   cover: { src: asset("images/profile/v2/cover.jpg"), alt: "Ross on the mic to a packed room" },
   avatar: { src: asset("images/profile/v2/ross.jpg"), alt: "Ross Power" },
   actions: {
-    book: { label: "Book a call", href: discoveryBooking.url },
+    book: { label: "Book a call", href: "/book" },
   },
 };
 
@@ -56,7 +56,7 @@ export const sections: LinkSection[] = [
         label: "20 min · With Ross",
         title: "Book a discovery call",
         desc: "Find the right next step for you or your team.",
-        href: discoveryBooking.url,
+        href: "/book",
         image: { src: asset("images/links/v2/discovery.jpg"), alt: "Ross helping a workshop participant at their laptop" },
       },
       {
@@ -159,3 +159,17 @@ export const partners = {
 const socialOrder = ["YouTube", "Instagram", "LinkedIn", "X"] as const;
 
 export const follow = socialOrder.map((label) => socials.find((s) => s.label === label)!);
+
+/** links.rosspower.ai/book: the booking form (the same form as rosspower.ai/contact). */
+export const bookPage = {
+  meta: {
+    title: "Book a call | Ross Power",
+    description: "Book a call with Ross Power. Tell us about you or your team and we'll come back to you.",
+  },
+  eyebrow: "Book a call",
+  body: "Tell us about you or your team and what you want from AI. Mary from Ross's team will come back to you within two working days.",
+  thanks: {
+    title: "Thank you",
+    body: "Your message is with Mary. She'll come back to you within two working days.",
+  },
+};

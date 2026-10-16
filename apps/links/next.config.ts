@@ -10,9 +10,16 @@ const nextConfig: NextConfig = {
   transpilePackages: ["@rosspower/ui"],
   // Local dev runs at http://links.localhost:3300 (any *.localhost name points at this machine).
   allowedDevOrigins: ["links.localhost"],
-  // Deployed, vercel.json proxies /assets to R2; this does the same under `next dev`
-  // (a static export can't have rewrites of its own).
-  ...(process.env.NODE_ENV === "development" ? { rewrites: devAssetRewrites } : {}),
+  // Deployed, vercel.json proxies /assets to R2 and sends /api/contact (the /book form) to the
+  // web app; these do the same under `next dev` (a static export can't have rewrites of its own).
+  ...(process.env.NODE_ENV === "development"
+    ? {
+        rewrites: async () => [
+          ...(await devAssetRewrites()),
+          { source: "/api/contact", destination: "http://localhost:3200/api/contact" },
+        ],
+      }
+    : {}),
 };
 
 export default nextConfig;

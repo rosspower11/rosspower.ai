@@ -12,9 +12,3 @@ export const contactPage = {
     body: "Your enquiry is with Mary. She'll come back to you within two working days.",
   },
 };
-
-/** What the enquiry is for. Shown in the form and in the email Mary gets. */
-export const enquiryTypes = ["Keynote", "Workshop", "Executive briefing", "Podcast", "Something else"] as const;
-
-/** Field limits, shared by the form and the API so both check the same thing. */
-export const limits = { short: 120, message: 3000 } as const;

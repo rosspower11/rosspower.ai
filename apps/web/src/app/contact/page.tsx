@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { ContactForm } from "@/components/contact/ContactForm";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { contactPage } from "@/content/contact";
 import { contact } from "@/content/nav";
+import { ContactForm } from "@rosspower/ui/components/ContactForm";
 import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
 import { asset } from "@rosspower/ui/lib/asset";
 
@@ -48,7 +48,7 @@ export default function ContactPage() {
           </div>
         </div>
         <div className="laptop:col-span-7">
-          <ContactForm />
+          <ContactForm source="website" thanks={contactPage.thanks} />
         </div>
       </Container>
     </Section>

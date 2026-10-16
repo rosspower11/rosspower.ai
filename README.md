@@ -32,8 +32,9 @@ and the Container padding at the current breakpoint.
 ```
 packages/ui/                 @rosspower/ui: shared by both apps
   src/styles/theme.css       Design tokens, breakpoints, type scale, base styles
-  src/components/            Button, Eyebrow, Logo, icons, WhatsAppFloat
-  src/content/brand.ts       Socials (+ follower counts), contact, discovery booking
+  src/components/            Button, Eyebrow, Logo, icons, WhatsAppFloat, ContactForm
+  src/content/brand.ts       Socials (+ follower counts), contact
+  src/content/contact.ts     Booking form: enquiry types, limits, sources (rosspower.ai/contact, links/book)
   src/lib/asset.ts           asset("images/…") → URL in the R2 assets bucket
 apps/web/                    rosspower.ai
   src/app/                   layout, homepage, styleguide; globals.css = site animations

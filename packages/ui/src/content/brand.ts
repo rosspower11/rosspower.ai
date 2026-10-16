@@ -1,5 +1,5 @@
 /**
- * Facts about Ross and AI Powered that every app shows: profiles, contact routes, booking.
+ * Facts about Ross and AI Powered that every app shows: profiles and contact routes.
  * Sources: aipowered-website (src/lib/cta.ts, src/lib/social-stats.ts, public/llms.txt).
  */
 
@@ -19,12 +19,4 @@ export const contact = {
   /** "Speak to Ross directly", the same number as the WhatsApp button on aipowered.xyz. */
   whatsapp: "https://wa.me/447790598385",
   aiPowered: "https://aipowered.xyz",
-};
-
-/** "Discovery with Ross" calendar (aipowered-website src/lib/cta.ts → DISCOVERY_BOOKING). */
-export const discoveryBooking = {
-  url: "https://discovery.rosspower.ai/",
-  calendarId: "x4yvy5HXZa2639CEmApS",
-  iframeSrc: "https://links.aipowered.xyz/widget/booking/x4yvy5HXZa2639CEmApS",
-  scriptSrc: "https://links.aipowered.xyz/js/form_embed.js",
 };

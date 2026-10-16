@@ -7,6 +7,9 @@ import { toolLogos, type ToolName } from "./ToolLogos";
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
+/** Other sites open in a new tab; pages on this site (e.g. /book) open in place. */
+const linkProps = (href: string) => (href.startsWith("/") ? {} : external);
+
 /** Cards only render links that have a URL (see `live` in content/links.ts). */
 type Live<T> = T & { href: string };
 
@@ -27,7 +30,7 @@ export function FeatureCard({ link }: { link: Live<FeatureLink> }) {
   return (
     <a
       href={link.href}
-      {...external}
+      {...linkProps(link.href)}
       className="group relative flex aspect-[16/11] flex-col justify-between overflow-hidden rounded-card bg-stone p-5 text-cream"
     >
       <Image
@@ -64,7 +67,7 @@ export function TileCard({ link }: { link: Live<TileLink> }) {
   return (
     <a
       href={link.href}
-      {...external}
+      {...linkProps(link.href)}
       className="group relative flex aspect-[4/5] items-end overflow-hidden rounded-card bg-stone p-3 text-cream"
     >
       <Image
@@ -88,7 +91,7 @@ export function RowCard({ link }: { link: Live<RowLink> }) {
   return (
     <a
       href={link.href}
-      {...external}
+      {...linkProps(link.href)}
       className="group flex items-center gap-4 rounded-card border border-ink/10 bg-card p-3 pr-4 transition-[border-color,box-shadow] duration-300 hover:border-ink/25 hover:shadow-[0_10px_30px_rgba(16,19,23,0.08)]"
     >
       <span className="relative size-[72px] shrink-0 overflow-hidden rounded-[16px] bg-stone">

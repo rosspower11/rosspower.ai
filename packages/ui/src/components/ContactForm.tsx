@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, type FormEvent, type ReactNode } from "react";
-import { ArrowUpRight } from "@rosspower/ui/components/Icon";
-import { cn } from "@rosspower/ui/lib/cn";
-import { contactPage, enquiryTypes, limits } from "@/content/contact";
-import { contact } from "@/content/nav";
+import { contact } from "../content/brand";
+import { enquiryTypes, limits, type ContactSource } from "../content/contact";
+import { cn } from "../lib/cn";
+import { ArrowUpRight } from "./Icon";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -23,8 +23,19 @@ function Field({ label, optional, children }: { label: string; optional?: boolea
   );
 }
 
-/** The booking enquiry form. Posts to /api/contact, which emails Mary. */
-export function ContactForm() {
+type ContactFormProps = {
+  /** Which site the enquiry comes from; shown as the "From" line in Slack and the email. */
+  source: ContactSource;
+  /** Shown in place of the form once it's sent. */
+  thanks: { title: string; body: string };
+};
+
+/**
+ * The booking enquiry form, on rosspower.ai/contact and links.rosspower.ai/book.
+ * Posts to /api/contact (served by the web app on both domains), which emails Mary and posts to Slack.
+ * Fields go two across once the form itself is wide enough (container query), so it fits any column.
+ */
+export function ContactForm({ source, thanks }: ContactFormProps) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
@@ -36,7 +47,7 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(new FormData(e.currentTarget))),
+        body: JSON.stringify({ ...Object.fromEntries(new FormData(e.currentTarget)), source }),
       });
       const data = (await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) throw new Error(data.error ?? "We couldn't send your enquiry just now.");
@@ -50,15 +61,15 @@ export function ContactForm() {
   if (status === "sent") {
     return (
       <div role="status" className="flex flex-col gap-4 rounded-xl bg-card p-5 tablet:rounded-2xl tablet:p-7">
-        <h2 className="type-h3">{contactPage.thanks.title}</h2>
-        <p className="type-p-lg text-ink/80">{contactPage.thanks.body}</p>
+        <h2 className="type-h3">{thanks.title}</h2>
+        <p className="type-p-lg text-ink/80">{thanks.body}</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={submit} className="flex flex-col gap-5 rounded-xl bg-card p-5 tablet:rounded-2xl tablet:p-7">
-      <div className="grid gap-5 tablet:grid-cols-2">
+    <form onSubmit={submit} className="@container flex flex-col gap-5 rounded-xl bg-card p-5 tablet:rounded-2xl tablet:p-7">
+      <div className="grid gap-5 @lg:grid-cols-2">
         <Field label="Name">
           <input name="name" required autoComplete="name" maxLength={limits.short} className={cn(control, "min-h-12")} />
         </Field>
@@ -128,7 +139,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="inline-flex min-h-12 items-center justify-center gap-2.5 self-start rounded-lg border border-ink bg-ink px-6 py-3.5 text-[14px] font-semibold tracking-[0.08em] text-cream uppercase transition-colors hover:bg-ink/85 disabled:opacity-60 max-tablet:w-full"
+        className="inline-flex min-h-12 items-center justify-center gap-2.5 self-start rounded-lg border border-ink bg-ink px-6 py-3.5 text-[14px] font-semibold tracking-[0.08em] text-cream uppercase transition-colors hover:bg-ink/85 disabled:opacity-60 @max-lg:w-full"
       >
         {status === "sending" ? "Sending" : "Send enquiry"}
         <ArrowUpRight />

@@ -65,7 +65,7 @@ export function Profile() {
             );
           })}
         </ul>
-        <Button href={book.href} target="_blank" rel="noopener noreferrer" variant="ink">
+        <Button href={book.href} variant="ink">
           {book.label}
           <ArrowUpRight />
         </Button>

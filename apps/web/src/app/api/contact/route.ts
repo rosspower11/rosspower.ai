@@ -1,25 +1,24 @@
 import { NextResponse } from "next/server";
-import { enquiryTypes, limits } from "@/content/contact";
+import { contactSources, enquiryTypes, limits, type ContactSource } from "@rosspower/ui/content/contact";
 
 /**
- * Booking enquiries from /contact.
+ * Booking enquiries from rosspower.ai/contact and links.rosspower.ai/book (vercel.json sends both here).
  * Each one is emailed to Mary (Resend) and, when a webhook is set, posted to Slack.
  *
  * Env (Vercel project rosspower-ai):
  * - RESEND_API_KEY   Resend API key. Required for the email.
- * - CONTACT_FROM     Sender on a domain verified in Resend, e.g. "Ross Power Website - Contact <website@aipowered.xyz>".
+ * - CONTACT_FROM     Sender address on a domain verified in Resend, e.g. website@aipowered.xyz.
+ *                    The name shown is where the enquiry came from, e.g. "Ross Power Website - Contact".
  * - CONTACT_TO       Optional, defaults to Mary.
  * - SLACK_WEBHOOK_URL Optional Slack incoming webhook for a lead alert.
  */
 const TO = process.env.CONTACT_TO ?? "mary@aipowered.xyz";
-/** Who every enquiry says it's from, in the email and in Slack. */
-const SOURCE = "Ross Power Website - Contact";
-/** The form's page, linked from the "From" line in Slack. */
-const PAGE = "https://rosspower.ai/contact";
-const FROM = process.env.CONTACT_FROM ?? `${SOURCE} <onboarding@resend.dev>`;
+/** Sender address on a domain verified in Resend; the display name is the enquiry's source. */
+const FROM_ADDRESS = process.env.CONTACT_FROM ?? "onboarding@resend.dev";
 const EMAIL = /^[^\s@<>|]+@[^\s@<>|]+\.[^\s@<>|]+$/;
 
 type Enquiry = {
+  source: ContactSource;
   name: string;
   email: string;
   organisation: string;
@@ -60,12 +59,12 @@ async function sendEmail(e: Enquiry) {
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
     body: JSON.stringify({
-      from: FROM,
+      from: `${contactSources[e.source].label} <${FROM_ADDRESS}>`,
       to: [TO],
       reply_to: e.email,
       subject: `New booking enquiry: ${e.type}, ${e.organisation}`,
-      text: [`From: ${SOURCE}`, "", ...rows(e).map(([k, v]) => `${k}: ${v}`), "", e.message].join("\n"),
-      html: `<p><strong>From:</strong> ${SOURCE}</p><p>New booking enquiry from rosspower.ai/contact. Reply to this email to answer ${escape(e.name)} directly.</p><table>${table}</table><p style="white-space:pre-wrap">${escape(e.message)}</p>`,
+      text: [`From: ${contactSources[e.source].label}`, "", ...rows(e).map(([k, v]) => `${k}: ${v}`), "", e.message].join("\n"),
+      html: `<p><strong>From:</strong> <a href="${contactSources[e.source].page}">${contactSources[e.source].label}</a></p><p>New booking enquiry. Reply to this email to answer ${escape(e.name)} directly.</p><table>${table}</table><p style="white-space:pre-wrap">${escape(e.message)}</p>`,
     }),
   });
   if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
@@ -93,7 +92,7 @@ async function sendSlack(e: Enquiry) {
           text: { type: "mrkdwn", text: `*Tell us about your event:*\n${slackEscape(e.message).slice(0, 2800)}` },
         },
         // Where it came from, under the details.
-        { type: "context", elements: [{ type: "mrkdwn", text: `*From:* <${PAGE}|${SOURCE}>` }] },
+        { type: "context", elements: [{ type: "mrkdwn", text: `*From:* <${contactSources[e.source].page}|${contactSources[e.source].label}>` }] },
       ],
     }),
   });
@@ -112,7 +111,11 @@ export async function POST(request: Request) {
   // Hidden field only bots fill in: pretend it worked so they move on.
   if (text(body.website, 200)) return NextResponse.json({ ok: true });
 
+  // Which site sent it; anything unknown counts as the main website.
+  const source: ContactSource = body.source === "links" ? "links" : "website";
+
   const e: Enquiry = {
+    source,
     name: text(body.name, limits.short),
     email: text(body.email, limits.short),
     organisation: text(body.organisation, limits.short),
