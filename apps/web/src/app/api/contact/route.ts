@@ -7,12 +7,14 @@ import { enquiryTypes, limits } from "@/content/contact";
  *
  * Env (Vercel project rosspower-ai):
  * - RESEND_API_KEY   Resend API key. Required for the email.
- * - CONTACT_FROM     Sender on a domain verified in Resend, e.g. "Ross Power <hello@rosspower.ai>".
+ * - CONTACT_FROM     Sender on a domain verified in Resend, e.g. "Ross Power Website - Contact <website@aipowered.xyz>".
  * - CONTACT_TO       Optional, defaults to Mary.
  * - SLACK_WEBHOOK_URL Optional Slack incoming webhook for a lead alert.
  */
 const TO = process.env.CONTACT_TO ?? "mary@aipowered.xyz";
-const FROM = process.env.CONTACT_FROM ?? "Ross Power website <onboarding@resend.dev>";
+/** Who every enquiry says it's from, in the email and in Slack. */
+const SOURCE = "Ross Power Website - Contact";
+const FROM = process.env.CONTACT_FROM ?? `${SOURCE} <onboarding@resend.dev>`;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type Enquiry = {
@@ -27,6 +29,9 @@ type Enquiry = {
 };
 
 const text = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+
+/** Slack mrkdwn treats &, < and > as control characters. */
+const slackEscape = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 const escape = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
@@ -57,8 +62,8 @@ async function sendEmail(e: Enquiry) {
       to: [TO],
       reply_to: e.email,
       subject: `New booking enquiry: ${e.type}, ${e.organisation}`,
-      text: [...rows(e).map(([k, v]) => `${k}: ${v}`), "", e.message].join("\n"),
-      html: `<p>New booking enquiry from rosspower.ai/contact. Reply to this email to answer ${escape(e.name)} directly.</p><table>${table}</table><p style="white-space:pre-wrap">${escape(e.message)}</p>`,
+      text: [`From: ${SOURCE}`, "", ...rows(e).map(([k, v]) => `${k}: ${v}`), "", e.message].join("\n"),
+      html: `<p><strong>From:</strong> ${SOURCE}</p><p>New booking enquiry from rosspower.ai/contact. Reply to this email to answer ${escape(e.name)} directly.</p><table>${table}</table><p style="white-space:pre-wrap">${escape(e.message)}</p>`,
     }),
   });
   if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
@@ -72,14 +77,20 @@ async function sendSlack(e: Enquiry) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      text: `New booking enquiry: ${e.type}, ${e.organisation}`,
+      // Notification preview; the blocks below are what shows in the channel.
+      text: slackEscape(`New enquiry from ${e.name} (${e.organisation}): ${e.type}`),
       blocks: [
-        { type: "header", text: { type: "plain_text", text: `New booking enquiry: ${e.type}` } },
+        { type: "header", text: { type: "plain_text", text: `New enquiry: ${e.type}` } },
+        { type: "context", elements: [{ type: "mrkdwn", text: `*From:* ${SOURCE}` }] },
+        // Every field, filled or not, one per line.
         {
           type: "section",
-          fields: rows(e).map(([k, v]) => ({ type: "mrkdwn", text: `*${k}*\n${v}` })),
+          text: { type: "mrkdwn", text: rows(e).map(([k, v]) => `*${k}:* ${slackEscape(v)}`).join("\n") },
         },
-        { type: "section", text: { type: "plain_text", text: e.message.slice(0, 2900) } },
+        {
+          type: "section",
+          text: { type: "mrkdwn", text: `*Tell us about your event:*\n${slackEscape(e.message).slice(0, 2800)}` },
+        },
       ],
     }),
   });
