@@ -1,17 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { cn } from "@rosspower/ui/lib/cn";
+import { useEffect, useRef } from "react";
 
 /**
  * Full-bleed background video for the hero: muted, looping, inline.
- * The poster shows until the video is actually playing, then the video fades in over it.
+ * The video element shows the same poster until its first frame, so there's never a blank gap.
+ * (No fade on the "playing" event: autoplay can start before React attaches the listener.)
  * Visitors who ask for reduced motion only get the poster.
  */
 export function HeroVideo({ src, poster }: { src: string; poster: string }) {
   const ref = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const video = ref.current;
@@ -37,11 +36,7 @@ export function HeroVideo({ src, poster }: { src: string; poster: string }) {
         muted
         playsInline
         preload="auto"
-        onPlaying={() => setPlaying(true)}
-        className={cn(
-          "absolute inset-0 size-full object-cover transition-opacity duration-700 motion-reduce:hidden",
-          playing ? "opacity-100" : "opacity-0",
-        )}
+        className="absolute inset-0 size-full object-cover motion-reduce:hidden"
       />
     </div>
   );
