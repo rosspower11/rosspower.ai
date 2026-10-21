@@ -3,6 +3,7 @@ import { Anton, Instrument_Serif } from "next/font/google";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SmoothAnchors } from "@/components/layout/SmoothAnchors";
+import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE_URL } from "@/lib/site";
 import { siteGraph } from "@/lib/structured-data";
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {/* The header is fixed, so pages start below it. Full-bleed heroes pull back up with -mt-(--header-h). */}
         <main className="flex-1 pt-(--header-h)">{children}</main>
         <SiteFooter />
+        <GoogleAnalytics />
       </body>
     </html>
   );
