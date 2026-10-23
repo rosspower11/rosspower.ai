@@ -23,7 +23,7 @@ const ross = {
   jobTitle: "AI speaker and educator",
   description: bio.shortBios.items[0].text,
   worksFor: { "@id": ids.aiPowered },
-  knowsAbout: ["Artificial intelligence", "AI adoption", "Claude", "AI for teams", "AI for leaders", "AI workshops"],
+  knowsAbout: ["Artificial intelligence", "AI adoption", "Claude", "AI for teams", "AI for leaders", "AI keynotes"],
   sameAs: [...socials.map((s) => s.href), "https://links.rosspower.ai"],
 };
 
@@ -50,7 +50,7 @@ export const siteGraph = {
   ],
 };
 
-/** Homepage: the page, and every talk as a service Ross offers (booked through /contact). */
+/** Homepage: the page, and every keynote as a service Ross offers (booked through /contact). */
 export const homeGraph = {
   "@context": "https://schema.org",
   "@graph": [
@@ -65,8 +65,8 @@ export const homeGraph = {
     ...talks.map((t) => ({
       "@type": "Service",
       name: t.title,
-      serviceType: t.kind,
-      description: t.body,
+      serviceType: "Keynote",
+      description: t.intro,
       provider: { "@id": ids.ross },
       url: url("/contact"),
     })),

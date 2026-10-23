@@ -129,7 +129,7 @@ export async function POST(request: Request) {
   if (!e.name || !e.organisation || !e.message || !EMAIL.test(e.email)) {
     return NextResponse.json({ error: "Please fill in every required field." }, { status: 400 });
   }
-  if (!(enquiryTypes as readonly string[]).includes(e.type)) {
+  if (!(enquiryTypes[source] as readonly string[]).includes(e.type)) {
     return NextResponse.json({ error: "Please choose what the enquiry is for." }, { status: 400 });
   }
 

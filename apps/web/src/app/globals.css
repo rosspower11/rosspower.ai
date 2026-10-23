@@ -5,65 +5,142 @@
 @source "../../../../packages/ui/src";
 
 /* ------------------------------------------------------------------
+   v2 look for rosspower.ai only (Andi's build guide, step 01).
+   packages/ui/theme.css stays as it is for links.rosspower.ai; these override it here.
+   ------------------------------------------------------------------ */
+@theme {
+  /* The seven v2 colours. */
+  --color-ink: #17332a; /* forest: text, dark buttons, borders */
+  --color-cream: #f1ece1; /* page background, text on dark */
+  --color-wash: #cfdcc8; /* sage light: ticker, speaker, chats, stat tile 1 */
+  --color-mid: #2f5a4a; /* green: full stops, the ticker's ✳, link hover */
+  --color-sand: #e6dfd0; /* talk cards 2 to 4, stat tile 4, the form panel */
+  --color-sage: #a9b9a0; /* pills, tags, stat tile 2 */
+  --color-pine: #23473a; /* proof section */
+  /* The old tokens mapped onto v2, so no blue can show up anywhere. */
+  --color-blue: #2f5a4a;
+  --color-accent: #a9b9a0;
+  --color-ice: #cfdcc8;
+  --color-sky: #cfdcc8;
+  --color-stone: #e6dfd0;
+  --color-card: #f1ece1;
+
+  /* Bricolage Grotesque replaces Helvetica everywhere (layout.tsx loads it). */
+  --font-sans: var(--font-bricolage), system-ui, sans-serif;
+}
+
+/* Spacing: 112px sections and a 56px gutter on desktop, 64px and 20px on phones. */
+:root {
+  --section-py: 64px;
+  --section-px: 20px;
+  --fs-p: 17px;
+}
+@media (min-width: 810px) {
+  :root {
+    --section-py: 88px;
+    --section-px: 40px;
+  }
+}
+@media (min-width: 1200px) {
+  :root {
+    --section-py: 112px;
+    --section-px: 56px;
+  }
+}
+
+/* v2 type styles (step 01). Sizes are phone, then desktop from 1200px. */
+@utility wordmark {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.82;
+  /* ROSS POWER on one line, as wide as the hero card allows (the card is a size container), 236px at most.
+     Anton sets "ROSS POWER" 4.63em wide; 4.7 leaves a little room. */
+  font-size: min(236px, calc((100cqw - 2 * var(--hero-pad, 24px)) / 4.7));
+  white-space: nowrap;
+}
+@utility heading {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 52px;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-wrap: balance;
+  @variant laptop {
+    font-size: 84px;
+  }
+}
+@utility heading-xl {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 58px;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  @variant laptop {
+    font-size: 96px;
+  }
+}
+@utility card-title {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  @variant laptop {
+    font-size: 30px;
+  }
+}
+@utility lead {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.55;
+  @variant tablet {
+    font-size: 19px;
+  }
+}
+@utility label {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.4;
+}
+/* Instrument Serif italic accent inside a heading, same size and colour as the heading. */
+@utility serif-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+@utility line-forest {
+  border-color: var(--color-ink);
+  border-width: 1.5px;
+}
+
+@layer base {
+  /* The nav isn't fixed in v2, so anchors land at the top of their section. */
+  html { scroll-padding-top: 0; }
+  h2 { @apply heading; }
+  h3 { @apply card-title; }
+  p { font-size: var(--fs-p); line-height: 1.55; }
+}
+
+/* ------------------------------------------------------------------
    Motion
    ------------------------------------------------------------------ */
-@keyframes marquee {
+/* Ticker: one full loop every 30s; it stands still for reduced motion. */
+@keyframes ticker {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-.marquee-track {
-  animation: marquee 40s linear infinite;
-}
-/* AI Powered card icons: gentle loops, faster while the card is hovered. */
-.aip-page {
-  transform-box: view-box;
-  transform-origin: 24px 24px;
-  animation: aip-page 3.2s ease-in-out infinite;
-}
-@keyframes aip-page {
-  0%, 35% { transform: scaleX(1); opacity: 1; }
-  60% { transform: scaleX(-1); opacity: 0.6; }
-  61%, 100% { transform: scaleX(1); opacity: 0; }
-}
-.aip-gear-a,
-.aip-gear-b {
-  transform-box: fill-box;
-  transform-origin: center;
-}
-.aip-gear-a { animation: aip-spin 8s linear infinite; }
-.aip-gear-b { animation: aip-spin 5.8s linear infinite reverse; }
-@keyframes aip-spin { to { transform: rotate(360deg); } }
-.aip-ring {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: aip-ring 2.4s ease-out infinite;
-}
-.aip-ring-2 { animation-delay: 1.2s; }
-@keyframes aip-ring {
-  from { transform: scale(0.9); opacity: 0.7; }
-  to { transform: scale(2); opacity: 0; }
-}
-.aip-card:hover .aip-page,
-.aip-card:hover .aip-ring { animation-duration: 1.4s; }
-.aip-card:hover .aip-gear-a { animation-duration: 2.4s; }
-.aip-card:hover .aip-gear-b { animation-duration: 1.75s; }
-@media (prefers-reduced-motion: reduce) {
-  .aip-page,
-  .aip-gear-a,
-  .aip-gear-b,
-  .aip-ring { animation: none; }
-  .aip-ring { opacity: 0; }
+.ticker-track {
+  animation: ticker 30s linear infinite;
 }
 
-/* Speaking: timer line under the active format. */
-@keyframes speaking-progress {
-  from { width: 0; }
-  to { width: 100%; }
-}
-.speaking-progress {
-  animation: speaking-progress linear forwards;
-}
-
+/* ------------------------------------------------------------------
+   Saved spotlight hero (components/home/HeroSpotlight.tsx, not on the page)
+   ------------------------------------------------------------------ */
 @keyframes scroll-cue {
   0% { transform: translateY(-100%); }
   100% { transform: translateY(200%); }
@@ -156,31 +233,6 @@
   100% { opacity: 1; transform: none; }
 }
 
-/* Headline lines rise out of their own mask, one after the other (Hero.tsx). */
-.hero-line {
-  display: block;
-  overflow: hidden;
-  /* Room for descenders and the italic overhang inside the mask. */
-  padding-bottom: 0.12em;
-  margin-bottom: -0.12em;
-}
-.hero-line-inner {
-  display: inline-block;
-  transform: translate3d(0, 110%, 0);
-  animation: hero-line 950ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: var(--delay, 0ms);
-}
-@keyframes hero-line { to { transform: none; } }
-
-/* The hero photo settles from a slight zoom. */
-.hero-settle {
-  animation: hero-settle 2400ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-@keyframes hero-settle {
-  from { transform: scale(1.08); opacity: 0; }
-  to { transform: none; opacity: 1; }
-}
-
 /* Parallax: HeroMotion writes --hero-y (px scrolled) on the hero section. */
 .parallax-slow { transform: translate3d(0, calc(var(--hero-y, 0) * 0.45px), 0); }
 .parallax-mid { transform: translate3d(0, calc(var(--hero-y, 0) * 0.2px), 0); }
@@ -189,26 +241,15 @@
 .parallax-fade-fast { opacity: calc(1 - var(--hero-y, 0) / 220); }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track,
+  .ticker-track,
   .scroll-cue-dot { animation: none; }
   .hero-fade,
   .type-char,
   .hero-rise,
-  .hero-twinkle,
-  .hero-settle {
+  .hero-twinkle {
     animation: none;
     opacity: 1;
   }
-  .hero-line-inner {
-    animation: none;
-    transform: none;
-  }
   .type-char::after { animation: none; }
-  .type-glow {
-    animation: none;
-    text-shadow:
-      0 0 16px rgba(143, 179, 217, 0.55),
-      0 0 56px rgba(143, 179, 217, 0.35),
-      0 0 140px rgba(143, 179, 217, 0.3);
-  }
+  .type-glow { animation: none; }
 }

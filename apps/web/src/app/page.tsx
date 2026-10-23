@@ -1,26 +1,31 @@
-import { About } from "@/components/home/About";
-import { AiPowered } from "@/components/home/AiPowered";
-import { Events } from "@/components/home/Events";
+import { Chats } from "@/components/home/Chats";
 import { Hero } from "@/components/home/Hero";
-import { Quotes } from "@/components/home/Quotes";
-import { Speaking } from "@/components/home/Speaking";
-import { Stats } from "@/components/home/Stats";
+import { MeetSpeaker } from "@/components/home/MeetSpeaker";
+import { PastSpeeches } from "@/components/home/PastSpeeches";
+import { Proof } from "@/components/home/Proof";
+import { RossLine } from "@/components/home/RossLine";
+import { Speaker } from "@/components/home/Speaker";
 import { Talks } from "@/components/home/Talks";
+import { Ticker } from "@/components/home/Ticker";
+import { Work } from "@/components/home/Work";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { homeGraph } from "@/lib/structured-data";
 
+/** v2 homepage, in the order of Andi's build guide (step 17). */
 export default function HomePage() {
   return (
     <>
       <JsonLd data={homeGraph} />
       <Hero />
-      <Stats />
-      <About />
-      <Speaking />
+      <Ticker />
+      <RossLine />
+      <MeetSpeaker />
+      <Speaker />
       <Talks />
-      <Events />
-      <AiPowered />
-      <Quotes />
+      <Chats />
+      <Proof />
+      <PastSpeeches />
+      <Work />
     </>
   );
 }
