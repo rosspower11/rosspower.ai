@@ -1,33 +1,37 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { PillButton } from "@/components/ui/PillButton";
+import { Button } from "@rosspower/ui/components/Button";
+import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
 
 export const metadata: Metadata = {
   title: "Styleguide",
   robots: { index: false, follow: false },
 };
 
-/** The seven v2 colours (Andi's build guide, step 01). */
 const colours = [
-  ["ink (forest)", "#17332a"],
-  ["cream", "#f1ece1"],
-  ["wash (sage light)", "#cfdcc8"],
-  ["mid (green)", "#2f5a4a"],
-  ["sand", "#e6dfd0"],
-  ["sage", "#a9b9a0"],
-  ["pine", "#23473a"],
+  ["cream", "#eee9df"],
+  ["ink", "#101317"],
+  ["ice", "#dde7f2"],
+  ["sky", "#bfd7ea"],
+  ["accent", "#8fb3d9"],
+  ["blue", "#4f7fb3"],
+  ["stone", "#c9cdd2"],
+  ["sand", "#e1dccf"],
+  ["card", "#f6f3ec"],
 ];
 
 const scale = [
-  { name: "Wordmark", cls: "wordmark", spec: "Anton 400 · 236 max · hero only", sample: "ROSS POWER" },
-  { name: "Heading XL", cls: "heading-xl", spec: "Bricolage 800 · 96 / 58", sample: "speaker." },
-  { name: "Heading", cls: "heading", spec: "Bricolage 800 · 84 / 52", sample: "talks ross is ready to give" },
-  { name: "Card title", cls: "card-title", spec: "Bricolage 800 · 30 / 26", sample: "The Humans Decide" },
-  { name: "Lead", cls: "lead", spec: "Bricolage 400 · 19 / 17", sample: "Keynotes for conferences and leadership teams." },
-  { name: "Body", cls: "", spec: "Bricolage 400 · 17", sample: "Practical AI your listeners can use the same day." },
-  { name: "Label", cls: "label", spec: "Bricolage 600 · 15", sample: "hosting a podcast?" },
-  { name: "Accent", cls: "serif-accent text-[48px]", spec: "Instrument Serif italic", sample: "ready to give" },
+  { name: "H1", cls: "type-h1", spec: "Anton · 264 / 216 / 144 / 72", sample: "Ross Power" },
+  { name: "H2", cls: "type-h2", spec: "Instrument Serif · 64 / 56 / 48 / 40", sample: "meet your speaker" },
+  { name: "H3", cls: "type-h3", spec: "Helvetica 500 · 32 / 30 / 26 / 24", sample: "Confidence comes from doing." },
+  { name: "H4", cls: "type-h4", spec: "Helvetica 700 · 26 / 24 / 22 / 20", sample: "AI for Private Equity" },
+  { name: "H5", cls: "type-h5", spec: "Helvetica 700 · 24 / 22 / 20 / 18", sample: "making ai simple" },
+  { name: "H6", cls: "type-h6", spec: "Helvetica 700 · 18 / 18 / 16 / 16", sample: "programmes that teach you" },
+  { name: "Subtitle", cls: "type-p-lg", spec: "Helvetica 400 · 18 at all sizes · 1.5", sample: "Keynotes, workshops and panels for founders, teams and leaders." },
+  { name: "P", cls: "type-p", spec: "Helvetica 400 · 17 / 17 / 16 / 16", sample: "Practical AI your listeners can use the same day, founder stories from Bali to London." },
+  { name: "P sm", cls: "type-p-sm", spec: "Helvetica 400 · 15 / 15 / 14 / 14", sample: "Bali, September 2026" },
+  { name: "Label", cls: "type-label", spec: "Helvetica 600 · 13 / 13 / 13 / 12", sample: "hosting a podcast?" },
 ];
 
 export default function StyleguidePage() {
@@ -35,12 +39,26 @@ export default function StyleguidePage() {
     <>
       <Section>
         <Container className="flex flex-col gap-4">
-          <span className="label">internal · not indexed</span>
+          <span className="type-label">Internal · not indexed</span>
           <h2>
-            rosspower.ai <span className="serif-accent">styleguide</span>
+            rosspower.ai <span className="voice">styleguide</span>
           </h2>
-          <p>v2 tokens: forest and sage, Bricolage Grotesque, lowercase labels and pill buttons.</p>
+          <p className="measure">
+            Each block on this page is a Section with a Container inside it. The striped band below shows the
+            Container&apos;s padding at the current breakpoint: 1440 is 96/80, 1200 is 72/56, 810 is 56/42 and
+            390 is 42/24.
+          </p>
         </Container>
+      </Section>
+
+      <Section tone="ice" aria-label="Container padding">
+        <div className="mx-auto w-full max-w-site bg-accent/40">
+          <Container className="bg-cream">
+            <div className="rounded-card border-[1.5px] border-dashed border-ink p-6 type-p-sm">
+              Content box. The blue around it is the Container padding.
+            </div>
+          </Container>
+        </div>
       </Section>
 
       <Section aria-label="Type scale">
@@ -48,8 +66,8 @@ export default function StyleguidePage() {
           {scale.map((s) => (
             <div key={s.name} className="grid gap-2 border-b border-ink/20 py-6 tablet:grid-cols-[180px_1fr] tablet:gap-8">
               <div className="flex flex-col">
-                <span className="label">{s.name}</span>
-                <span className="text-[14px]">{s.spec}</span>
+                <span className="type-label">{s.name}</span>
+                <span className="type-p-sm text-ink/70">{s.spec}</span>
               </div>
               <div className={`${s.cls} min-w-0 break-words`}>{s.sample}</div>
             </div>
@@ -57,27 +75,26 @@ export default function StyleguidePage() {
         </Container>
       </Section>
 
-      <Section tone="sand" aria-label="Colours and buttons">
+      <Section tone="sand" aria-label="Colours and components">
         <Container className="flex flex-col gap-10">
-          <ul className="grid grid-cols-2 gap-4 tablet:grid-cols-4 laptop:grid-cols-7">
+          <ul className="grid grid-cols-2 gap-4 tablet:grid-cols-3 laptop:grid-cols-5">
             {colours.map(([name, hex]) => (
               <li key={name} className="flex flex-col gap-2">
-                <span className="block h-20 rounded-[28px] border-[1.5px] border-ink" style={{ background: hex }} />
-                <span className="text-[14px]">
+                <span className="block h-20 rounded-card border border-ink/20" style={{ background: hex }} />
+                <span className="type-p-sm">
                   <b>{name}</b> {hex}
                 </span>
               </li>
             ))}
           </ul>
           <div className="flex flex-wrap gap-3">
-            <PillButton href="#">forest</PillButton>
-            <PillButton href="#" variant="outline">outline</PillButton>
-            <PillButton href="#" size="sm">small</PillButton>
+            <Button href="#" variant="accent">accent</Button>
+            <Button href="#" variant="ink">ink</Button>
+            <Button href="#" variant="outline">outline</Button>
+            <Button href="#" variant="cream">cream</Button>
+            <Button href="#" variant="accent" size="sm">small</Button>
           </div>
-          <div className="flex flex-wrap gap-3 rounded-[32px] bg-ink p-8">
-            <PillButton href="#" variant="cream">cream</PillButton>
-            <PillButton href="#" variant="outline-cream">outline cream</PillButton>
-          </div>
+          <Eyebrow>Eyebrow label</Eyebrow>
         </Container>
       </Section>
     </>

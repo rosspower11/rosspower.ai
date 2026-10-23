@@ -3,9 +3,9 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { contactPage } from "@/content/contact";
-import { talks } from "@/content/home";
 import { contactGraph } from "@/lib/structured-data";
 import { ContactForm } from "@rosspower/ui/components/ContactForm";
+import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
 import { asset } from "@rosspower/ui/lib/asset";
 
 const shareImage = {
@@ -30,19 +30,22 @@ export default function ContactPage() {
     <>
       <JsonLd data={contactGraph} />
       <Section aria-labelledby="contact-title">
-        {/* Laptop up: heading left (stays in view), form right. Phones: heading, then form. */}
-        <Container className="grid gap-10 laptop:grid-cols-12 laptop:gap-x-12">
-          <div className="laptop:col-span-5">
-            <div className="flex flex-col items-start gap-5 laptop:sticky laptop:top-10">
-              <span className="rounded-full bg-sage px-4 py-1.5 text-[15px] font-semibold">{contactPage.pill}</span>
-              <h1 id="contact-title" className="heading normal-case">
-                bring ai to <span className="serif-accent">your stage</span>
+        {/*
+          Laptop up: title left (stays in view), form right. Phones: title, then form.
+          Extra top space under the header from tablet up; phones keep it tighter.
+        */}
+        <Container flush="top" className="grid gap-10 pt-[calc(var(--section-py)+16px)] tablet:pt-[calc(var(--header-h)+var(--section-py))] laptop:grid-cols-12 laptop:gap-x-10">
+          <div className="flex flex-col gap-5 laptop:col-span-5">
+            <div className="flex flex-col gap-5 laptop:sticky laptop:top-28">
+              <Eyebrow>{contactPage.eyebrow}</Eyebrow>
+              <h1 id="contact-title" className="type-h2 normal-case">
+                Bring AI to <span className="voice">your stage</span>
               </h1>
-              <p className="lead">{contactPage.body}</p>
+              <p className="type-p-lg measure">{contactPage.body}</p>
             </div>
           </div>
           <div className="laptop:col-span-7">
-            <ContactForm source="website" look="v2" thanks={contactPage.thanks} talks={talks} />
+            <ContactForm source="website" thanks={contactPage.thanks} />
           </div>
         </Container>
       </Section>

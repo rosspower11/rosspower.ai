@@ -7,6 +7,7 @@ export const bio = {
     description:
       "Ross Power is an AI speaker and educator who makes AI simple. Founder of AI Powered, he has trained 130+ founders on Claude and speaks from Bali to London.",
   },
+  eyebrow: "bio",
   portrait: { src: asset("images/ross/portrait.jpg"), alt: "Black and white portrait of Ross Power" },
   // Ecademy was built by Ross's parents, never by Ross. The education company stays unnamed.
   paragraphs: [
@@ -15,7 +16,7 @@ export const bio = {
     "Today, from Bali, Ross runs AI Powered's programmes, events and solutions. More than 130 founders have been through Ross Power's Claude Programme, and nearly 1,000 people came through his events and programmes in the year to June 2026.",
   ],
   shortBios: {
-    label: "for event organisers",
+    eyebrow: "for event organisers",
     intro: "Copy a short bio for your programme, or download both with Ross's portrait.",
     items: [
       {
@@ -24,7 +25,7 @@ export const bio = {
       },
       {
         label: "50 words",
-        text: "Ross Power is the founder of AI Powered and an AI speaker and educator who makes complex ideas simple. He grew up around Ecademy, one of the first social networks, worked at Accenture's London Innovation Studio, and has since trained 130+ founders on Claude. He speaks to keynote and podcast audiences worldwide.",
+        text: "Ross Power is the founder of AI Powered and an AI speaker and educator who makes complex ideas simple. He grew up around Ecademy, one of the first social networks, worked at Accenture's London Innovation Studio, and has since trained 130+ founders on Claude. He speaks to keynote, workshop and podcast audiences worldwide.",
       },
     ],
   },

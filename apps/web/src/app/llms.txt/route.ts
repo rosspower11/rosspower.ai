@@ -1,5 +1,5 @@
+import { aiPowered, events, formats, talks } from "@/content/home";
 import { bio } from "@/content/bio";
-import { chats, pastSpeeches, talkLength, talks, work } from "@/content/home";
 import { url } from "@/lib/site";
 import { socials } from "@rosspower/ui/content/brand";
 
@@ -14,7 +14,7 @@ export function GET() {
   const body = [
     "# Ross Power",
     "",
-    "> Ross Power is an AI speaker, educator and the founder of AI Powered. He makes AI simple for founders, teams and leaders through keynotes and podcast appearances, from Bali to London. Book him at " +
+    "> Ross Power is an AI speaker, educator and the founder of AI Powered. He makes AI simple for founders, teams and leaders through keynotes, workshops, executive briefings, panels and podcast appearances, from Bali to London. Book him at " +
       url("/contact") +
       ".",
     "",
@@ -23,30 +23,26 @@ export function GET() {
     ...bio.paragraphs.flatMap((p) => [p, ""]),
     "## Book Ross",
     "",
-    `- [Book a keynote](${url("/contact")}): share the event, the audience and what they should leave with; the team replies within two working days.`,
-    `- [Book Ross for your podcast](${url("/contact?type=podcast")}): ${chats.body}`,
+    `- [Booking enquiry form](${url("/contact")}): for keynotes, workshops, executive briefings, panels and podcasts. Share the event, the audience and what they should leave with; the team replies within two working days.`,
+    ...formats.map((f) => `- ${f.title} (${f.length}): ${f.body}`),
     "",
-    `## Keynotes (${talkLength})`,
+    "## Talks",
     "",
-    ...talks.map((t) => `- **${t.title}** (${t.tag}): ${t.intro}`),
+    ...talks.map((t) => `- **${t.title}** (${t.kind}): ${t.body}`),
     "",
-    "## Podcast topics",
+    "## Past events",
     "",
-    ...chats.topics.map((topic) => `- ${topic}`),
-    "",
-    chats.clips,
-    "",
-    "## Past speeches",
-    "",
-    ...pastSpeeches.events.map((e) => `- ${e.title}, ${e.meta}: ${e.role}`),
+    ...events.map((e) => `- ${e.title}, ${e.meta}: ${e.role}`),
     "",
     "## AI Powered, Ross's company",
     "",
-    `AI Powered (${work.cta.href}) is where Ross's programmes and AI education for teams live: ${work.heading.plain} ${work.heading.accent} ${work.line}`,
+    aiPowered.body,
+    "",
+    ...aiPowered.pillars.map((p) => `- [${p.title}](${p.href}): ${p.desc}`),
     "",
     "## Pages",
     "",
-    `- [Home](${url("/")}): keynotes, podcast topics, past speeches and what founders say`,
+    `- [Home](${url("/")}): talks, past events, AI Powered and success stories`,
     `- [About Ross Power](${url("/bio")}): full bio, plus 25 and 50 word bios and a portrait for event organisers`,
     `- [Book Ross](${url("/contact")}): the booking enquiry form`,
     "- [Links](https://links.rosspower.ai): Ross's link page, with free tools, programmes and the tools he uses",

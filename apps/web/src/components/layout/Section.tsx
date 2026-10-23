@@ -1,13 +1,14 @@
 import type { ComponentPropsWithoutRef, ElementType } from "react";
 import { cn } from "@rosspower/ui/lib/cn";
 
-// v2 grounds (build guide, step 01). --voice is kept for the shared .voice utility.
+// --voice colours the second half of titles (.voice): wash reads on ink, mid on light grounds.
 const tones = {
-  cream: "bg-cream text-ink [--voice:var(--color-ink)]",
-  wash: "bg-wash text-ink [--voice:var(--color-ink)]",
-  sand: "bg-sand text-ink [--voice:var(--color-ink)]",
-  ink: "bg-ink text-cream [--voice:var(--color-cream)]",
-  pine: "bg-pine text-cream [--voice:var(--color-cream)]",
+  cream: "bg-cream text-ink [--voice:var(--color-mid)]",
+  ice: "bg-ice text-ink [--voice:var(--color-mid)]",
+  sky: "bg-sky text-ink [--voice:var(--color-mid)]",
+  sand: "bg-sand text-ink [--voice:var(--color-mid)]",
+  wash: "bg-wash text-ink [--voice:var(--color-mid)]",
+  ink: "bg-ink text-cream [--voice:var(--color-wash)]",
 } as const;
 
 export type SectionTone = keyof typeof tones;

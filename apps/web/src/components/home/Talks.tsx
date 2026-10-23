@@ -1,26 +1,71 @@
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { Accented } from "@/components/ui/Accented";
-import { PillButton } from "@/components/ui/PillButton";
-import { talks, talksIntro } from "@/content/home";
+import { Button } from "@rosspower/ui/components/Button";
+import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
+import { ArrowUpRight } from "@rosspower/ui/components/Icon";
+import { podcast, talks, talksIntro } from "@/content/home";
 import { bookLink } from "@/content/nav";
-import { TalkCards } from "./TalkCards";
 
-/** v2 talks (step 08): the four keynotes Ross gives. "see the talk" opens each one's pop-out (step 09). */
+const pad = (n: number) => String(n).padStart(2, "0");
+
 export function Talks() {
   return (
     <Section id="talks" aria-labelledby="talks-title">
-      <Container className="flex flex-col gap-8">
-        <div className="flex flex-col items-start gap-6 laptop:flex-row laptop:items-end laptop:justify-between">
-          <div className="flex max-w-[760px] flex-col gap-4">
+      <Container className="flex flex-col gap-10 tablet:gap-14">
+        <div className="mb-6 grid gap-5 laptop:grid-cols-12 laptop:gap-x-10">
+          <div className="flex flex-col gap-5 laptop:col-span-6">
+            <Eyebrow>{talksIntro.eyebrow}</Eyebrow>
             <h2 id="talks-title">
-              <Accented {...talksIntro.heading} />
+              Ready to <span className="voice">have a chat?</span>
             </h2>
-            <p className="lead">{talksIntro.body}</p>
           </div>
-          <PillButton href={bookLink.href}>{bookLink.label}</PillButton>
+          <p className="type-p-lg measure laptop:col-span-5 laptop:col-start-8 laptop:self-end">{talksIntro.body}</p>
         </div>
-        <TalkCards talks={talks} />
+
+        <ol className="border-t border-ink/15">
+            {talks.map((t, i) => (
+              <li key={t.title} className="border-b border-ink/15">
+                <Link
+                  href={bookLink.href}
+                  aria-label={`Book this talk: ${t.title}`}
+                  className="group grid gap-3 py-7 transition-colors tablet:grid-cols-[80px_1fr_auto] tablet:items-start tablet:gap-8 laptop:grid-cols-[120px_minmax(0,5fr)_minmax(0,4fr)_auto] laptop:py-9"
+                >
+                  <span className="font-serif text-[32px] leading-none text-blue tabular-nums tablet:text-[44px]">
+                    {pad(i + 1)}
+                  </span>
+                  <div className="flex flex-col gap-2">
+                    <span className="type-label text-ink/60">{t.kind}</span>
+                    <h3 className="transition-colors group-hover:text-blue">{t.title}</h3>
+                  </div>
+                  <div className="flex flex-col gap-3 tablet:col-start-2 laptop:col-start-auto">
+                    <p className="type-p-sm text-ink/75">{t.body}</p>
+                    <span className="type-label inline-flex items-center gap-1.5 tracking-[0.12em] uppercase transition-colors group-hover:text-blue">
+                      Book this talk
+                      <ArrowUpRight className="size-3.5" />
+                    </span>
+                  </div>
+                  <span className="hidden size-12 items-center justify-center rounded-full border border-ink/20 transition-colors group-hover:border-ink group-hover:bg-ink group-hover:text-cream tablet:row-start-1 tablet:flex tablet:col-start-3 laptop:col-start-4">
+                    <ArrowUpRight className="size-5" />
+                  </span>
+                </Link>
+              </li>
+            ))}
+        </ol>
+
+        <div className="flex flex-col gap-6 rounded-panel bg-ice p-7 tablet:flex-row tablet:items-center tablet:justify-between tablet:p-10 laptop:p-12">
+          <div className="flex flex-col gap-3">
+            {/* All sans: the second half takes the title's second colour, no serif. */}
+            <h3 className="type-h3">
+              Get Ross on <span className="text-(--voice)">your show</span>
+            </h3>
+            <p className="measure">{podcast.body}</p>
+          </div>
+          <Button href={bookLink.href} variant="ink" className="self-start tablet:self-auto">
+            Invite Ross on
+            <ArrowUpRight />
+          </Button>
+        </div>
       </Container>
     </Section>
   );

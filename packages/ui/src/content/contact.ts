@@ -3,6 +3,8 @@
  * Both post to the same API (apps/web/src/app/api/contact/route.ts), which emails Mary and posts to Slack.
  */
 
+/** What the enquiry is for. Shown in the form and in the email and Slack alert. */
+export const enquiryTypes = ["Keynote", "Workshop", "Executive briefing", "Podcast", "Something else"] as const;
 
 /** Field limits, shared by the form and the API so both check the same thing. */
 export const limits = { short: 120, message: 3000 } as const;
@@ -14,12 +16,3 @@ export const contactSources = {
 } as const;
 
 export type ContactSource = keyof typeof contactSources;
-
-/**
- * What the enquiry is for, per site. Shown in the form and in the email and Slack alert.
- * rosspower.ai only offers keynotes and podcasts (v2 build guide, step 15); workshops live on aipowered.xyz.
- */
-export const enquiryTypes = {
-  website: ["Keynote", "Podcast", "Something else"],
-  links: ["Keynote", "Workshop", "Executive briefing", "Podcast", "Something else"],
-} as const satisfies Record<ContactSource, readonly string[]>;
