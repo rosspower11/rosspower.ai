@@ -21,7 +21,7 @@ export function About() {
   return (
     <Section id="about" aria-labelledby="about-title">
       {/* Shares the cream ground with the stats above, so it skips its own top padding. */}
-      <Container flush="top" className="flex flex-col gap-8">
+      <Container className="flex flex-col gap-8">
         {/* Tall photo with the title and bio floating on it (phones: title only). Grows as it scrolls in. */}
         <ScrollScale>
           {/* data-tone: the photo is dark, so the floating nav switches to light-on-dark over it. */}

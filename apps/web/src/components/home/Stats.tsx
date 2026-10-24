@@ -6,7 +6,7 @@ import { StatCounter } from "./StatCounter";
 export function Stats() {
   return (
     <Section id="numbers" aria-label="Ross in numbers">
-      <Container>
+      <Container flush="top">
         <ul className="grid grid-cols-2 gap-y-10 laptop:grid-cols-4">
           {stats.map((s, i) => (
             <li

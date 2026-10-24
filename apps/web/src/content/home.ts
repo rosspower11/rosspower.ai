@@ -51,7 +51,7 @@ export const about = {
     "Raised in an entrepreneurial family and always the one asking the questions, Ross is the founder of AI Powered, an educator and a speaker.",
     "He takes complex ideas and makes them simple. Right now that means AI, for keynote crowds, workshop rooms and podcast audiences from Bali to London.",
   ],
-  photo: { src: asset("images/ross/dsc00011.jpg"), alt: "Ross presenting to a seated room in Bali" },
+  photo: { src: asset("images/events/event-02.jpg"), alt: "Ross on stage with a microphone, pointing to the room" },
 };
 
 export const speaking = {
@@ -68,7 +68,7 @@ export const formats = [
     title: "Keynote",
     body: "A story-led talk that makes the room feel the shift, shaped around your audience and ending with a clear first step.",
     photos: [
-      { src: asset("images/events/event-02.jpg"), alt: "Ross on stage with a microphone, pointing to the room" },
+      { src: asset("images/ross/dsc00011.jpg"), alt: "Ross presenting to a seated room in Bali" },
       { src: asset("images/events/sam00290.jpg"), alt: "Ross speaking to a room" },
     ],
   },
