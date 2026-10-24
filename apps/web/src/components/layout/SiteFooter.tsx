@@ -14,7 +14,7 @@ const socialIcons: Record<SocialLabel, ComponentType<{ className?: string }>> = 
   YouTube,
 };
 
-const linkClass = "text-[16px] leading-[1.5] text-ink/75 transition-colors hover:text-ink";
+const linkClass = "text-[16px] leading-[1.5] font-semibold transition-colors hover:text-mid";
 
 export function SiteFooter() {
   return (
