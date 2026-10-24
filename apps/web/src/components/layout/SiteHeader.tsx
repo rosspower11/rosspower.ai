@@ -11,7 +11,7 @@ import { bookLink, mainNav, menuNav } from "@/content/nav";
 function Brand({ onClick, light = true }: { onClick?: () => void; light?: boolean }) {
   return (
     <Link href="/" onClick={onClick} aria-label="Ross Power, home" className="flex items-center py-2">
-      <Logo className="w-[116px] tablet:w-[128px]" color={light ? "#f1ece1" : "#17332a"} />
+      <Logo className="w-[148px] tablet:w-[176px]" color={light ? "#f1ece1" : "#17332a"} />
     </Link>
   );
 }
@@ -36,7 +36,7 @@ export function SiteHeader() {
     // Full width, flat on the page, not fixed (scrolls away with it). Logo left, Ross's roles in the
     // centre, book ross right. Phones: logo and book ross, with the roles and the rest in the menu.
     <header className="w-full border-b-[1.5px] border-ink/10 bg-cream text-ink">
-      <div className="mx-auto grid w-full max-w-site grid-cols-[1fr_auto] items-center gap-4 px-(--section-px) py-4 tablet:grid-cols-[1fr_auto_1fr] tablet:py-5">
+      <div className="mx-auto grid w-full max-w-site grid-cols-[1fr_auto] items-center gap-4 px-(--section-px) py-2 tablet:grid-cols-[1fr_auto_1fr] tablet:py-2.5">
         <Brand light={false} />
 
         <nav aria-label="Main" className="hidden tablet:block">
@@ -52,6 +52,12 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center justify-end gap-2">
+          {/* Tablet up only: phones have no room, and the talks are in the menu there. */}
+          <span className="hidden tablet:contents">
+            <Button href="/#talks" variant="outline" size="sm">
+              see the talks
+            </Button>
+          </span>
           <Button href={bookLink.href} variant="ink" size="sm">
             {bookLink.label}
           </Button>
