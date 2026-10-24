@@ -19,7 +19,7 @@ const linkClass = "text-[16px] leading-[1.5] font-semibold transition-colors hov
 export function SiteFooter() {
   return (
     <Section as="footer" tone="sand">
-      <Container flush="bottom" className="flex flex-col gap-12 pb-6 tablet:gap-16">
+      <Container flush="bottom" className="flex flex-col gap-6 pb-6">
         {/* Laptop up: brand and line left; menus, book button and socials right. Below: stacked. */}
         <div className="grid gap-12 laptop:grid-cols-12 laptop:gap-x-10">
           <div className="flex flex-col items-start gap-6 laptop:col-span-6">
