@@ -19,8 +19,8 @@ export default function HomePage() {
       <Hero />
       <Ticker />
       <RossLine />
-      <Stats />
       <About />
+      <Stats />
       <Speaking />
       <Talks />
       <Chats />
