@@ -24,7 +24,7 @@ export function SiteFooter() {
         <div className="grid gap-12 laptop:grid-cols-12 laptop:gap-x-10">
           <div className="flex flex-col items-start gap-6 laptop:col-span-6">
             <Logo className="w-[184px] tablet:w-[216px]" color="#17332a" />
-            <p className="type-p-lg max-w-[440px] text-ink/75">
+            <p className="max-w-[380px] text-[16px] text-ink/75">
               Keynotes and podcasts for founders, teams and leaders, from Bali to London.
             </p>
           </div>
