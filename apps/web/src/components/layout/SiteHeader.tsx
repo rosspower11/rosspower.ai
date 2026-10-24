@@ -35,7 +35,7 @@ export function SiteHeader() {
   return (
     // Full width, flat on the page, not fixed (scrolls away with it). Ross's roles on the left,
     // see the talks and book ross on the right. Phones: the roles stack, as on Andi's board.
-    <header className="w-full border-b-[1.5px] border-ink/10 bg-cream text-ink">
+    <header className="w-full bg-cream text-ink">
       <div className="mx-auto flex w-full max-w-site items-center justify-between gap-4 px-(--section-px) py-2 tablet:py-2.5">
         <nav aria-label="Main">
           <ul className="flex flex-col tablet:flex-row tablet:items-center tablet:gap-8">
