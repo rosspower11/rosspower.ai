@@ -1,18 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ArrowUpRight } from "@rosspower/ui/components/Icon";
 import { Logo } from "@rosspower/ui/components/Logo";
 import { bookLink, mainNav } from "@/content/nav";
-import { cn } from "@rosspower/ui/lib/cn";
 
-/** Pages whose first section is dark, so the header starts in its light-on-dark state. */
-const DARK_TOP = new Set(["/"]);
-
-/** AI Powered wordmark: white over dark sections, ink over light ones. */
+/** Ross Power wordmark: forest on the cream bar, cream inside the dark menu. */
 function Brand({ onClick, light = true }: { onClick?: () => void; light?: boolean }) {
   return (
     <Link href="/" onClick={onClick} aria-label="Ross Power, home" className="flex items-center py-2">
@@ -24,34 +19,6 @@ function Brand({ onClick, light = true }: { onClick?: () => void; light?: boolea
 export function SiteHeader() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-  const [overDark, setOverDark] = useState(() => DARK_TOP.has(pathname));
-
-  // Match the section under the header: every Section carries data-tone.
-  useEffect(() => {
-    let raf = 0;
-    const update = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const probe = 40; // vertical middle of the floating bar
-        let dark = false;
-        for (const el of document.querySelectorAll<HTMLElement>("[data-tone]")) {
-          const r = el.getBoundingClientRect();
-          if (r.top <= probe && r.bottom > probe) dark = el.dataset.tone === "ink";
-        }
-        setOverDark(dark);
-      });
-    };
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
-  }, [pathname]);
-
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
@@ -69,15 +36,9 @@ export function SiteHeader() {
     // A floating bar 16px from the top. Phones: full width, 20px from each side.
     // Tablet up: centred and only as wide as its contents. The outer strip ignores clicks.
     <header className="pointer-events-none fixed inset-x-5 top-4 z-50 flex justify-center tablet:inset-x-0 tablet:px-4">
-      <div
-        className={cn(
-          "pointer-events-auto flex h-14 w-full items-center justify-between gap-6 rounded-[14px] border py-1.5 pr-1.5 pl-5 backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300 tablet:w-auto tablet:justify-start laptop:gap-[60px]",
-          overDark
-            ? "border-cream/15 bg-ink/45 text-cream shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
-            : "border-ink/10 bg-cream/75 text-ink shadow-[0_8px_32px_rgba(23,51,42,0.10)]",
-        )}
-      >
-        <Brand light={overDark} />
+      {/* A solid cream bar everywhere, over dark and light sections alike. */}
+      <div className="pointer-events-auto flex h-14 w-full items-center justify-between gap-6 rounded-[14px] border border-ink/10 bg-cream py-1.5 pr-1.5 pl-5 text-ink shadow-[0_8px_32px_rgba(23,51,42,0.12)] tablet:w-auto tablet:justify-start laptop:gap-[60px]">
+        <Brand light={false} />
 
         <nav aria-label="Main" className="hidden items-center gap-5 laptop:flex">
           {mainNav.map((link) => (
@@ -90,7 +51,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           {/* No Book Ross button on phones: it lives at the bottom of the menu instead. */}
           <span className="hidden tablet:contents">
-            <Button href={bookLink.href} variant={overDark ? "cream" : "ink"} size="sm">
+            <Button href={bookLink.href} variant="ink" size="sm">
               {bookLink.label}
             </Button>
           </span>

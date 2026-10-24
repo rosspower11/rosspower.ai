@@ -8,6 +8,14 @@ type Story = { quote: string; name: string; role: string; photo: string };
 
 const INTERVAL = 4500;
 
+/** Card colours, in turn (as Andi's stat tiles): sage light, sage, forest with cream text, cream. */
+const tones = [
+  { card: "bg-wash text-ink", soft: "text-ink/85", muted: "text-ink/60" },
+  { card: "bg-sage text-ink", soft: "text-ink/85", muted: "text-ink/70" },
+  { card: "bg-ink text-cream", soft: "text-cream/90", muted: "text-cream/70" },
+  { card: "bg-cream text-ink", soft: "text-ink/85", muted: "text-ink/60" },
+] as const;
+
 // Fade only the side margins (--bleed), so the first card in place is never faded.
 const EDGE_MASK =
   "linear-gradient(90deg, transparent 0, #000 var(--bleed), #000 calc(100% - var(--bleed)), transparent 100%)";
@@ -71,25 +79,35 @@ export function StoryCards({ items }: { items: Story[] }) {
         className="-mx-(--bleed) flex snap-x snap-mandatory scroll-px-(--bleed) gap-4 overflow-x-auto px-(--bleed) pb-2 [--bleed:calc(max(0px,(100vw-var(--container-site))/2)+var(--section-px))] [scrollbar-width:none] tablet:gap-5"
         style={{ maskImage: EDGE_MASK, WebkitMaskImage: EDGE_MASK }}
       >
-        {items.map((s) => (
-          <li
-            key={s.name}
-            className="flex w-[82%] shrink-0 snap-start flex-col rounded-card border border-ink/10 bg-card p-6 tablet:w-[340px] laptop:w-[360px] laptop:p-7"
-          >
+        {items.map((s, i) => {
+          const tone = tones[i % tones.length];
+          return (
+            <li
+              key={s.name}
+              className={`flex w-[82%] shrink-0 snap-start flex-col rounded-card p-6 tablet:w-[340px] laptop:w-[360px] laptop:p-7 ${tone.card}`}
+            >
+              <blockquote className={`type-p-lg ${tone.soft}`}>
+                {s.quote}
+              </blockquote>
 
-            <blockquote className="type-p-lg text-ink/85">{s.quote}</blockquote>
-
-            <div className="mt-auto flex items-end justify-between gap-4 pt-6">
-              <div className="flex flex-col gap-0.5">
-                <span className="type-h6">{s.name}</span>
-                <span className="type-p-sm text-ink/60">{s.role}</span>
+              <div className="mt-auto flex items-end justify-between gap-4 pt-6">
+                <div className="flex flex-col gap-0.5">
+                  <span className="type-h6">{s.name}</span>
+                  <span className={`type-p-sm ${tone.muted}`}>{s.role}</span>
+                </div>
+                <span className="relative size-14 shrink-0 overflow-hidden rounded-xl bg-stone">
+                  <Image
+                    src={s.photo}
+                    alt={s.name}
+                    fill
+                    sizes="56px"
+                    className="object-cover object-top"
+                  />
+                </span>
               </div>
-              <span className="relative size-14 shrink-0 overflow-hidden rounded-xl bg-stone">
-                <Image src={s.photo} alt={s.name} fill sizes="56px" className="object-cover object-top" />
-              </span>
-            </div>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ul>
 
       <div className="flex justify-center gap-3">
