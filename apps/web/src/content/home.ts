@@ -100,59 +100,37 @@ export const talksIntro = {
 
 export type Talk = {
   slug: string;
+  /** For the booking form: ?talk=<slug> picks this enquiry type. */
   kind: string;
+  /** The pill on the card and in the pop-out (lowercase, as on Andi's board). */
+  tag: string;
   title: string;
   /** The words set in Instrument Serif italic in the pop-out title. */
   accent: string;
   /** How long it runs, shown in the pop-out's pill. */
   length: string;
+  /** The one line on the card. */
+  card: string;
+  /** The pop-out's intro. */
   body: string;
   /** "How the talk runs" and "the room walks away with" (Andi's build guide, step 09). */
-  runs?: string[];
-  walksAway?: string;
+  runs: string[];
+  walksAway: string;
 };
 
 /**
- * The talks, in this order (keynotes first). Each row opens its pop-out; "book this talk" there
- * goes to /contact?talk=<slug>, which picks the talk's kind and names the talk in the message.
+ * The four keynotes, in this order (Andi's build guide, steps 08 and 09). Each card opens its pop-out;
+ * "book this talk" there goes to /contact?talk=<slug>, which picks Keynote and names the talk.
  */
 export const talks: Talk[] = [
   {
-    slug: "three-intelligences",
-    length: "20 to 60 min",
-    kind: "Keynote",
-    title: "Three Intelligences: human, artificial and divine",
-    accent: "Intelligences",
-    body: "AI gives us back time, and the real question is what we do with it. Your audience leaves with a simple way to work backwards from the outcome they want, and a clear order to put things in: peace, then people, then tools.",
-    runs: [
-      "Human, artificial and divine intelligence",
-      "What AI gives back: time",
-      "Working backwards from the outcome you want",
-      "The order: peace, then people, then tools",
-    ],
-    walksAway: "A simple way to decide what to do with the time AI gives back.",
-  },
-  {
-    slug: "humans-decide",
-    length: "20 to 60 min",
-    kind: "Keynote",
-    title: "The Humans Decide",
-    accent: "Decide",
-    body: "Organisations buy the AI tools long before anyone works out how their teams will use them. Leaders leave knowing why adoption starts with people, and how to close that gap in their own teams.",
-    runs: [
-      "Why organisations buy AI tools before they know how teams will use them",
-      "What adoption looks like when it starts with people",
-      "Where the gap shows up in real teams",
-      "The first three moves for a leadership team",
-    ],
-    walksAway: "A people-first plan for AI adoption they can start this quarter.",
-  },
-  {
     slug: "imagination",
-    length: "20 to 60 min",
     kind: "Keynote",
+    tag: "signature keynote",
     title: "The Only Limitation Is Your Imagination",
     accent: "Your Imagination",
+    length: "20 to 60 min",
+    card: "With AI, what you can build is no longer limited by your skills, your budget or your team's size.",
     body: "With AI, what you can build is no longer limited by your skills, your budget or your team's size. Your audience leaves seeing what is now possible for them, and with the confidence to start on the idea they've been putting off.",
     runs: [
       "What one person can now build in a week that used to take a team",
@@ -163,11 +141,47 @@ export const talks: Talk[] = [
     walksAway: "A new sense of what is possible for them, and one concrete first step.",
   },
   {
-    slug: "context",
+    slug: "humans-decide",
+    kind: "Keynote",
+    tag: "keynote",
+    title: "The Humans Decide",
+    accent: "Decide",
     length: "20 to 60 min",
-    kind: "Executive briefing",
-    title: "Context: what the human brain can teach us about AI",
+    card: "Organisations buy the AI tools long before anyone works out how their teams will use them.",
+    body: "Organisations buy the AI tools long before anyone works out how their teams will use them. Leaders leave knowing why adoption starts with people, and how to close that gap in their own teams.",
+    runs: [
+      "Why organisations buy AI tools before they know how teams will use them",
+      "What adoption looks like when it starts with people",
+      "Where the gap shows up in real teams",
+      "The first three moves for a leadership team",
+    ],
+    walksAway: "A people-first plan for AI adoption they can start this quarter.",
+  },
+  {
+    slug: "three-intelligences",
+    kind: "Keynote",
+    tag: "keynote",
+    title: "Three Intelligences",
+    accent: "Intelligences",
+    length: "20 to 60 min",
+    card: "Human, artificial and divine. AI gives us back time, and the real question is what we do with it.",
+    body: "AI gives us back time, and the real question is what we do with it. Your audience leaves with a simple way to work backwards from the outcome they want, and a clear order to put things in: peace, then people, then tools.",
+    runs: [
+      "Human, artificial and divine intelligence",
+      "What AI gives back: time",
+      "Working backwards from the outcome you want",
+      "The order: peace, then people, then tools",
+    ],
+    walksAway: "A simple way to decide what to do with the time AI gives back.",
+  },
+  {
+    slug: "context",
+    kind: "Keynote",
+    tag: "keynote",
+    title: "Context",
     accent: "Context",
+    length: "20 to 60 min",
+    card: "What the human brain can teach us about AI, explained in plain English.",
     body: "The brain is a context machine, and most teams build their AI on sand. Your room leaves with the foundations of using AI well, explained in plain English.",
     runs: [
       "The brain as a context machine",
@@ -176,14 +190,6 @@ export const talks: Talk[] = [
       "What to set up first",
     ],
     walksAway: "The foundations of using AI well, explained so non-technical people can act on them.",
-  },
-  {
-    slug: "chat-to-command",
-    length: "90 min to half a day",
-    kind: "Workshop",
-    title: "From Chat to Command",
-    accent: "Command",
-    body: "The six levels of working with AI, from Chat to Command, with live builds the room follows along with. Everyone leaves with a personal operating system they can use the next day.",
   },
 ];
 

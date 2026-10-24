@@ -28,7 +28,7 @@ export function Chats() {
 
         <ol className="grid gap-4 tablet:grid-cols-2 laptop:grid-cols-3">
           {chats.topics.map((topic, i) => (
-            <li key={topic} className="flex flex-col gap-3 rounded-card border-[1.5px] border-ink bg-cream p-6">
+            <li key={topic} className="flex flex-col gap-3 rounded-card border-[1.5px] border-ink bg-cream p-6 transition-colors duration-300 hover:bg-ink hover:text-cream">
               <span className="text-[14px] tabular-nums">{pad(i + 1)}</span>
               <span className="text-[22px] leading-[1.15] font-extrabold tracking-[-0.02em]">{topic}</span>
             </li>

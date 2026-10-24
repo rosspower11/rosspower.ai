@@ -73,12 +73,11 @@ export function AiPoweredPillars({ pillars }: { pillars: Pillar[] }) {
             />
 
             <div className="relative flex items-start justify-between tablet:shrink-0">
-              {/* Icon tile: soft wash with a fine border and top highlight; frosted glass on the open panel's photo. */}
+              {/* Icon tile: dark green with a cream icon; a faint cream edge on the open panel's photo. */}
               <span
                 className={cn(
-                  "flex size-16 items-center justify-center rounded-[18px] border border-ink/10 bg-wash/70 p-3.5 text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_1px_2px_rgba(23,51,42,0.06)] transition-[background-color,border-color,color,box-shadow] duration-700 laptop:size-[68px]",
-                  open &&
-                    "laptop:border-cream/25 laptop:bg-cream/10 laptop:text-cream laptop:shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] laptop:backdrop-blur-md",
+                  "flex size-16 items-center justify-center rounded-[18px] border border-ink bg-ink p-3.5 text-cream transition-[border-color] duration-700 laptop:size-[68px]",
+                  open && "laptop:border-cream/25",
                 )}
               >
                 <Icon />

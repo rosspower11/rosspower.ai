@@ -22,9 +22,9 @@ function AccentTitle({ title, accent }: { title: string; accent: string }) {
 }
 
 /**
- * The numbered talk rows and their pop-out (Andi's step 09 pattern, in our layout).
+ * The talk cards and their pop-out (Andi's steps 08 and 09).
  * One native <dialog>, filled with the chosen talk. It closes on ×, a click on the overlay or Esc;
- * focus goes to the close button, then back to the row that opened it.
+ * focus goes to the close button, then back to the card that opened it.
  */
 export function TalkList({ talks }: { talks: Talk[] }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -41,37 +41,33 @@ export function TalkList({ talks }: { talks: Talk[] }) {
 
   return (
     <>
-      <ol className="border-t-[1.5px] border-ink/15">
+      {/* Andi's talk cards: four across on laptops, two on tablets, one on phones. Sand, turning forest on hover. */}
+      <ul className="grid gap-5 tablet:grid-cols-2 laptop:grid-cols-4">
         {talks.map((t, i) => (
-          <li key={t.slug} className="border-b-[1.5px] border-ink/15">
+          <li key={t.slug} className="flex">
             <button
               type="button"
               onClick={(e) => open(i, e.currentTarget)}
               aria-haspopup="dialog"
               aria-label={`See the talk: ${t.title}`}
-              className="group grid w-full gap-3 py-7 text-left transition-colors tablet:grid-cols-[80px_1fr_auto] tablet:items-start tablet:gap-8 laptop:grid-cols-[120px_minmax(0,5fr)_minmax(0,4fr)_auto] laptop:py-9"
+              className="group flex min-h-[330px] w-full flex-col gap-4 rounded-card border-[1.5px] border-ink bg-sand p-7 text-left text-ink transition-colors duration-300 hover:bg-ink hover:text-cream focus-visible:bg-ink focus-visible:text-cream"
             >
-              <span className="font-sans text-[32px] leading-none font-extrabold tracking-[-0.05em] text-mid tabular-nums tablet:text-[44px]">
-                {pad(i + 1)}
-              </span>
-              <span className="flex flex-col gap-2">
-                <span className="type-label text-ink/60">{t.kind}</span>
-                <span className="type-h3 transition-colors group-hover:text-mid">{t.title}</span>
-              </span>
-              <span className="flex flex-col gap-3 tablet:col-start-2 laptop:col-start-auto">
-                <span className="type-p-sm text-ink/75">{t.body}</span>
-                <span className="type-label inline-flex items-center gap-1.5 transition-colors group-hover:text-mid">
-                  see the talk
-                  <ArrowUpRight className="size-3.5" />
+              <span className="flex items-center justify-between gap-3">
+                <span className="text-[14px] whitespace-nowrap tabular-nums">
+                  {pad(i + 1)} / {pad(talks.length)}
                 </span>
+                <span className="rounded-full bg-sage px-3 py-1 text-[13px] font-semibold whitespace-nowrap text-ink">{t.tag}</span>
               </span>
-              <span className="hidden size-12 items-center justify-center rounded-full border-[1.5px] border-ink/20 transition-colors group-hover:border-ink group-hover:bg-ink group-hover:text-cream tablet:col-start-3 tablet:row-start-1 tablet:flex laptop:col-start-4">
-                <ArrowUpRight className="size-5" />
+              <span className="type-h3">{t.title}</span>
+              <span className="text-[16px] leading-[1.5] opacity-85">{t.card}</span>
+              <span className="mt-auto inline-flex items-center gap-1.5 text-[16px] font-semibold">
+                see the talk
+                <ArrowUpRight className="size-3.5" />
               </span>
             </button>
           </li>
         ))}
-      </ol>
+      </ul>
 
       <dialog
         ref={dialogRef}
@@ -84,7 +80,7 @@ export function TalkList({ talks }: { talks: Talk[] }) {
         <div className="flex flex-col gap-6 p-6 laptop:p-12">
           <div className="flex items-center justify-between gap-4">
             <span className="rounded-full bg-sage px-4 py-1.5 text-[14px] font-semibold">
-              {pad(index + 1)} · {talk.kind.toLowerCase()} · {talk.length}
+              {pad(index + 1)} · {talk.tag} · {talk.length}
             </span>
             <button
               type="button"
@@ -103,7 +99,7 @@ export function TalkList({ talks }: { talks: Talk[] }) {
           </h2>
           <p className="type-p-lg">{talk.body}</p>
 
-          {talk.runs ? (
+          {talk.runs.length ? (
             <div className="grid gap-8 border-t-[1.5px] border-ink pt-6 tablet:grid-cols-2">
               <div className="flex flex-col gap-3">
                 <h3 className="type-label">how the talk runs</h3>
