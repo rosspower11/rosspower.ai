@@ -81,31 +81,91 @@ export const talksIntro = {
   body: "On your stage, on your panel or on your podcast. Pick the conversation your audience needs and Ross will shape it around them.",
 };
 
-/** The talks, in this order (keynotes first). Every "book this talk" opens the enquiry form. */
-export const talks = [
+export type Talk = {
+  slug: string;
+  kind: string;
+  title: string;
+  /** The words set in Instrument Serif italic in the pop-out title. */
+  accent: string;
+  /** How long it runs, shown in the pop-out's pill. */
+  length: string;
+  body: string;
+  /** "How the talk runs" and "the room walks away with" (Andi's build guide, step 09). */
+  runs?: string[];
+  walksAway?: string;
+};
+
+/**
+ * The talks, in this order (keynotes first). Each row opens its pop-out; "book this talk" there
+ * goes to /contact?talk=<slug>, which picks the talk's kind and names the talk in the message.
+ */
+export const talks: Talk[] = [
   {
+    slug: "three-intelligences",
+    length: "20 to 60 min",
     kind: "Keynote",
     title: "Three Intelligences: human, artificial and divine",
+    accent: "Intelligences",
     body: "AI gives us back time, and the real question is what we do with it. Your audience leaves with a simple way to work backwards from the outcome they want, and a clear order to put things in: peace, then people, then tools.",
+    runs: [
+      "Human, artificial and divine intelligence",
+      "What AI gives back: time",
+      "Working backwards from the outcome you want",
+      "The order: peace, then people, then tools",
+    ],
+    walksAway: "A simple way to decide what to do with the time AI gives back.",
   },
   {
+    slug: "humans-decide",
+    length: "20 to 60 min",
     kind: "Keynote",
     title: "The Humans Decide",
+    accent: "Decide",
     body: "Organisations buy the AI tools long before anyone works out how their teams will use them. Leaders leave knowing why adoption starts with people, and how to close that gap in their own teams.",
+    runs: [
+      "Why organisations buy AI tools before they know how teams will use them",
+      "What adoption looks like when it starts with people",
+      "Where the gap shows up in real teams",
+      "The first three moves for a leadership team",
+    ],
+    walksAway: "A people-first plan for AI adoption they can start this quarter.",
   },
   {
+    slug: "imagination",
+    length: "20 to 60 min",
     kind: "Keynote",
     title: "The Only Limitation Is Your Imagination",
+    accent: "Your Imagination",
     body: "With AI, what you can build is no longer limited by your skills, your budget or your team's size. Your audience leaves seeing what is now possible for them, and with the confidence to start on the idea they've been putting off.",
+    runs: [
+      "What one person can now build in a week that used to take a team",
+      "Real examples from founders Ross has trained",
+      "Where the limits are now: taste, focus and the questions you ask",
+      "One thing to try on Monday",
+    ],
+    walksAway: "A new sense of what is possible for them, and one concrete first step.",
   },
   {
+    slug: "context",
+    length: "20 to 60 min",
     kind: "Executive briefing",
     title: "Context: what the human brain can teach us about AI",
+    accent: "Context",
     body: "The brain is a context machine, and most teams build their AI on sand. Your room leaves with the foundations of using AI well, explained in plain English.",
+    runs: [
+      "The brain as a context machine",
+      "Why most teams build their AI on sand",
+      "The foundations of using AI well, in plain English",
+      "What to set up first",
+    ],
+    walksAway: "The foundations of using AI well, explained so non-technical people can act on them.",
   },
   {
+    slug: "chat-to-command",
+    length: "90 min to half a day",
     kind: "Workshop",
     title: "From Chat to Command",
+    accent: "Command",
     body: "The six levels of working with AI, from Chat to Command, with live builds the room follows along with. Everyone leaves with a personal operating system they can use the next day.",
   },
 ];
@@ -142,9 +202,23 @@ export const events = [
   },
 ];
 
-export const podcast = {
-  body: "Practical AI your listeners can use the same day, founder stories from Bali to London, and real numbers from the rooms he runs.",
+/** Chats: Ross as a podcast guest (Andi's build guide, step 10). */
+export const chats = {
+  label: "hosting a podcast?",
+  body: "Practical AI your listeners can use the same day, founder stories from Bali to London, and real numbers from the rooms he runs. These are the conversations Ross loves having.",
+  cta: { label: "book ross for your podcast", href: "/contact?type=podcast" },
+  topics: [
+    "AI and ADHD: using AI to work with the way your brain works",
+    "Growing up at Ecademy, the network his parents built in 1998, and what it taught him about tech hype",
+    "Starting again at 30: from product roles to an AI education business in Bali",
+    "Why people who don't code may get the most out of AI",
+    "Taste: the one skill AI can't do for you",
+    "Keeping teams human while AI takes on more of the work",
+  ],
 };
+
+/** The ticker under the hero (Andi's build guide, step 05), repeated to fill the loop. */
+export const ticker = ["making ai simple", "founder of ai powered", "speaker", "educator"];
 
 export const aiPowered = {
   eyebrow: "Ross's company",

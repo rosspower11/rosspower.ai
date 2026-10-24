@@ -1,6 +1,6 @@
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { aiPowered } from "@/content/home";
 import { AiPoweredPillars } from "./AiPoweredPillars";
 

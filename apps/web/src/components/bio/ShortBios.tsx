@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "@rosspower/ui/lib/cn";
+import { buttonClass } from "@/components/ui/Button";
 
 type ShortBio = { label: string; text: string };
 
-const pill =
-  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border px-5 text-[13px] font-semibold tracking-[0.08em] uppercase transition-colors";
 
 /** The two short bios, each with a copy button, plus downloads for both bios and the portrait. */
 export function ShortBios({ items, portrait }: { items: ShortBio[]; portrait: string }) {
@@ -36,11 +34,11 @@ export function ShortBios({ items, portrait }: { items: ShortBio[]; portrait: st
         {items.map((bio) => (
           <article key={bio.label} className="flex flex-col gap-4 rounded-card border border-ink/10 bg-card p-6 laptop:p-8">
             <div className="flex items-center justify-between gap-4">
-              <h3 className="type-label tracking-[0.12em] text-mid uppercase">{bio.label}</h3>
+              <h3 className="type-label text-mid">{bio.label}</h3>
               <button
                 type="button"
                 onClick={() => copy(bio)}
-                className={cn(pill, "border-ink/20 hover:border-ink hover:bg-ink hover:text-cream")}
+                className={buttonClass("outline", "sm")}
                 aria-label={`Copy the ${bio.label} bio`}
               >
                 {copied === bio.label ? "Copied" : "Copy"}
@@ -51,13 +49,13 @@ export function ShortBios({ items, portrait }: { items: ShortBio[]; portrait: st
         ))}
       </div>
       <div className="flex flex-wrap justify-center gap-3">
-        <button type="button" onClick={downloadBios} className={cn(pill, "border-ink bg-ink text-cream hover:bg-ink/85")}>
+        <button type="button" onClick={downloadBios} className={buttonClass("ink", "sm")}>
           Download bios (.txt)
         </button>
         <a
           href={portrait}
           download="ross-power-portrait.jpg"
-          className={cn(pill, "border-ink/20 hover:border-ink hover:bg-ink hover:text-cream")}
+          className={buttonClass("outline", "sm")}
         >
           Download portrait (.jpg)
         </a>

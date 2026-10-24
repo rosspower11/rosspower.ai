@@ -17,7 +17,7 @@ export function Stats() {
                 i === 2 ? "laptop:border-l laptop:border-ink/15" : "",
               ].join(" ")}
             >
-              <span className="font-serif text-[52px] leading-none tracking-[-0.02em] tabular-nums tablet:text-[72px] desktop:text-[88px]">
+              <span className="font-sans text-[52px] leading-none font-extrabold tracking-[-0.05em] tabular-nums tablet:text-[72px] desktop:text-[88px]">
                 <StatCounter value={s.value} prefix={s.prefix} suffix={s.suffix} />
               </span>
               <span className="type-h6">{s.label}</span>

@@ -3,9 +3,10 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { contactPage } from "@/content/contact";
+import { talks } from "@/content/home";
 import { contactGraph } from "@/lib/structured-data";
 import { ContactForm } from "@rosspower/ui/components/ContactForm";
-import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { asset } from "@rosspower/ui/lib/asset";
 
 const shareImage = {
@@ -45,7 +46,7 @@ export default function ContactPage() {
             </div>
           </div>
           <div className="laptop:col-span-7">
-            <ContactForm source="website" thanks={contactPage.thanks} />
+            <ContactForm source="website" thanks={contactPage.thanks} talks={talks} />
           </div>
         </Container>
       </Section>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ComponentType } from "react";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { Button } from "@rosspower/ui/components/Button";
+import { Button } from "@/components/ui/Button";
 import { ArrowDown, Instagram, LinkedIn, XLogo, YouTube } from "@rosspower/ui/components/Icon";
 import { Logo } from "@rosspower/ui/components/Logo";
 import { bookLink, mainNav, socials, type SocialLabel } from "@/content/nav";
@@ -14,7 +14,7 @@ const socialIcons: Record<SocialLabel, ComponentType<{ className?: string }>> = 
   YouTube,
 };
 
-const titleClass = "text-[12px] leading-none font-semibold tracking-[0.22em] text-wash uppercase";
+const titleClass = "text-[15px] leading-none font-semibold text-wash lowercase";
 const linkClass = "text-[16px] leading-[1.5] text-cream/75 transition-colors hover:text-cream";
 
 export function SiteFooter() {
@@ -24,7 +24,7 @@ export function SiteFooter() {
         {/* Laptop up: brand, line and socials left; links right. Below: stacked, links two across. */}
         <div className="grid gap-12 laptop:grid-cols-12 laptop:gap-x-10">
           <div className="flex flex-col items-start gap-6 laptop:col-span-6">
-            <Logo className="w-[184px] tablet:w-[216px]" />
+            <Logo className="w-[184px] tablet:w-[216px]" color="#f1ece1" />
             <p className="type-p-lg max-w-[440px] text-cream/75">
               Making AI simple, practical and human. Keynotes, workshops and panels for founders, teams and leaders,
               from Bali to London.
@@ -77,7 +77,7 @@ export function SiteFooter() {
           </p>
           <a
             href="#"
-            className="type-label flex items-center gap-3 tracking-[0.12em] uppercase transition-colors hover:text-cream"
+            className="type-label flex items-center gap-3 lowercase transition-colors hover:text-cream"
           >
             Back to top
             <span className="flex size-9 items-center justify-center rounded-full border border-cream/25">
@@ -90,7 +90,7 @@ export function SiteFooter() {
       {/* Oversized name as the closing mark, fading into the floor. Decorative: the brand link lives in the header. */}
       <div aria-hidden className="mx-auto w-full max-w-site overflow-hidden px-(--section-px)">
         <p
-          className="-mb-[0.08em] bg-[linear-gradient(180deg,rgba(183,198,226,0.22),rgba(183,198,226,0))] bg-clip-text pt-6 text-center font-display leading-[0.9] whitespace-nowrap text-transparent uppercase"
+          className="-mb-[0.08em] bg-[linear-gradient(180deg,rgba(207,220,200,0.22),rgba(207,220,200,0))] bg-clip-text pt-6 text-center font-display leading-[0.9] whitespace-nowrap text-transparent uppercase"
           style={{ fontSize: "min(274px, calc((100vw - 2 * var(--section-px)) / 4.66))" }}
         >
           Ross Power

@@ -57,7 +57,7 @@ export function AiPoweredPillars({ pillars }: { pillars: Pillar[] }) {
                 className="absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(16,19,23,0.45) 0%, rgba(16,19,23,0.55) 40%, rgba(16,19,23,0.92) 100%)",
+                    "linear-gradient(180deg, rgba(23,51,42,0.45) 0%, rgba(23,51,42,0.55) 40%, rgba(23,51,42,0.92) 100%)",
                 }}
               />
             </div>
@@ -76,14 +76,14 @@ export function AiPoweredPillars({ pillars }: { pillars: Pillar[] }) {
               {/* Icon tile: soft wash with a fine border and top highlight; frosted glass on the open panel's photo. */}
               <span
                 className={cn(
-                  "flex size-16 items-center justify-center rounded-[18px] border border-ink/10 bg-wash/70 p-3.5 text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_1px_2px_rgba(16,19,23,0.06)] transition-[background-color,border-color,color,box-shadow] duration-700 laptop:size-[68px]",
+                  "flex size-16 items-center justify-center rounded-[18px] border border-ink/10 bg-wash/70 p-3.5 text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_1px_2px_rgba(23,51,42,0.06)] transition-[background-color,border-color,color,box-shadow] duration-700 laptop:size-[68px]",
                   open &&
                     "laptop:border-cream/25 laptop:bg-cream/10 laptop:text-cream laptop:shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] laptop:backdrop-blur-md",
                 )}
               >
                 <Icon />
               </span>
-              <span className="font-serif text-[32px] leading-none tabular-nums opacity-50 tablet:hidden laptop:block">
+              <span className="font-sans font-extrabold tracking-[-0.05em] text-[32px] leading-none tabular-nums opacity-50 tablet:hidden laptop:block">
                 {String(i + 1).padStart(2, "0")}
               </span>
             </div>
@@ -113,7 +113,7 @@ export function AiPoweredPillars({ pillars }: { pillars: Pillar[] }) {
                       open ? "laptop:border-cream/15" : "laptop:invisible",
                     )}
                   >
-                    <span className="type-label tracking-[0.12em] uppercase">Explore {p.title.toLowerCase()}</span>
+                    <span className="type-label lowercase">Explore {p.title.toLowerCase()}</span>
                     <span
                       className={cn(
                         "flex size-10 shrink-0 items-center justify-center rounded-full border border-ink/20 transition-colors group-hover:border-ink group-hover:bg-ink group-hover:text-cream",

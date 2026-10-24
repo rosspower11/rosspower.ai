@@ -7,8 +7,8 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { bioGraph } from "@/lib/structured-data";
 import { bio } from "@/content/bio";
 import { bookLink } from "@/content/nav";
-import { Button } from "@rosspower/ui/components/Button";
-import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
+import { Button } from "@/components/ui/Button";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ArrowUpRight } from "@rosspower/ui/components/Icon";
 import { asset } from "@rosspower/ui/lib/asset";
 

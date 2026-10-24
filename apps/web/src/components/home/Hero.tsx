@@ -3,8 +3,8 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { hero } from "@/content/home";
 import { bookLink } from "@/content/nav";
-import { Button } from "@rosspower/ui/components/Button";
-import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
+import { Button } from "@/components/ui/Button";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ArrowUpRight } from "@rosspower/ui/components/Icon";
 import { HeroMotion } from "./HeroMotion";
 import { HeroVideo } from "./HeroVideo";
@@ -35,8 +35,8 @@ export function Hero() {
           className="absolute inset-0"
           style={{
             background: [
-              "linear-gradient(90deg, rgba(16,19,23,0.85) 0%, rgba(16,19,23,0.55) 55%, rgba(16,19,23,0.35) 100%)",
-              "linear-gradient(180deg, rgba(16,19,23,0.6) 0%, rgba(16,19,23,0.5) 35%, rgba(16,19,23,0.95) 100%)",
+              "linear-gradient(90deg, rgba(23,51,42,0.85) 0%, rgba(23,51,42,0.55) 55%, rgba(23,51,42,0.35) 100%)",
+              "linear-gradient(180deg, rgba(23,51,42,0.6) 0%, rgba(23,51,42,0.5) 35%, rgba(23,51,42,0.95) 100%)",
             ].join(","),
           }}
         />

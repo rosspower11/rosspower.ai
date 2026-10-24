@@ -1,6 +1,6 @@
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { quotes } from "@/content/home";
 import { StoryCards } from "./StoryCards";
 

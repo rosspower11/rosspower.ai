@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { events, pastEvents } from "@/content/home";
 import { cn } from "@rosspower/ui/lib/cn";
 
@@ -48,7 +48,7 @@ export function Events() {
                 className="absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(16,19,23,0.45) 0%, rgba(16,19,23,0) 28%, rgba(16,19,23,0) 45%, rgba(16,19,23,0.88) 100%)",
+                    "linear-gradient(180deg, rgba(23,51,42,0.45) 0%, rgba(23,51,42,0) 28%, rgba(23,51,42,0) 45%, rgba(23,51,42,0.88) 100%)",
                 }}
               />
 
@@ -56,7 +56,7 @@ export function Events() {
                 <span className="type-label rounded-full border border-cream/25 bg-ink/35 px-3 py-1.5 backdrop-blur">
                   {e.meta}
                 </span>
-                <span className="font-serif text-[32px] leading-[0.8] text-cream/80 tabular-nums">
+                <span className="font-sans font-extrabold tracking-[-0.05em] text-[32px] leading-[0.8] text-cream/80 tabular-nums">
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </div>

@@ -1,24 +1,23 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { Button } from "@rosspower/ui/components/Button";
-import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
+import { Button } from "@/components/ui/Button";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = {
   title: "Styleguide",
   robots: { index: false, follow: false },
 };
 
+/** rosspower.ai colours (Andi's palette; the links site keeps the shared theme's). */
 const colours = [
-  ["cream", "#eee9df"],
-  ["ink", "#101317"],
-  ["ice", "#dde7f2"],
-  ["sky", "#bfd7ea"],
-  ["accent", "#8fb3d9"],
-  ["blue", "#4f7fb3"],
-  ["stone", "#c9cdd2"],
-  ["sand", "#e1dccf"],
-  ["card", "#f6f3ec"],
+  ["ink (forest)", "#17332a"],
+  ["cream", "#f1ece1"],
+  ["wash (sage light)", "#cfdcc8"],
+  ["mid (green)", "#2f5a4a"],
+  ["sand", "#e6dfd0"],
+  ["sage", "#a9b9a0"],
+  ["pine", "#23473a"],
 ];
 
 const scale = [
@@ -55,7 +54,7 @@ export default function StyleguidePage() {
         <div className="mx-auto w-full max-w-site bg-accent/40">
           <Container className="bg-cream">
             <div className="rounded-card border-[1.5px] border-dashed border-ink p-6 type-p-sm">
-              Content box. The blue around it is the Container padding.
+              Content box. The sage around it is the Container padding.
             </div>
           </Container>
         </div>

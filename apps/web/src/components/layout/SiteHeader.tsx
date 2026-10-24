@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Button } from "@rosspower/ui/components/Button";
+import { Button } from "@/components/ui/Button";
 import { ArrowUpRight } from "@rosspower/ui/components/Icon";
 import { Logo } from "@rosspower/ui/components/Logo";
 import { bookLink, mainNav } from "@/content/nav";
@@ -16,7 +16,7 @@ const DARK_TOP = new Set(["/"]);
 function Brand({ onClick, light = true }: { onClick?: () => void; light?: boolean }) {
   return (
     <Link href="/" onClick={onClick} aria-label="Ross Power, home" className="flex items-center py-2">
-      <Logo className="w-[116px] tablet:w-[128px]" color={light ? "#ffffff" : "#101317"} />
+      <Logo className="w-[116px] tablet:w-[128px]" color={light ? "#f1ece1" : "#17332a"} />
     </Link>
   );
 }
@@ -74,7 +74,7 @@ export function SiteHeader() {
           "pointer-events-auto flex h-14 w-full items-center justify-between gap-6 rounded-[14px] border py-1.5 pr-1.5 pl-5 backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300 tablet:w-auto tablet:justify-start laptop:gap-[60px]",
           overDark
             ? "border-cream/15 bg-ink/45 text-cream shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
-            : "border-ink/10 bg-cream/75 text-ink shadow-[0_8px_32px_rgba(16,19,23,0.10)]",
+            : "border-ink/10 bg-cream/75 text-ink shadow-[0_8px_32px_rgba(23,51,42,0.10)]",
         )}
       >
         <Brand light={overDark} />
@@ -136,7 +136,7 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 onClick={close}
-                className="group flex items-baseline gap-4 border-b border-cream/10 py-3 font-display text-[44px] leading-none uppercase transition-colors hover:text-accent tablet:text-[72px]"
+                className="group flex items-baseline gap-4 border-b border-cream/10 py-3 font-sans text-[44px] leading-none font-extrabold tracking-[-0.05em] lowercase transition-colors hover:text-accent tablet:text-[72px]"
               >
                 <span className="type-label font-sans text-cream/50 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
                 {link.label}

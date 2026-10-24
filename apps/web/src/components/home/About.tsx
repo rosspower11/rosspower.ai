@@ -41,7 +41,7 @@ export function About() {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(180deg, rgba(16,19,23,0) 25%, rgba(16,19,23,0.6) 60%, rgba(16,19,23,0.92) 100%), linear-gradient(90deg, rgba(16,19,23,0.5) 0%, rgba(16,19,23,0) 65%)",
+                  "linear-gradient(180deg, rgba(23,51,42,0) 25%, rgba(23,51,42,0.6) 60%, rgba(23,51,42,0.92) 100%), linear-gradient(90deg, rgba(23,51,42,0.5) 0%, rgba(23,51,42,0) 65%)",
               }}
             />
 

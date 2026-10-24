@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Anton, Instrument_Serif } from "next/font/google";
+import { Anton, Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SmoothAnchors } from "@/components/layout/SmoothAnchors";
@@ -17,12 +17,19 @@ const anton = Anton({
   weight: "400",
 });
 
-/** H2 and the italic "voice" accents. Body and H3–H6 are Helvetica (system). */
+/** The italic "voice" accents and the hero line. */
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
+});
+
+/** Everything else: headings, body, buttons and labels (replaces Helvetica). */
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  weight: ["400", "600", "800"],
 });
 
 /** Homepage SEO, from the build pack (00. START HERE). */
@@ -65,12 +72,12 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#eee9df",
+  themeColor: "#f1ece1",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" className={`${anton.variable} ${instrumentSerif.variable}`}>
+    <html lang="en-GB" className={`${anton.variable} ${instrumentSerif.variable} ${bricolage.variable}`}>
       <body className="flex min-h-dvh flex-col">
         <JsonLd data={siteGraph} />
         <SiteHeader />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { enquiryTypes, limits, type ContactSource } from "../content/contact";
 import { cn } from "../lib/cn";
 import { ArrowUpRight } from "./Icon";
@@ -27,6 +27,8 @@ type ContactFormProps = {
   source: ContactSource;
   /** Shown in place of the form once it's sent. */
   thanks: { title: string; body: string };
+  /** Talks that ?talk=<slug> can name: it picks the talk's kind (else Keynote) and starts the message with "Talk: <title>". */
+  talks?: readonly { slug: string; title: string; kind?: string }[];
 };
 
 /**
@@ -35,9 +37,28 @@ type ContactFormProps = {
  * Sized by its own width, not the screen (container queries): in a narrow column (phones, the links page)
  * it keeps 20px padding and one field per row; from 512px wide it gets 28px padding and two fields across.
  */
-export function ContactForm({ source, thanks }: ContactFormProps) {
+export function ContactForm({ source, thanks, talks }: ContactFormProps) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // Preselect from the link that brought the visitor here: ?type=podcast picks Podcast,
+  // ?talk=<slug> picks that talk's kind (Keynote, Workshop…) and names the talk. Writes to the fields directly, once.
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
+    const query = new URLSearchParams(window.location.search);
+    const select = form.elements.namedItem("type") as HTMLSelectElement | null;
+    const message = form.elements.namedItem("message") as HTMLTextAreaElement | null;
+    const options: readonly string[] = enquiryTypes;
+    const type = options.find((o) => o.toLowerCase() === query.get("type")?.toLowerCase());
+    if (type && select) select.value = type;
+    const talk = talks?.find((t) => t.slug === query.get("talk"));
+    if (talk) {
+      if (select) select.value = talk.kind && options.includes(talk.kind) ? talk.kind : "Keynote";
+      if (message && !message.value) message.value = `Talk: ${talk.title}\n\n`;
+    }
+  }, [talks]);
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -71,7 +92,7 @@ export function ContactForm({ source, thanks }: ContactFormProps) {
 
   return (
     <div className="@container/contact">
-      <form onSubmit={submit} className="flex flex-col gap-5 rounded-xl bg-card p-5 @lg/contact:rounded-2xl @lg/contact:p-7">
+      <form ref={formRef} onSubmit={submit} className="flex flex-col gap-5 rounded-xl bg-card p-5 @lg/contact:rounded-2xl @lg/contact:p-7">
         <div className="grid gap-5 @lg/contact:grid-cols-2">
           <Field label="Name">
             <input name="name" required autoComplete="name" maxLength={limits.short} className={cn(control, "min-h-12")} />

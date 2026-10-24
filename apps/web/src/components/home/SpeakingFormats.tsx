@@ -118,7 +118,7 @@ export function SpeakingFormats({ formats }: { formats: Format[] }) {
               )}
             />
           ))}
-          <div className="absolute inset-x-0 bottom-0 flex flex-col gap-4 bg-[linear-gradient(180deg,transparent,rgba(16,19,23,0.6))] p-6 pt-20 text-cream laptop:p-8">
+          <div className="absolute inset-x-0 bottom-0 flex flex-col gap-4 bg-[linear-gradient(180deg,transparent,rgba(23,51,42,0.6))] p-6 pt-20 text-cream laptop:p-8">
             <div className="flex items-end justify-between">
               <span className="type-label">{formats[slides[slide].format].title}</span>
               <span className="type-label tabular-nums" aria-live="polite">
@@ -162,7 +162,7 @@ export function SpeakingFormats({ formats }: { formats: Format[] }) {
             <div className="flex items-start justify-between gap-4">
               <span
                 className={cn(
-                  "font-serif text-[48px] leading-[0.8] tabular-nums transition-colors duration-500 laptop:text-[64px]",
+                  "font-sans font-extrabold tracking-[-0.05em] text-[48px] leading-[0.8] tabular-nums transition-colors duration-500 laptop:text-[64px]",
                   i === active ? "text-mid" : "text-ink/40",
                 )}
               >
