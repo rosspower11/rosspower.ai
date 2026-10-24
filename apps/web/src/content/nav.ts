@@ -2,18 +2,18 @@ export type NavLink = { label: string; href: string };
 
 /** The nav (centre of the header) and the footer: Ross's three roles, each to its section. */
 export const mainNav: NavLink[] = [
-  { label: "founder", href: "/#about" },
-  { label: "speaker", href: "/#speaking" },
-  { label: "educator", href: "/#ai-powered" },
+  { label: "Founder", href: "/#about" },
+  { label: "Speaker", href: "/#speaking" },
+  { label: "Educator", href: "/#ai-powered" },
 ];
 
 /** The phone menu and the footer add the rest of the homepage and the bio. */
 export const menuNav: NavLink[] = [
   ...mainNav,
-  { label: "talks", href: "/#talks" },
-  { label: "chats", href: "/#chats" },
-  { label: "past speeches", href: "/#events" },
-  { label: "bio", href: "/bio" },
+  { label: "Talks", href: "/#talks" },
+  { label: "Chats", href: "/#chats" },
+  { label: "Past speeches", href: "/#events" },
+  { label: "Bio", href: "/bio" },
 ];
 
 /** Every "book ross" button opens the enquiry form, which goes to Mary. */

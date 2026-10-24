@@ -10,7 +10,6 @@ export const hero = {
     src: video("videos/hero/hero-home.mp4"),
     poster: asset("images/hero/hero-home-poster.jpg"),
   },
-  secondaryCta: { label: "see the talks", href: "#talks" },
 };
 
 /** Ross's line, the band after the ticker (from Andi's board). */

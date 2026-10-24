@@ -33,17 +33,18 @@ export function SiteHeader() {
   const close = () => setOpen(false);
 
   return (
-    // Full width, flat on the page, not fixed (scrolls away with it). Logo left, Ross's roles in the
-    // centre, book ross right. Phones: logo and book ross, with the roles and the rest in the menu.
+    // Full width, flat on the page, not fixed (scrolls away with it). Ross's roles on the left,
+    // see the talks and book ross on the right. Phones: the roles stack, as on Andi's board.
     <header className="w-full border-b-[1.5px] border-ink/10 bg-cream text-ink">
-      <div className="mx-auto grid w-full max-w-site grid-cols-[1fr_auto] items-center gap-4 px-(--section-px) py-2 tablet:grid-cols-[1fr_auto_1fr] tablet:py-2.5">
-        <Brand light={false} />
-
-        <nav aria-label="Main" className="hidden tablet:block">
-          <ul className="flex items-center gap-8">
+      <div className="mx-auto flex w-full max-w-site items-center justify-between gap-4 px-(--section-px) py-2 tablet:py-2.5">
+        <nav aria-label="Main">
+          <ul className="flex flex-col tablet:flex-row tablet:items-center tablet:gap-8">
             {mainNav.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="inline-flex min-h-11 items-center text-[16px] font-semibold transition-colors hover:text-mid">
+                <Link
+                  href={link.href}
+                  className="block py-0.5 text-[16px] leading-5 font-semibold transition-colors hover:text-mid tablet:inline-flex tablet:min-h-11 tablet:items-center tablet:py-0"
+                >
                   {link.label}
                 </Link>
               </li>
