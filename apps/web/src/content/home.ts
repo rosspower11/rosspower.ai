@@ -280,7 +280,8 @@ export const aiPowered = {
 // TODO(ross): confirm these quotes and photos can be used on rosspower.ai as well as aipowered.xyz.
 export const quotes = {
   eyebrow: "Success stories",
-  intro: "Founders, coaches and consultants who learned AI with Ross, in their own words.",
+  // The number matches the "Founders trained" stat.
+  heading: { plain: "130+ founders trained by Ross,", accent: "in their own words." },
   items: [
     {
       quote: "…he's very good at making AI accessible.",
@@ -339,3 +340,11 @@ export const quotes = {
   ],
 };
 
+
+/** "Work with ross": the closing call to action above the footer, sending people to AI Powered (from Andi's board). */
+export const work = {
+  pill: "work with ross",
+  heading: { plain: "ai, explained", accent: "for non-techies." },
+  line: "AI-powered, not AI-replaced.",
+  cta: { label: "work with ross", href: "https://aipowered.xyz" },
+};

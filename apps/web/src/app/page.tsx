@@ -6,6 +6,7 @@ import { Quotes } from "@/components/home/Quotes";
 import { Speaking } from "@/components/home/Speaking";
 import { Stats } from "@/components/home/Stats";
 import { Talks } from "@/components/home/Talks";
+import { Work } from "@/components/home/Work";
 import { Ticker } from "@/components/home/Ticker";
 import { RossLine } from "@/components/home/RossLine";
 import { Chats } from "@/components/home/Chats";
@@ -27,6 +28,7 @@ export default function HomePage() {
       <Events />
       <AiPowered />
       <Quotes />
+      <Work />
     </>
   );
 }

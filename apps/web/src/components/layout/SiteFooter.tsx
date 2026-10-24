@@ -14,20 +14,19 @@ const socialIcons: Record<SocialLabel, ComponentType<{ className?: string }>> = 
   YouTube,
 };
 
-const titleClass = "text-[15px] leading-none font-semibold text-wash lowercase";
-const linkClass = "text-[16px] leading-[1.5] text-cream/75 transition-colors hover:text-cream";
+const titleClass = "text-[15px] leading-none font-semibold text-mid lowercase";
+const linkClass = "text-[16px] leading-[1.5] text-ink/75 transition-colors hover:text-ink";
 
 export function SiteFooter() {
   return (
-    <Section as="footer" tone="ink" className="overflow-hidden">
-      <Container flush="bottom" className="flex flex-col gap-12 tablet:gap-16">
+    <Section as="footer" tone="sand">
+      <Container className="flex flex-col gap-12 tablet:gap-16">
         {/* Laptop up: brand, line and socials left; links right. Below: stacked, links two across. */}
         <div className="grid gap-12 laptop:grid-cols-12 laptop:gap-x-10">
           <div className="flex flex-col items-start gap-6 laptop:col-span-6">
-            <Logo className="w-[184px] tablet:w-[216px]" color="#f1ece1" />
-            <p className="type-p-lg max-w-[440px] text-cream/75">
-              Making AI simple, practical and human. Keynotes, workshops and panels for founders, teams and leaders,
-              from Bali to London.
+            <Logo className="w-[184px] tablet:w-[216px]" color="#17332a" />
+            <p className="type-p-lg max-w-[440px] text-ink/75">
+              Keynotes and podcasts for founders, teams and leaders, from Bali to London.
             </p>
             <ul className="flex gap-3" aria-label="Ross on social media">
               {socials.map(({ label, href }) => {
@@ -39,7 +38,7 @@ export function SiteFooter() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={label}
-                      className="flex size-11 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition-colors hover:border-cream hover:bg-cream hover:text-ink"
+                      className="flex size-11 items-center justify-center rounded-full border border-ink/20 text-ink/80 transition-colors hover:border-ink hover:bg-ink hover:text-cream"
                     >
                       <Icon className="size-[18px]" />
                     </a>
@@ -64,38 +63,28 @@ export function SiteFooter() {
             </nav>
             <div className="flex flex-col items-start gap-5">
               <span className={titleClass}>Contact</span>
-              <Button href={bookLink.href} variant="cream" size="sm" className="mt-1">
+              <Button href={bookLink.href} variant="ink" size="sm" className="mt-1">
                 {bookLink.label}
               </Button>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-4 border-t border-cream/15 pt-6 text-cream/60">
+        <div className="flex items-center justify-between gap-4 border-t border-ink/15 pt-6 text-ink/60">
           <p className="type-p-sm">
             © {new Date().getFullYear()} Ross Power<span className="hidden tablet:inline"> · Founder of AI Powered</span>
           </p>
           <a
             href="#"
-            className="type-label flex items-center gap-3 lowercase transition-colors hover:text-cream"
+            className="type-label flex items-center gap-3 lowercase transition-colors hover:text-ink"
           >
             Back to top
-            <span className="flex size-9 items-center justify-center rounded-full border border-cream/25">
+            <span className="flex size-9 items-center justify-center rounded-full border border-ink/25">
               <ArrowDown className="size-4 rotate-180" />
             </span>
           </a>
         </div>
       </Container>
-
-      {/* Oversized name as the closing mark, fading into the floor. Decorative: the brand link lives in the header. */}
-      <div aria-hidden className="mx-auto w-full max-w-site overflow-hidden px-(--section-px)">
-        <p
-          className="-mb-[0.08em] bg-[linear-gradient(180deg,rgba(207,220,200,0.22),rgba(207,220,200,0))] bg-clip-text pt-6 text-center font-display leading-[0.9] whitespace-nowrap text-transparent uppercase"
-          style={{ fontSize: "min(274px, calc((100vw - 2 * var(--section-px)) / 4.66))" }}
-        >
-          Ross Power
-        </p>
-      </div>
     </Section>
   );
 }

@@ -11,10 +11,9 @@ export function Quotes() {
         {/* Centred header. mb-6 adds 24px over the section's gap. */}
         <div className="mb-6 flex flex-col items-center gap-5 text-center">
           <Eyebrow>{quotes.eyebrow}</Eyebrow>
-          <h2 id="stories-title">
-            Real people, <span className="voice">real results</span>
+          <h2 id="stories-title" className="max-w-[1000px]">
+            {quotes.heading.plain} <span className="voice">{quotes.heading.accent}</span>
           </h2>
-          <p className="type-p-lg measure text-ink/70">{quotes.intro}</p>
         </div>
 
         <StoryCards items={quotes.items} />
