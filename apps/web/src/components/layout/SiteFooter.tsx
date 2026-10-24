@@ -19,14 +19,34 @@ const linkClass = "text-[16px] leading-[1.5] font-semibold transition-colors hov
 export function SiteFooter() {
   return (
     <Section as="footer" tone="sand">
-      <Container className="flex flex-col gap-12 tablet:gap-16">
-        {/* Laptop up: brand, line and socials left; menus and book button right. Below: stacked. */}
+      <Container flush="bottom" className="flex flex-col gap-12 pb-6 tablet:gap-16">
+        {/* Laptop up: brand and line left; menus, book button and socials right. Below: stacked. */}
         <div className="grid gap-12 laptop:grid-cols-12 laptop:gap-x-10">
           <div className="flex flex-col items-start gap-6 laptop:col-span-6">
             <Logo className="w-[184px] tablet:w-[216px]" color="#17332a" />
             <p className="type-p-lg max-w-[440px] text-ink/75">
               Keynotes and podcasts for founders, teams and leaders, from Bali to London.
             </p>
+          </div>
+
+          {/* As on Andi's board: the three header menus and the book button in a row, the socials under them. */}
+          <div className="flex flex-col items-start gap-6 laptop:col-span-6 laptop:items-end">
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-6 laptop:justify-end">
+              <nav aria-label="Footer">
+                <ul className="flex flex-wrap gap-x-8 gap-y-3">
+                  {mainNav.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className={linkClass}>
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+              <Button href={bookLink.href} variant="ink" size="sm">
+                {bookLink.label}
+              </Button>
+            </div>
             <ul className="flex gap-3" aria-label="Ross on social media">
               {socials.map(({ label, href }) => {
                 const Icon = socialIcons[label];
@@ -45,24 +65,6 @@ export function SiteFooter() {
                 );
               })}
             </ul>
-          </div>
-
-          {/* As on Andi's board: the three header menus and the book button, in a row. */}
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-6 laptop:col-span-6 laptop:justify-end laptop:self-start">
-            <nav aria-label="Footer">
-              <ul className="flex flex-wrap gap-x-8 gap-y-3">
-                {mainNav.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href} className={linkClass}>
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <Button href={bookLink.href} variant="ink" size="sm">
-              {bookLink.label}
-            </Button>
           </div>
         </div>
 
