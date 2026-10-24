@@ -5,7 +5,7 @@ import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import { ArrowDown, Instagram, LinkedIn, XLogo, YouTube } from "@rosspower/ui/components/Icon";
 import { Logo } from "@rosspower/ui/components/Logo";
-import { bookLink, mainNav, socials, type SocialLabel } from "@/content/nav";
+import { bookLink, menuNav, socials, type SocialLabel } from "@/content/nav";
 
 const socialIcons: Record<SocialLabel, ComponentType<{ className?: string }>> = {
   Instagram,
@@ -53,7 +53,7 @@ export function SiteFooter() {
             <nav aria-label="Footer" className="flex flex-col gap-5">
               <span className={titleClass}>Explore</span>
               <ul className="flex flex-col gap-2">
-                {mainNav.map((link) => (
+                {menuNav.map((link) => (
                   <li key={link.href}>
                     <Link href={link.href} className={linkClass}>
                       {link.label}

@@ -82,8 +82,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <JsonLd data={siteGraph} />
         <SiteHeader />
         <SmoothAnchors />
-        {/* The header is fixed, so pages start below it. Full-bleed heroes pull back up with -mt-(--header-h). */}
-        <main className="flex-1 pt-(--header-h)">{children}</main>
+        <main className="flex-1">{children}</main>
         <SiteFooter />
         <GoogleAnalytics />
       </body>

@@ -1,86 +1,35 @@
-import type { CSSProperties } from "react";
-import { Container } from "@/components/layout/Container";
-import { Section } from "@/components/layout/Section";
+import { Button } from "@/components/ui/Button";
 import { hero } from "@/content/home";
 import { bookLink } from "@/content/nav";
-import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { ArrowUpRight } from "@rosspower/ui/components/Icon";
-import { HeroMotion } from "./HeroMotion";
 import { HeroVideo } from "./HeroVideo";
 
-/** Inline CSS custom properties, typed. */
-const vars = (v: Record<string, string | number>) => v as CSSProperties;
-
 /**
- * Homepage hero, laid out like the aipowered.xyz hero in our own style:
- * a full-screen event video under an ink wash, the headline bottom left, two buttons.
- * The previous hero lives on in HeroSpotlight.tsx.
+ * Homepage hero, as on Andi's board: the event video in a rounded card under a forest wash,
+ * ROSS POWER in Anton bottom left, and two buttons. The earlier heroes are kept in HeroQuote.tsx
+ * and HeroSpotlight.tsx.
  */
 export function Hero() {
-  const [first, second] = hero.headline;
-
   return (
-    // Pulled up under the fixed, transparent header so the video fills the whole screen.
-    <Section tone="ink" aria-labelledby="hero-title" className="relative isolate -mt-(--header-h) overflow-hidden">
-      <HeroMotion />
-
-      {/* Event video: settles in from a slight zoom, then drifts slower than the page. */}
-      <div aria-hidden className="parallax-bg absolute inset-0 -z-10">
-        <div className="hero-settle absolute inset-0">
+    <section aria-labelledby="hero-title" className="mx-auto w-full max-w-site px-(--section-px) pt-6 pb-10">
+      <div className="relative h-[560px] overflow-hidden rounded-panel bg-ink [container-type:inline-size] [--hero-pad:24px] laptop:h-[640px] laptop:[--hero-pad:56px]">
+        <div aria-hidden className="absolute inset-0">
           <HeroVideo src={hero.video.src} poster={hero.video.poster} />
+          <div className="absolute inset-0 bg-[rgba(23,51,42,0.55)]" />
         </div>
-        {/* Ink wash: lighter at the top so the room shows, near-solid behind the words. */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: [
-              "linear-gradient(90deg, rgba(23,51,42,0.85) 0%, rgba(23,51,42,0.55) 55%, rgba(23,51,42,0.35) 100%)",
-              "linear-gradient(180deg, rgba(23,51,42,0.6) 0%, rgba(23,51,42,0.5) 35%, rgba(23,51,42,0.95) 100%)",
-            ].join(","),
-          }}
-        />
-      </div>
-
-      {/* One screen tall; everything sits at the bottom left. */}
-      <Container
-        flush="top"
-        className="relative flex min-h-[max(100svh,600px)] flex-col justify-end pt-[calc(var(--header-h)+48px)]"
-      >
-        <div className="parallax-fade flex max-w-[1000px] flex-col gap-8 tablet:gap-10">
-          <div className="flex flex-col gap-5 tablet:gap-6">
-            <span className="hero-fade" style={vars({ "--delay": "120ms" })}>
-              <Eyebrow className="text-cream">{hero.eyebrow}</Eyebrow>
-            </span>
-            {/* Each line rises out of its own mask; the second takes the italic accent. */}
-            <h1
-              id="hero-title"
-              className="font-serif text-[40px] normal-case leading-[1.02] tracking-[-0.01em] text-cream min-[420px]:text-[48px] tablet:text-[88px] laptop:text-[104px] desktop:text-[120px]"
-            >
-              <span className="hero-line">
-                <span className="hero-line-inner" style={vars({ "--delay": "320ms" })}>
-                  {first}
-                </span>
-              </span>{" "}
-              <span className="hero-line">
-                <span className="hero-line-inner voice" style={vars({ "--delay": "480ms" })}>
-                  {second}
-                </span>
-              </span>
-            </h1>
-          </div>
-
-          <div className="hero-fade flex flex-col gap-3 tablet:flex-row" style={vars({ "--delay": "780ms" })}>
+        <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-7 p-(--hero-pad)">
+          <h1 id="hero-title" className="wordmark text-cream">
+            {hero.name}
+          </h1>
+          <div className="flex flex-wrap gap-3">
             <Button href={bookLink.href} variant="cream">
               {bookLink.label}
-              <ArrowUpRight />
             </Button>
             <Button href={hero.secondaryCta.href} variant="outline-light">
               {hero.secondaryCta.label}
             </Button>
           </div>
         </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 }
