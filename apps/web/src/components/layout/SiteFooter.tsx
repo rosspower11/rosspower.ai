@@ -5,7 +5,7 @@ import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import { ArrowDown, Instagram, LinkedIn, XLogo, YouTube } from "@rosspower/ui/components/Icon";
 import { Logo } from "@rosspower/ui/components/Logo";
-import { bookLink, menuNav, socials, type SocialLabel } from "@/content/nav";
+import { bookLink, mainNav, socials, type SocialLabel } from "@/content/nav";
 
 const socialIcons: Record<SocialLabel, ComponentType<{ className?: string }>> = {
   Instagram,
@@ -14,14 +14,13 @@ const socialIcons: Record<SocialLabel, ComponentType<{ className?: string }>> = 
   YouTube,
 };
 
-const titleClass = "text-[15px] leading-none font-semibold text-mid lowercase";
 const linkClass = "text-[16px] leading-[1.5] text-ink/75 transition-colors hover:text-ink";
 
 export function SiteFooter() {
   return (
     <Section as="footer" tone="sand">
       <Container className="flex flex-col gap-12 tablet:gap-16">
-        {/* Laptop up: brand, line and socials left; links right. Below: stacked, links two across. */}
+        {/* Laptop up: brand, line and socials left; menus and book button right. Below: stacked. */}
         <div className="grid gap-12 laptop:grid-cols-12 laptop:gap-x-10">
           <div className="flex flex-col items-start gap-6 laptop:col-span-6">
             <Logo className="w-[184px] tablet:w-[216px]" color="#17332a" />
@@ -48,11 +47,11 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div className="grid grid-cols-[auto_1fr] gap-x-12 gap-y-8 tablet:grid-cols-2 tablet:gap-8 laptop:col-span-5 laptop:col-start-8">
-            <nav aria-label="Footer" className="flex flex-col gap-5">
-              <span className={titleClass}>Explore</span>
-              <ul className="flex flex-col gap-2">
-                {menuNav.map((link) => (
+          {/* As on Andi's board: the three header menus and the book button, in a row. */}
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-6 laptop:col-span-6 laptop:justify-end laptop:self-start">
+            <nav aria-label="Footer">
+              <ul className="flex flex-wrap gap-x-8 gap-y-3">
+                {mainNav.map((link) => (
                   <li key={link.href}>
                     <Link href={link.href} className={linkClass}>
                       {link.label}
@@ -61,12 +60,9 @@ export function SiteFooter() {
                 ))}
               </ul>
             </nav>
-            <div className="flex flex-col items-start gap-5">
-              <span className={titleClass}>Contact</span>
-              <Button href={bookLink.href} variant="ink" size="sm" className="mt-1">
-                {bookLink.label}
-              </Button>
-            </div>
+            <Button href={bookLink.href} variant="ink" size="sm">
+              {bookLink.label}
+            </Button>
           </div>
         </div>
 

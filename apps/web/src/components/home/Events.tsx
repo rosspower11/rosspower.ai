@@ -6,7 +6,7 @@ import { events, pastEvents } from "@/content/home";
 
 /**
  * Past speeches, laid out as on Andi's board: cream, three tiles across (one column on phones),
- * each a 16:10 photo with the title, role and place centred under it. The tiles aren't links.
+ * each a 16:10 photo with the title, role and place under it. The tiles aren't links.
  */
 export function Events() {
   return (
@@ -23,8 +23,8 @@ export function Events() {
 
         <ul className="grid gap-8 tablet:grid-cols-3 tablet:gap-5">
           {events.map((e) => (
-            <li key={e.title} className="flex flex-col gap-1 text-center">
-              <div className="relative mb-4 aspect-[16/10] overflow-hidden rounded-card bg-sage">
+            <li key={e.title} className="flex flex-col gap-2.5">
+              <div className="relative mb-3 aspect-[16/10] overflow-hidden rounded-card bg-sage">
                 <Image
                   src={e.src}
                   alt={e.alt}
