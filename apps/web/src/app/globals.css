@@ -57,17 +57,6 @@
  * while classes on an element (type-label, text-*, leading-*) still win over these element rules.
  * Sizes still come from the type scale above.
  */
-/* ROSS POWER in the hero card: one line, as wide as the card allows (the card is a size container),
-   236px at most. Anton sets "ROSS POWER" 4.63em wide; 4.7 leaves a little room. */
-@utility wordmark {
-  font-family: var(--font-display);
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 0.82;
-  font-size: min(236px, calc((100cqw - 2 * var(--hero-pad, 24px)) / 4.7));
-  white-space: nowrap;
-}
-
 @layer base {
   /* The nav isn't fixed, so anchor jumps land at the top of their section. */
   html { scroll-padding-top: 0; }

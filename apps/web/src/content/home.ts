@@ -1,9 +1,10 @@
 import { asset, video } from "@rosspower/ui/lib/asset";
 
 /** The homepage hero: Ross's headline over the event video (like the aipowered.xyz hero). */
-/** The homepage hero, as on Andi's board: ROSS POWER over the event video, in a rounded card. */
+/** The homepage hero, as on Andi's board: the Ross Power logo over the event video, in a rounded card. */
 export const hero = {
-  name: "ROSS POWER",
+  /** The H1's text (the logo shows it). */
+  name: "Ross Power",
   /** The aipowered.xyz hero video (Ross at his events), re-encoded muted at 1600px for this site. */
   video: {
     src: video("videos/hero/hero-home.mp4"),
