@@ -1,4 +1,4 @@
-import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Logo } from "@rosspower/ui/components/Logo";
 import { WhatsAppFloat } from "@rosspower/ui/components/WhatsAppFloat";
 import { FeatureCard, RowCard, SocialTile, TileCard, ToolButton } from "@/components/LinkCards";
@@ -27,12 +27,12 @@ const partnerLinks = live(partners.links);
 export default function LinksPage() {
   return (
     // Phones: full width. Wider than a phone (480px+): a bordered phone-width column floating on sand.
-    <main className="mx-auto flex min-h-dvh w-full max-w-[440px] flex-col gap-10 bg-cream px-3 pt-3 pb-24 min-[480px]:my-10 min-[480px]:min-h-0 min-[480px]:rounded-[36px] min-[480px]:border min-[480px]:border-ink/10 min-[480px]:shadow-[0_24px_80px_rgba(16,19,23,0.12)]">
+    <main className="mx-auto flex min-h-dvh w-full max-w-[440px] flex-col gap-10 bg-cream px-3 pt-3 pb-24 min-[480px]:my-10 min-[480px]:min-h-0 min-[480px]:rounded-[36px] min-[480px]:border min-[480px]:border-ink/10 min-[480px]:shadow-[0_24px_80px_rgba(23,51,42,0.12)]">
       <Profile />
 
       {liveSections.map((section) => (
         <section key={section.title} aria-label={section.title} className="flex flex-col gap-3">
-          <Eyebrow as="h2" className="px-3 pb-1">
+          <Eyebrow as="h2" className="px-3 pb-1 tracking-normal">
             {section.title}
           </Eyebrow>
           {blocks(section.items).map((block) =>
@@ -54,7 +54,7 @@ export default function LinksPage() {
       {/* Tools Ross uses, each with its logo. */}
       {partnerLinks.length > 0 && (
         <section aria-label={partners.title} className="flex flex-col gap-3">
-          <Eyebrow as="h2" className="px-3 pb-1">
+          <Eyebrow as="h2" className="px-3 pb-1 tracking-normal">
             {partners.title}
           </Eyebrow>
           {partnerLinks.map((link) => (
@@ -64,7 +64,7 @@ export default function LinksPage() {
       )}
 
       <section aria-label="Follow along" className="flex flex-col gap-3">
-        <Eyebrow as="h2" className="px-3 pb-1">
+        <Eyebrow as="h2" className="px-3 pb-1 tracking-normal">
           Follow along
         </Eyebrow>
         <div className="grid grid-cols-2 gap-3">
@@ -75,7 +75,7 @@ export default function LinksPage() {
       </section>
 
       <footer className="flex flex-col items-center gap-4 border-t border-ink/10 px-3 pt-8 text-center">
-        <Logo className="w-[120px]" color="#101317" />
+        <Logo className="w-[120px]" color="#17332a" />
         <p className="text-[12px] text-ink/50">© {new Date().getFullYear()} Ross Power</p>
       </footer>
 
