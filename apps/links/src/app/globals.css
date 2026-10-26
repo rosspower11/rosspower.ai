@@ -4,6 +4,30 @@
 /* Generate the classes used inside the shared components too. */
 @source "../../../../packages/ui/src";
 
+/* ------------------------------------------------------------------
+   rosspower.ai look (as in apps/web/globals.css): Andi's colours and text style on the links layout.
+   ------------------------------------------------------------------ */
+@theme {
+  /* The seven colours. */
+  --color-ink: #17332a; /* forest: text, buttons, borders */
+  --color-cream: #f1ece1; /* page background, text on dark */
+  --color-wash: #cfdcc8; /* sage light */
+  --color-mid: #2f5a4a; /* green: accents, link hover */
+  --color-sand: #e6dfd0;
+  --color-sage: #a9b9a0;
+  --color-pine: #23473a;
+  /* The old names, mapped onto the palette, so no blue is left. */
+  --color-blue: #2f5a4a;
+  --color-accent: #a9b9a0;
+  --color-ice: #cfdcc8;
+  --color-sky: #cfdcc8;
+  --color-stone: #e6dfd0;
+  --color-card: #e6dfd0;
+
+  /* Bricolage Grotesque replaces Helvetica (layout.tsx loads it). */
+  --font-sans: var(--font-bricolage), system-ui, sans-serif;
+}
+
 /*
  * The page is always a phone-width column, so the type scale stays at its phone sizes
  * on every screen instead of stepping up at the site's breakpoints.
@@ -16,6 +40,43 @@
   --fs-h6: 16px;
   --fs-p: 16px;
   --fs-p-sm: 14px;
-  --fs-label: 12px;
-  --voice: var(--color-mid);
+  --fs-label: 13px;
+  /* The italic accent words take the title's own colour, as on rosspower.ai. */
+  --voice: currentColor;
+}
+
+/* Andi's heading style: bold Bricolage, tight, with the .voice words in Instrument Serif italic. */
+@layer utilities {
+  h1,
+  h2,
+  .type-h2 {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+  }
+  h3,
+  .type-h3 {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  /* Labels are plain, not spaced-out capitals. */
+  .type-label {
+    letter-spacing: 0;
+  }
+  p,
+  .type-p {
+    line-height: 1.55;
+  }
+  /* The booking form (shared): lowercase labels and a pill button, as on rosspower.ai/contact. */
+  form label > span:first-child {
+    letter-spacing: 0;
+    text-transform: lowercase;
+  }
+  form button[type="submit"] {
+    border-radius: 999px;
+    letter-spacing: 0;
+    text-transform: lowercase;
+  }
 }
