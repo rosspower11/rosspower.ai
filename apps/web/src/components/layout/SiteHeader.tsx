@@ -34,11 +34,22 @@ export function SiteHeader() {
 
   return (
     // Full width, flat on the page, not fixed (scrolls away with it). Ross's roles on the left,
-    // see the talks and book ross on the right. Phones: the roles stack, as on Andi's board.
+    // see the talks and book ross on the right. Phones: the menu button on the left instead (the roles are in the menu).
     <header className="w-full bg-cream text-ink">
       <div className="mx-auto flex w-full max-w-site items-center justify-between gap-4 px-(--section-px) pt-4 pb-2 tablet:pt-[18px] tablet:pb-2.5">
-        <nav aria-label="Main">
-          <ul className="flex flex-col tablet:flex-row tablet:items-center tablet:gap-8">
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-haspopup="dialog"
+          aria-expanded={open}
+          aria-label="Open menu"
+          className="-ml-3 flex size-11 flex-col items-center justify-center gap-1.5 rounded-full tablet:hidden"
+        >
+          <span className="h-[1.5px] w-5 bg-current" />
+          <span className="h-[1.5px] w-5 bg-current" />
+        </button>
+        <nav aria-label="Main" className="hidden tablet:block">
+          <ul className="flex flex-row items-center gap-8">
             {mainNav.map((link) => (
               <li key={link.href}>
                 <Link
@@ -62,17 +73,6 @@ export function SiteHeader() {
           <Button href={bookLink.href} variant="ink" size="sm">
             {bookLink.label}
           </Button>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            aria-haspopup="dialog"
-            aria-expanded={open}
-            aria-label="Open menu"
-            className="flex size-11 flex-col items-center justify-center gap-1.5 rounded-full tablet:hidden"
-          >
-            <span className="h-[1.5px] w-5 bg-current" />
-            <span className="h-[1.5px] w-5 bg-current" />
-          </button>
         </div>
       </div>
 
@@ -85,7 +85,6 @@ export function SiteHeader() {
         <div className="mx-auto flex h-full w-full max-w-site flex-col px-5 tablet:px-(--section-px)">
           {/* The same row as the header, so the close button sits where the menu button was. */}
           <div className="flex shrink-0 items-center justify-between py-4">
-            <Brand onClick={close} />
             <button
               type="button"
               onClick={close}
@@ -96,6 +95,7 @@ export function SiteHeader() {
               <span className="absolute h-px w-5 rotate-45 bg-cream" />
               <span className="absolute h-px w-5 -rotate-45 bg-cream" />
             </button>
+            <Brand onClick={close} />
           </div>
 
           <nav aria-label="Menu" className="my-auto flex flex-col py-8">
