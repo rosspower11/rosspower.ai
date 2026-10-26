@@ -5,6 +5,98 @@
 @source "../../../../packages/ui/src";
 
 /* ------------------------------------------------------------------
+   rosspower.ai look: Andi's colours and text style on our layout.
+   packages/ui/theme.css stays as it is (links.rosspower.ai uses it); these override it here only.
+   ------------------------------------------------------------------ */
+@theme {
+  /* The seven colours. */
+  --color-ink: #17332a; /* forest: text, dark sections, buttons, borders */
+  --color-cream: #f1ece1; /* page background, text on dark */
+  --color-wash: #cfdcc8; /* sage light */
+  --color-mid: #2f5a4a; /* green: accents, link hover */
+  --color-sand: #e6dfd0;
+  --color-sage: #a9b9a0;
+  --color-pine: #23473a;
+  /* The old names, mapped onto the palette, so every existing class turns green and no blue is left. */
+  --color-blue: #2f5a4a;
+  --color-accent: #a9b9a0;
+  --color-ice: #cfdcc8;
+  --color-sky: #cfdcc8;
+  --color-stone: #e6dfd0;
+  --color-card: #e6dfd0;
+
+  /* Bricolage Grotesque replaces Helvetica (layout.tsx loads it). */
+  --font-sans: var(--font-bricolage), system-ui, sans-serif;
+}
+
+/* Type sizes: section titles 52 to 84px, intros 19px, body 17px, labels 15px. */
+:root {
+  --fs-h2: 52px;
+  --fs-p-lg: 17px;
+  --fs-p: 17px;
+  --fs-label: 15px;
+}
+@media (min-width: 810px) {
+  :root {
+    --fs-h2: 64px;
+    --fs-p-lg: 19px;
+    --fs-p: 17px;
+    --fs-label: 15px;
+  }
+}
+@media (min-width: 1200px) {
+  :root {
+    --fs-h2: 84px;
+    --fs-p: 17px;
+  }
+}
+
+/*
+ * Andi's heading style: bold Bricolage, tight, with the .voice words in Instrument Serif italic.
+ * In the utilities layer, after the shared theme: beats its serif headings and base element styles,
+ * while classes on an element (type-label, text-*, leading-*) still win over these element rules.
+ * Sizes still come from the type scale above.
+ */
+@layer base {
+  /* The nav isn't fixed, so anchor jumps land at the top of their section. */
+  html { scroll-padding-top: 0; }
+}
+
+@layer utilities {
+  h2,
+  .type-h2 {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+  }
+  h3,
+  .type-h3 {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  /* Labels are plain, not spaced-out capitals. */
+  .type-label {
+    letter-spacing: 0;
+  }
+  p,
+  .type-p {
+    line-height: 1.55;
+  }
+  /* The booking form (shared with links, which keeps its capitals): lowercase labels and a pill button here. */
+  form label > span:first-child {
+    letter-spacing: 0;
+    text-transform: lowercase;
+  }
+  form button[type="submit"] {
+    border-radius: 999px;
+    letter-spacing: 0;
+    text-transform: lowercase;
+  }
+}
+
+/* ------------------------------------------------------------------
    Motion
    ------------------------------------------------------------------ */
 @keyframes marquee {
@@ -13,6 +105,14 @@
 }
 .marquee-track {
   animation: marquee 40s linear infinite;
+}
+/* Ticker under the hero: one full loop every 30s. */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: ticker 30s linear infinite;
 }
 /* AI Powered card icons: gentle loops, faster while the card is hovered. */
 .aip-page {
@@ -53,6 +153,36 @@
   .aip-gear-b,
   .aip-ring { animation: none; }
   .aip-ring { opacity: 0; }
+}
+
+/* Ross's line: words rise in one by one once the section is on screen (RossLine sets data-shown). */
+.line-reveal .line-word,
+.line-reveal .line-sign {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.35em);
+  filter: blur(6px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 0.7s ease;
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.line-reveal .line-word { white-space: pre; }
+.line-reveal[data-shown] .line-word,
+.line-reveal[data-shown] .line-sign {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .line-reveal .line-word,
+  .line-reveal .line-sign {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
 }
 
 /* Speaking: timer line under the active format. */
@@ -189,6 +319,7 @@
 .parallax-fade-fast { opacity: calc(1 - var(--hero-y, 0) / 220); }
 
 @media (prefers-reduced-motion: reduce) {
+  .ticker-track,
   .marquee-track,
   .scroll-cue-dot { animation: none; }
   .hero-fade,

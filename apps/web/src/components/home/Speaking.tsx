@@ -1,7 +1,7 @@
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { Button } from "@rosspower/ui/components/Button";
-import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
+import { Button } from "@/components/ui/Button";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ArrowUpRight } from "@rosspower/ui/components/Icon";
 import { formats, speaking } from "@/content/home";
 import { bookLink } from "@/content/nav";
