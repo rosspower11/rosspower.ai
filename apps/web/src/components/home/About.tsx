@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { ScrollScale } from "@/components/ui/ScrollScale";
@@ -13,6 +14,9 @@ function Bio({ className }: { className?: string }) {
           {para}
         </p>
       ))}
+      <Link href="/bio" className="type-p-lg w-fit underline underline-offset-4 hover:no-underline">
+        Read Ross&apos;s full bio
+      </Link>
     </div>
   );
 }

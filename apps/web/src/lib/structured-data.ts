@@ -44,7 +44,7 @@ export const siteGraph = {
       "@type": "Organization",
       "@id": ids.aiPowered,
       name: "AI Powered",
-      url: "https://aipowered.xyz",
+      url: "https://www.aipowered.xyz/",
       founder: { "@id": ids.ross },
     },
   ],
