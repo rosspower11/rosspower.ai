@@ -21,10 +21,11 @@ export function Speaking() {
 
         <SpeakingFormats formats={formats} />
 
-        <Button href={bookLink.href} variant="ink" className="self-center">
-          Book for speaking
-          <ArrowUpRight />
-        </Button>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <Button href="/speaking" variant="outline">Explore speaking <ArrowUpRight /></Button>
+          <Button href="/workshops" variant="outline">Explore workshops <ArrowUpRight /></Button>
+          <Button href={bookLink.href} variant="ink">Book Ross <ArrowUpRight /></Button>
+        </div>
       </Container>
     </Section>
   );
