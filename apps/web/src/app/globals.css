@@ -114,47 +114,6 @@
 .ticker-track {
   animation: ticker 30s linear infinite;
 }
-/* AI Powered card icons: gentle loops, faster while the card is hovered. */
-.aip-page {
-  transform-box: view-box;
-  transform-origin: 24px 24px;
-  animation: aip-page 3.2s ease-in-out infinite;
-}
-@keyframes aip-page {
-  0%, 35% { transform: scaleX(1); opacity: 1; }
-  60% { transform: scaleX(-1); opacity: 0.6; }
-  61%, 100% { transform: scaleX(1); opacity: 0; }
-}
-.aip-gear-a,
-.aip-gear-b {
-  transform-box: fill-box;
-  transform-origin: center;
-}
-.aip-gear-a { animation: aip-spin 8s linear infinite; }
-.aip-gear-b { animation: aip-spin 5.8s linear infinite reverse; }
-@keyframes aip-spin { to { transform: rotate(360deg); } }
-.aip-ring {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: aip-ring 2.4s ease-out infinite;
-}
-.aip-ring-2 { animation-delay: 1.2s; }
-@keyframes aip-ring {
-  from { transform: scale(0.9); opacity: 0.7; }
-  to { transform: scale(2); opacity: 0; }
-}
-.aip-card:hover .aip-page,
-.aip-card:hover .aip-ring { animation-duration: 1.4s; }
-.aip-card:hover .aip-gear-a { animation-duration: 2.4s; }
-.aip-card:hover .aip-gear-b { animation-duration: 1.75s; }
-@media (prefers-reduced-motion: reduce) {
-  .aip-page,
-  .aip-gear-a,
-  .aip-gear-b,
-  .aip-ring { animation: none; }
-  .aip-ring { opacity: 0; }
-}
-
 /* Ross's line: words rise in one by one once the section is on screen (RossLine sets data-shown). */
 .line-reveal .line-word,
 .line-reveal .line-sign {
@@ -183,15 +142,6 @@
     filter: none;
     transition: none;
   }
-}
-
-/* Speaking: timer line under the active format. */
-@keyframes speaking-progress {
-  from { width: 0; }
-  to { width: 100%; }
-}
-.speaking-progress {
-  animation: speaking-progress linear forwards;
 }
 
 @keyframes scroll-cue {

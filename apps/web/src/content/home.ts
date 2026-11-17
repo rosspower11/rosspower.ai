@@ -27,7 +27,7 @@ export const heroQuote = {
     src: video("videos/hero/hero-home.mp4"),
     poster: asset("images/hero/hero-home-poster.jpg"),
   },
-  secondaryCta: { label: "See the talks", href: "/#talks" },
+  secondaryCta: { label: "See the keynotes", href: "/#keynotes" },
 };
 
 /** The previous hero (components/home/HeroSpotlight.tsx), kept so it can come back. */
@@ -49,53 +49,18 @@ export const stats = [
 export const about = {
   bio: [
     "Raised in an entrepreneurial family and always the one asking the questions, Ross is the founder of AI Powered, an educator and a speaker.",
-    "He takes complex ideas and makes them simple. Right now that means AI, for keynote crowds, workshop rooms and podcast audiences from Bali to London.",
+    "He takes complex ideas and makes them simple. Right now that means AI, for keynote crowds, boardrooms and podcast audiences from Bali to London.",
   ],
   photo: { src: asset("images/events/event-02.jpg"), alt: "Ross on stage with a microphone, pointing to the room" },
 };
 
-export const speaking = {
-  eyebrow: "Speaking",
-  intro:
-    "Keynotes, workshops and panels for founders, teams and leaders, from HR APAC Forum in Bali to AI for Private Equity in London.",
-};
-
-/** Formats carried over from the previous site. */
-// TODO(ross): approve the longer format descriptions.
-export const formats = [
-  {
-    length: "20–60 min",
-    title: "Keynote",
-    body: "A story-led talk that makes the room feel the shift, shaped around your audience and ending with a clear first step.",
-    photos: [
-      { src: asset("images/ross/dsc00011.jpg"), alt: "Ross presenting to a seated room in Bali" },
-      { src: asset("images/events/sam00290.jpg"), alt: "Ross speaking to a room" },
-    ],
+/** Keynotes (Andi's feedback, step 04): one wide photo over the heading, then the four keynote cards. */
+export const keynotesIntro = {
+  body: "Every keynote is shaped around your audience.",
+  photo: {
+    src: asset("images/events/speaker-wide.jpg"),
+    alt: "Ross on stage in Seminyak with a microphone, in front of a projector screen",
   },
-  {
-    length: "90 min – ½ day",
-    title: "Workshop",
-    body: "Your team opens their laptops and builds something real with Ross, leaving with skills they can use the same day.",
-    photos: [
-      { src: asset("images/events/sam00373.jpg"), alt: "Ross running a workshop for a full room of laptops" },
-      { src: asset("images/ross/dsc00028.jpg"), alt: "Ross presenting beside a projector screen" },
-    ],
-  },
-  {
-    length: "Q&A",
-    title: "Fireside or panel",
-    body: "Candid, practical talk on where AI actually helps. Ross hosts, moderates or joins the panel, minus the hype and jargon.",
-    photos: [
-      { src: asset("images/events/sam00104.jpg"), alt: "Ross talking with a group in front of the room" },
-      { src: asset("images/events/event-09.jpg"), alt: "Ross walking the room during a session in a bamboo hall" },
-    ],
-  },
-];
-
-/** "Ready to have a chat?": copy from the build pack, "Section copy: 04. Talks and Podcast". */
-export const talksIntro = {
-  eyebrow: "Talks",
-  body: "On your stage, on your panel or on your podcast. Pick the conversation your audience needs and Ross will shape it around them.",
 };
 
 export type Talk = {
@@ -113,14 +78,14 @@ export type Talk = {
   card: string;
   /** The pop-out's intro. */
   body: string;
-  /** "How the talk runs" and "the room walks away with" (Andi's build guide, step 09). */
+  /** "How the keynote runs" and "the room walks away with" (Andi's build guide, step 09). */
   runs: string[];
   walksAway: string;
 };
 
 /**
  * The four keynotes, in this order (Andi's build guide, steps 08 and 09). Each card opens its pop-out;
- * "book this talk" there goes to /contact?talk=<slug>, which picks Keynote and names the talk.
+ * "book ross" there goes to /contact?talk=<slug>, which picks Keynote and names the keynote.
  */
 export const talks: Talk[] = [
   {
@@ -193,47 +158,31 @@ export const talks: Talk[] = [
   },
 ];
 
-/** "Past speeches": copy from the build pack, "Section copy: 05. Past Speeches". Only these three events. */
-export const pastEvents = {
-  eyebrow: "Past events",
-  body: "The rooms Ross has already filled, from London to Bali.",
-};
-
-// HR APAC uses its own keynote photo. TODO(ross): pe-london.jpg (AI for Private Equity) isn't in Drive yet,
-// so London shows a stand-in photo from a Bali workshop. Productize uses a Productize Yourself event photo.
+/** Past speeches (Andi's feedback, step 06): two tiles. */
 export const events = [
   {
     title: "HR APAC Forum",
-    role: "Keynote, The four secrets of an AI-ready team",
-    meta: "Bali, September 2026",
+    meta: "Keynote · Bali, Sept 2026",
     src: asset("images/events/hr-apac-forum.jpg"),
     alt: "Ross giving his keynote at HR APAC Forum in Bali",
   },
   {
-    title: "AI for Private Equity",
-    role: "Host, keynote and panel moderator",
-    meta: "London, June 2026",
-    src: asset("images/events/sam00408.jpg"),
-    alt: "Ross hosting AI for Private Equity in London",
-  },
-  {
     title: "Productize Yourself tour",
-    role: "Four events, 200+ people in three weeks",
-    meta: "Bali, early 2026",
-    src: asset("images/events/event-02.jpg"),
-    alt: "A packed room at the Productize Yourself tour in Bali",
+    meta: "Four events, 200+ people",
+    src: asset("images/events/productize-yourself.jpg"),
+    alt: "Ross speaking with a microphone at the Productize Yourself tour in Bali",
   },
 ];
 
-/** Chats: Ross as a podcast guest (Andi's build guide, step 10). */
-export const chats = {
-  label: "hosting a podcast?",
-  body: "Practical AI your listeners can use the same day, founder stories from Bali to London, and real numbers from the rooms he runs. These are the conversations Ross loves having.",
+/** Podcast: Ross as a podcast guest (Andi's feedback, step 05). */
+export const podcast = {
+  line: "Ross is ready to have a chat.",
+  body: "Practical AI your listeners can use the same day, founder stories from Bali to London, and real numbers from the rooms he runs.",
   cta: { label: "book ross for your podcast", href: "/contact?type=podcast" },
   topics: [
     "AI and ADHD: using AI to work with the way your brain works",
-    "Growing up at Ecademy, the network his parents built in 1998, and what it taught him about tech hype",
-    "Starting again at 30: from product roles to an AI education business in Bali",
+    "Growing up at Ecademy and what it taught him about tech hype",
+    "Starting again at 30, from product roles to AI education in Bali",
     "Why people who don't code may get the most out of AI",
     "Taste: the one skill AI can't do for you",
     "Keeping teams human while AI takes on more of the work",
@@ -243,43 +192,12 @@ export const chats = {
 /** The ticker under the hero (Andi's build guide, step 05), repeated to fill the loop. */
 export const ticker = ["making ai simple", "founder of ai powered", "speaker", "educator"];
 
-export const aiPowered = {
-  eyebrow: "Ross's company",
-  body: "AI Powered helps people and organisations adapt to the changing world of work, at the intersection of AI, work and human connection.",
-  /** Descriptions and links from aipowered.xyz (public/llms.txt in aipowered-website). */
-  pillars: [
-    {
-      title: "Programmes",
-      body: "that teach you",
-      desc: "Live AI programmes for founders and teams, from the six-week Claude Programme to AI Future Leaders for organisations of 200+.",
-      href: "https://aipowered.xyz/founders/claude-programme",
-      image: { src: asset("images/events/sam00373.jpg"), alt: "Ross running a workshop for a full room of laptops" },
-    },
-    {
-      title: "Solutions",
-      body: "built with you",
-      desc: "From an AI audit and strategy to a full AI-powered business or team operating system, all set up in your name and yours to keep.",
-      href: "https://aipowered.xyz/",
-      image: { src: asset("images/ross/dsc00028.jpg"), alt: "Ross presenting beside a projector screen" },
-    },
-    {
-      title: "Events",
-      body: "where it all comes alive",
-      desc: "Live AI workshops and community sessions in Bali and online, where people build together in the room.",
-      href: "https://aipowered.xyz/events",
-      image: { src: asset("images/events/event-09.jpg"), alt: "Ross walking the room during a session in a bamboo hall" },
-    },
-  ],
-  closing: "AI-powered, not AI-replaced.",
-};
-
 /**
  * Student quotes from AI Powered case studies (aipowered-website src/lib/page-content/stories.ts),
  * with the portraits used there. Quotes are verbatim; a leading "…" marks the ones that start mid-sentence.
  */
 // TODO(ross): confirm these quotes and photos can be used on rosspower.ai as well as aipowered.xyz.
 export const quotes = {
-  eyebrow: "Success stories",
   // The number matches the "Founders trained" stat.
   heading: { plain: "130+ founders trained by Ross,", accent: "in their own words." },
   items: [
@@ -340,10 +258,8 @@ export const quotes = {
   ],
 };
 
-
 /** "Work with ross": the closing call to action above the footer, sending people to AI Powered (from Andi's board). */
 export const work = {
-  pill: "work with ross",
   heading: { plain: "ai, explained", accent: "for non-techies." },
   line: "AI-powered, not AI-replaced.",
   cta: { label: "work with ross", href: "https://aipowered.xyz" },

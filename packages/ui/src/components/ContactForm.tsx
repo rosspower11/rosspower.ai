@@ -29,6 +29,8 @@ type ContactFormProps = {
   thanks: { title: string; body: string };
   /** Talks that ?talk=<slug> can name: it picks the talk's kind (else Keynote) and starts the message with "Talk: <title>". */
   talks?: readonly { slug: string; title: string; kind?: string }[];
+  /** The enquiry options to offer; each must be one of `enquiryTypes`, which the API accepts. Defaults to all of them. */
+  types?: readonly string[];
 };
 
 /**
@@ -37,7 +39,7 @@ type ContactFormProps = {
  * Sized by its own width, not the screen (container queries): in a narrow column (phones, the links page)
  * it keeps 20px padding and one field per row; from 512px wide it gets 28px padding and two fields across.
  */
-export function ContactForm({ source, thanks, talks }: ContactFormProps) {
+export function ContactForm({ source, thanks, talks, types = enquiryTypes }: ContactFormProps) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
@@ -50,7 +52,7 @@ export function ContactForm({ source, thanks, talks }: ContactFormProps) {
     const query = new URLSearchParams(window.location.search);
     const select = form.elements.namedItem("type") as HTMLSelectElement | null;
     const message = form.elements.namedItem("message") as HTMLTextAreaElement | null;
-    const options: readonly string[] = enquiryTypes;
+    const options = types;
     const type = options.find((o) => o.toLowerCase() === query.get("type")?.toLowerCase());
     if (type && select) select.value = type;
     const talk = talks?.find((t) => t.slug === query.get("talk"));
@@ -58,7 +60,7 @@ export function ContactForm({ source, thanks, talks }: ContactFormProps) {
       if (select) select.value = talk.kind && options.includes(talk.kind) ? talk.kind : "Keynote";
       if (message && !message.value) message.value = `Talk: ${talk.title}\n\n`;
     }
-  }, [talks]);
+  }, [talks, types]);
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -121,7 +123,7 @@ export function ContactForm({ source, thanks, talks }: ContactFormProps) {
               <option value="" disabled>
                 Choose one
               </option>
-              {enquiryTypes.map((t) => (
+              {types.map((t) => (
                 <option key={t}>{t}</option>
               ))}
             </select>

@@ -4,7 +4,7 @@ import { HeroVideo } from "./HeroVideo";
 
 /**
  * Homepage hero, as on Andi's board: the event video in a rounded card under a forest wash, with the
- * Ross Power logo in cream, at the bottom, centred. Book ross and see the talks live in the header.
+ * Ross Power logo in cream, at the bottom, centred. Book ross lives in the header.
  * The earlier heroes are kept in HeroQuote.tsx and HeroSpotlight.tsx.
  */
 export function Hero() {

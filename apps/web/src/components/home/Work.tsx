@@ -1,13 +1,13 @@
 import { buttonClass } from "@/components/ui/Button";
 import { work } from "@/content/home";
 
-/** "Work with ross" (from Andi's board): one forest panel above the footer that sends people to AI Powered. */
+/** "Work with ross" (from Andi's board): one forest panel above the footer that sends people to AI Powered.
+ * It replaces the AI Powered section (Andi's feedback, step 08). */
 export function Work() {
   return (
     <section id="work" aria-labelledby="work-title" className="mx-auto w-full max-w-site px-(--section-px) pt-(--section-py) pb-16">
       <div className="flex flex-col items-start gap-8 rounded-panel bg-ink p-8 text-cream laptop:flex-row laptop:items-end laptop:justify-between laptop:p-20">
         <div className="flex flex-col items-start gap-6">
-          <span className="rounded-full bg-sage px-4 py-1.5 text-[15px] font-semibold text-ink">{work.pill}</span>
           <h2 id="work-title" className="text-[54px] laptop:text-[96px]">
             {work.heading.plain} <span className="voice">{work.heading.accent}</span>
           </h2>

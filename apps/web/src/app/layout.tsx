@@ -35,7 +35,7 @@ const bricolage = Bricolage_Grotesque({
 /** Homepage SEO, from the build pack (00. START HERE). */
 const title = "Ross Power | AI speaker, educator and founder of AI Powered";
 const description =
-  "Book Ross Power, the AI speaker who makes AI simple. Keynotes, workshops, panels and podcasts for founders, teams and leaders, from Bali to London.";
+  "Book Ross Power, the AI speaker who makes AI simple. Keynotes and podcasts for founders, teams and leaders, from Bali to London.";
 
 /** Share image: a still from the HR APAC keynote with the name on it (1200×630, R2 via /assets). */
 const shareImage = {

@@ -34,7 +34,7 @@ export function SiteHeader() {
 
   return (
     // Full width, flat on the page, not fixed (scrolls away with it). Ross's roles on the left,
-    // see the talks and book ross on the right. Phones: the menu button on the left instead (the roles are in the menu).
+    // book ross on the right. Phones: the menu button on the left instead (the roles are in the menu).
     <header className="w-full bg-cream text-ink">
       <div className="mx-auto flex w-full max-w-site items-center justify-between gap-4 px-(--section-px) pt-4 pb-2 tablet:pt-[18px] tablet:pb-2.5">
         <button
@@ -63,17 +63,9 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <div className="flex items-center justify-end gap-2">
-          {/* Tablet up only: phones have no room, and the talks are in the menu there. */}
-          <span className="hidden tablet:contents">
-            <Button href="/#talks" variant="outline" size="sm">
-              see the talks
-            </Button>
-          </span>
-          <Button href={bookLink.href} variant="ink" size="sm">
-            {bookLink.label}
-          </Button>
-        </div>
+        <Button href={bookLink.href} variant="ink" size="sm">
+          {bookLink.label}
+        </Button>
       </div>
 
       <dialog
