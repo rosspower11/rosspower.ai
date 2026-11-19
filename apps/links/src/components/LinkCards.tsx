@@ -45,7 +45,7 @@ export function FeatureCard({ link }: { link: Live<FeatureLink> }) {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(16,19,23,0.3) 0%, rgba(16,19,23,0) 28%, rgba(16,19,23,0.35) 52%, rgba(16,19,23,0.92) 100%)",
+            "linear-gradient(180deg, rgba(23,51,42,0.3) 0%, rgba(23,51,42,0) 28%, rgba(23,51,42,0.35) 52%, rgba(23,51,42,0.92) 100%)",
         }}
       />
       <div className="relative flex items-start justify-between gap-3">
@@ -55,7 +55,7 @@ export function FeatureCard({ link }: { link: Live<FeatureLink> }) {
         <GlassArrow />
       </div>
       <div className="relative flex flex-col gap-1.5">
-        <h3 className="text-[24px] leading-[1.1] font-medium tracking-[-0.02em]">{link.title}</h3>
+        <h3 className="text-[26px] leading-[1] font-extrabold tracking-[-0.03em]">{link.title}</h3>
         <p className="text-[14px] leading-[1.45] text-cream/80">{link.desc}</p>
       </div>
     </a>
@@ -77,7 +77,7 @@ export function TileCard({ link }: { link: Live<TileLink> }) {
         sizes="220px"
         className="object-cover object-[50%_30%] transition-transform duration-700 ease-out group-hover:scale-[1.05]"
       />
-      <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(16,19,23,0.55))]" />
+      <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(23,51,42,0.55))]" />
       <span className="relative flex w-fit max-w-full items-center gap-2 rounded-[14px] border border-cream/25 bg-ink/35 py-2 pr-2 pl-3 backdrop-blur-md">
         <span className="text-[13px] leading-[1.25] font-semibold">{link.title}</span>
         <ArrowUpRight className="size-4 shrink-0" />
@@ -92,13 +92,13 @@ export function RowCard({ link }: { link: Live<RowLink> }) {
     <a
       href={link.href}
       {...linkProps(link.href)}
-      className="group flex items-center gap-4 rounded-card border border-ink/10 bg-card p-3 pr-4 transition-[border-color,box-shadow] duration-300 hover:border-ink/25 hover:shadow-[0_10px_30px_rgba(16,19,23,0.08)]"
+      className="group flex items-center gap-4 rounded-card border border-ink/10 bg-card p-3 pr-4 transition-[border-color,box-shadow] duration-300 hover:border-ink/25 hover:shadow-[0_10px_30px_rgba(23,51,42,0.08)]"
     >
       <span className="relative size-[72px] shrink-0 overflow-hidden rounded-[16px] bg-stone">
         <Image src={link.image.src} alt={link.image.alt} fill sizes="72px" className="object-cover" />
       </span>
       <span className="flex min-w-0 flex-1 flex-col gap-1">
-        <span className="text-[16px] leading-[1.25] font-bold tracking-[-0.01em]">{link.title}</span>
+        <span className="text-[17px] leading-[1.2] font-extrabold tracking-[-0.02em]">{link.title}</span>
         <span className="text-[13px] leading-[1.4] text-ink/65">{link.desc}</span>
         <span className="mt-0.5 flex items-center gap-1.5 text-[12px] text-ink/45">
           <LinkChain />
@@ -120,12 +120,12 @@ export function ToolButton({ title, href, affiliate }: { title: ToolName; href: 
       href={href}
       target="_blank"
       rel={affiliate ? "noopener noreferrer sponsored" : "noopener noreferrer"}
-      className="group flex items-center gap-4 rounded-card border border-ink/10 bg-card p-3 pr-4 transition-[border-color,box-shadow] duration-300 hover:border-ink/25 hover:shadow-[0_10px_30px_rgba(16,19,23,0.08)]"
+      className="group flex items-center gap-4 rounded-card border border-ink/10 bg-card p-3 pr-4 transition-[border-color,box-shadow] duration-300 hover:border-ink/25 hover:shadow-[0_10px_30px_rgba(23,51,42,0.08)]"
     >
       <span className="flex size-11 shrink-0 items-center justify-center rounded-[14px] border border-ink/10 bg-white">
         <Logo className="size-6" />
       </span>
-      <span className="flex-1 text-[16px] leading-[1.25] font-bold tracking-[-0.01em]">{title}</span>
+      <span className="flex-1 text-[17px] leading-[1.2] font-extrabold tracking-[-0.02em]">{title}</span>
       <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-ink/15 transition-colors group-hover:border-ink group-hover:bg-ink group-hover:text-cream">
         <ArrowUpRight />
       </span>
@@ -150,7 +150,7 @@ export function SocialTile({ label, handle, href, followers }: SocialTileProps) 
       href={href}
       {...external}
       aria-label={`${label}: ${handle}, ${followers} followers`}
-      className="group flex aspect-square flex-col justify-between rounded-card border border-ink/10 bg-card p-4 transition-[border-color,box-shadow] duration-300 hover:border-ink/25 hover:shadow-[0_10px_30px_rgba(16,19,23,0.08)]"
+      className="group flex aspect-square flex-col justify-between rounded-card border border-ink/10 bg-card p-4 transition-[border-color,box-shadow] duration-300 hover:border-ink/25 hover:shadow-[0_10px_30px_rgba(23,51,42,0.08)]"
     >
       <span className="flex items-start justify-between">
         <span className="flex size-11 items-center justify-center rounded-full bg-ink text-cream">
@@ -161,7 +161,7 @@ export function SocialTile({ label, handle, href, followers }: SocialTileProps) 
         </span>
       </span>
       <span className="flex flex-col">
-        <span className="font-serif text-[34px] leading-none">{followers}</span>
+        <span className="text-[36px] leading-none font-extrabold tracking-[-0.05em] tabular-nums">{followers}</span>
         <span className="mt-1.5 text-[13px] font-semibold">{label}</span>
         <span className="text-[12px] text-ink/55">{handle}</span>
       </span>

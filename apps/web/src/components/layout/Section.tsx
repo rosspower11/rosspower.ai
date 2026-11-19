@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef, ElementType } from "react";
 import { cn } from "@rosspower/ui/lib/cn";
 
-// --voice colours the second half of titles (.voice): wash reads on ink, mid on light grounds.
+// The italic accent words in titles (.voice): mid blue on light grounds, wash on dark ones (as on aipowered.xyz).
 const tones = {
   cream: "bg-cream text-ink [--voice:var(--color-mid)]",
   ice: "bg-ice text-ink [--voice:var(--color-mid)]",
@@ -9,6 +9,7 @@ const tones = {
   sand: "bg-sand text-ink [--voice:var(--color-mid)]",
   wash: "bg-wash text-ink [--voice:var(--color-mid)]",
   ink: "bg-ink text-cream [--voice:var(--color-wash)]",
+  pine: "bg-pine text-cream [--voice:var(--color-wash)]",
 } as const;
 
 export type SectionTone = keyof typeof tones;

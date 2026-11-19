@@ -1,16 +1,33 @@
 import { asset, video } from "@rosspower/ui/lib/asset";
 
 /** The homepage hero: Ross's headline over the event video (like the aipowered.xyz hero). */
+/** The homepage hero, as on Andi's board: the Ross Power logo over the event video, in a rounded card. */
 export const hero = {
-  eyebrow: "Founder · Speaker · Educator",
-  /** The H1, in two lines; the second takes the italic accent. */
-  headline: ["The only limitation", "is your imagination."],
+  /** The H1's text (the logo shows it). */
+  name: "Ross Power",
   /** The aipowered.xyz hero video (Ross at his events), re-encoded muted at 1600px for this site. */
   video: {
     src: video("videos/hero/hero-home.mp4"),
     poster: asset("images/hero/hero-home-poster.jpg"),
   },
-  secondaryCta: { label: "See the talks", href: "/#talks" },
+};
+
+/** Ross's line, the band after the ticker (from Andi's board). */
+export const rossLine = {
+  quote: "“The only limitation is your imagination.”",
+  signature: "ross power",
+};
+
+/** The previous hero (components/home/HeroQuote.tsx), kept so it can come back. */
+export const heroQuote = {
+  eyebrow: "Founder · Speaker · Educator",
+  /** The H1, in two lines; the second takes the italic accent. */
+  headline: ["The only limitation", "is your imagination."],
+  video: {
+    src: video("videos/hero/hero-home.mp4"),
+    poster: asset("images/hero/hero-home-poster.jpg"),
+  },
+  secondaryCta: { label: "See the keynotes", href: "/#keynotes" },
 };
 
 /** The previous hero (components/home/HeroSpotlight.tsx), kept so it can come back. */
@@ -32,149 +49,148 @@ export const stats = [
 export const about = {
   bio: [
     "Raised in an entrepreneurial family and always the one asking the questions, Ross is the founder of AI Powered, an educator and a speaker.",
-    "He takes complex ideas and makes them simple. Right now that means AI, for keynote crowds, workshop rooms and podcast audiences from Bali to London.",
+    "He takes complex ideas and makes them simple. Right now that means AI, for keynote crowds, boardrooms and podcast audiences from Bali to London.",
   ],
-  photo: { src: asset("images/ross/dsc00011.jpg"), alt: "Ross presenting to a seated room in Bali" },
+  photo: { src: asset("images/events/event-02.jpg"), alt: "Ross on stage with a microphone, pointing to the room" },
 };
 
-export const speaking = {
-  eyebrow: "Speaking",
-  intro:
-    "Keynotes, workshops and panels for founders, teams and leaders, from HR APAC Forum in Bali to AI for Private Equity in London.",
+/** Keynotes (Andi's feedback, step 04): one wide photo over the heading, then the four keynote cards. */
+export const keynotesIntro = {
+  body: "Every keynote is shaped around your audience.",
+  photo: {
+    src: asset("images/events/speaker-wide.jpg"),
+    alt: "Ross on stage in Seminyak with a microphone, in front of a projector screen",
+  },
 };
 
-/** Formats carried over from the previous site. */
-// TODO(ross): approve the longer format descriptions.
-export const formats = [
-  {
-    length: "20–60 min",
-    title: "Keynote",
-    body: "A story-led talk that makes the room feel the shift, shaped around your audience and ending with a clear first step.",
-    photos: [
-      { src: asset("images/events/event-02.jpg"), alt: "Ross on stage with a microphone, pointing to the room" },
-      { src: asset("images/events/sam00290.jpg"), alt: "Ross speaking to a room" },
-    ],
-  },
-  {
-    length: "90 min – ½ day",
-    title: "Workshop",
-    body: "Your team opens their laptops and builds something real with Ross, leaving with skills they can use the same day.",
-    photos: [
-      { src: asset("images/events/sam00373.jpg"), alt: "Ross running a workshop for a full room of laptops" },
-      { src: asset("images/ross/dsc00028.jpg"), alt: "Ross presenting beside a projector screen" },
-    ],
-  },
-  {
-    length: "Q&A",
-    title: "Fireside or panel",
-    body: "Candid, practical talk on where AI actually helps. Ross hosts, moderates or joins the panel, minus the hype and jargon.",
-    photos: [
-      { src: asset("images/events/sam00104.jpg"), alt: "Ross talking with a group in front of the room" },
-      { src: asset("images/events/event-09.jpg"), alt: "Ross walking the room during a session in a bamboo hall" },
-    ],
-  },
-];
-
-/** "Ready to have a chat?": copy from the build pack, "Section copy: 04. Talks and Podcast". */
-export const talksIntro = {
-  eyebrow: "Talks",
-  body: "On your stage, on your panel or on your podcast. Pick the conversation your audience needs and Ross will shape it around them.",
+export type Talk = {
+  slug: string;
+  /** For the booking form: ?talk=<slug> picks this enquiry type. */
+  kind: string;
+  /** The pill on the card and in the pop-out (lowercase, as on Andi's board). */
+  tag: string;
+  title: string;
+  /** The words set in Instrument Serif italic in the pop-out title. */
+  accent: string;
+  /** How long it runs, shown in the pop-out's pill. */
+  length: string;
+  /** The one line on the card. */
+  card: string;
+  /** The pop-out's intro. */
+  body: string;
+  /** "How the keynote runs" and "the room walks away with" (Andi's build guide, step 09). */
+  runs: string[];
+  walksAway: string;
 };
 
-/** The talks, in this order (keynotes first). Every "book this talk" opens the enquiry form. */
-export const talks = [
+/**
+ * The four keynotes, in this order (Andi's build guide, steps 08 and 09). Each card opens its pop-out;
+ * "book ross" there goes to /contact?talk=<slug>, which picks Keynote and names the keynote.
+ */
+export const talks: Talk[] = [
   {
+    slug: "imagination",
     kind: "Keynote",
-    title: "Three Intelligences: human, artificial and divine",
-    body: "AI gives us back time, and the real question is what we do with it. Your audience leaves with a simple way to work backwards from the outcome they want, and a clear order to put things in: peace, then people, then tools.",
-  },
-  {
-    kind: "Keynote",
-    title: "The Humans Decide",
-    body: "Organisations buy the AI tools long before anyone works out how their teams will use them. Leaders leave knowing why adoption starts with people, and how to close that gap in their own teams.",
-  },
-  {
-    kind: "Keynote",
+    tag: "signature keynote",
     title: "The Only Limitation Is Your Imagination",
+    accent: "Your Imagination",
+    length: "20 to 60 min",
+    card: "With AI, what you can build is no longer limited by your skills, your budget or your team's size.",
     body: "With AI, what you can build is no longer limited by your skills, your budget or your team's size. Your audience leaves seeing what is now possible for them, and with the confidence to start on the idea they've been putting off.",
+    runs: [
+      "What one person can now build in a week that used to take a team",
+      "Real examples from founders Ross has trained",
+      "Where the limits are now: taste, focus and the questions you ask",
+      "One thing to try on Monday",
+    ],
+    walksAway: "A new sense of what is possible for them, and one concrete first step.",
   },
   {
-    kind: "Executive briefing",
-    title: "Context: what the human brain can teach us about AI",
+    slug: "humans-decide",
+    kind: "Keynote",
+    tag: "keynote",
+    title: "The Humans Decide",
+    accent: "Decide",
+    length: "20 to 60 min",
+    card: "Organisations buy the AI tools long before anyone works out how their teams will use them.",
+    body: "Organisations buy the AI tools long before anyone works out how their teams will use them. Leaders leave knowing why adoption starts with people, and how to close that gap in their own teams.",
+    runs: [
+      "Why organisations buy AI tools before they know how teams will use them",
+      "What adoption looks like when it starts with people",
+      "Where the gap shows up in real teams",
+      "The first three moves for a leadership team",
+    ],
+    walksAway: "A people-first plan for AI adoption they can start this quarter.",
+  },
+  {
+    slug: "three-intelligences",
+    kind: "Keynote",
+    tag: "keynote",
+    title: "Three Intelligences",
+    accent: "Intelligences",
+    length: "20 to 60 min",
+    card: "Human, artificial and divine. AI gives us back time, and the real question is what we do with it.",
+    body: "AI gives us back time, and the real question is what we do with it. Your audience leaves with a simple way to work backwards from the outcome they want, and a clear order to put things in: peace, then people, then tools.",
+    runs: [
+      "Human, artificial and divine intelligence",
+      "What AI gives back: time",
+      "Working backwards from the outcome you want",
+      "The order: peace, then people, then tools",
+    ],
+    walksAway: "A simple way to decide what to do with the time AI gives back.",
+  },
+  {
+    slug: "context",
+    kind: "Keynote",
+    tag: "keynote",
+    title: "Context",
+    accent: "Context",
+    length: "20 to 60 min",
+    card: "What the human brain can teach us about AI, explained in plain English.",
     body: "The brain is a context machine, and most teams build their AI on sand. Your room leaves with the foundations of using AI well, explained in plain English.",
-  },
-  {
-    kind: "Workshop",
-    title: "From Chat to Command",
-    body: "The six levels of working with AI, from Chat to Command, with live builds the room follows along with. Everyone leaves with a personal operating system they can use the next day.",
+    runs: [
+      "The brain as a context machine",
+      "Why most teams build their AI on sand",
+      "The foundations of using AI well, in plain English",
+      "What to set up first",
+    ],
+    walksAway: "The foundations of using AI well, explained so non-technical people can act on them.",
   },
 ];
 
-/** "Past speeches": copy from the build pack, "Section copy: 05. Past Speeches". Only these three events. */
-export const pastEvents = {
-  eyebrow: "Past events",
-  body: "The rooms Ross has already filled, from London to Bali.",
-};
-
-// HR APAC uses its own keynote photo. TODO(ross): pe-london.jpg (AI for Private Equity) isn't in Drive yet,
-// so London shows a stand-in photo from a Bali workshop. Productize uses a Productize Yourself event photo.
+/** Past speeches (Andi's feedback, step 06): two tiles. */
 export const events = [
   {
     title: "HR APAC Forum",
-    role: "Keynote, The four secrets of an AI-ready team",
-    meta: "Bali, September 2026",
+    meta: "Keynote · Bali, Sept 2026",
     src: asset("images/events/hr-apac-forum.jpg"),
     alt: "Ross giving his keynote at HR APAC Forum in Bali",
   },
   {
-    title: "AI for Private Equity",
-    role: "Host, keynote and panel moderator",
-    meta: "London, June 2026",
-    src: asset("images/events/sam00408.jpg"),
-    alt: "Ross hosting AI for Private Equity in London",
-  },
-  {
     title: "Productize Yourself tour",
-    role: "Four events, 200+ people in three weeks",
-    meta: "Bali, early 2026",
-    src: asset("images/events/event-02.jpg"),
-    alt: "A packed room at the Productize Yourself tour in Bali",
+    meta: "Four events, 200+ people",
+    src: asset("images/events/productize-yourself.jpg"),
+    alt: "Ross speaking with a microphone at the Productize Yourself tour in Bali",
   },
 ];
 
+/** Podcast: Ross as a podcast guest (Andi's feedback, step 05). */
 export const podcast = {
+  line: "Ross is ready to have a chat.",
   body: "Practical AI your listeners can use the same day, founder stories from Bali to London, and real numbers from the rooms he runs.",
+  cta: { label: "Book Ross for your podcast", href: "/contact?type=podcast" },
+  topics: [
+    "AI and ADHD: using AI to work with the way your brain works",
+    "Growing up at Ecademy and what it taught him about tech hype",
+    "Starting again at 30, from product roles to AI education in Bali",
+    "Why people who don't code may get the most out of AI",
+    "Taste: the one skill AI can't do for you",
+    "Keeping teams human while AI takes on more of the work",
+  ],
 };
 
-export const aiPowered = {
-  eyebrow: "Ross's company",
-  body: "AI Powered helps people and organisations adapt to the changing world of work, at the intersection of AI, work and human connection.",
-  /** Descriptions and links from aipowered.xyz (public/llms.txt in aipowered-website). */
-  pillars: [
-    {
-      title: "Programmes",
-      body: "that teach you",
-      desc: "Live AI programmes for founders and teams, from the six-week Claude Programme to AI Future Leaders for organisations of 200+.",
-      href: "https://www.aipowered.xyz/founders/claude-programme",
-      image: { src: asset("images/events/sam00373.jpg"), alt: "Ross running a workshop for a full room of laptops" },
-    },
-    {
-      title: "Solutions",
-      body: "built with you",
-      desc: "From an AI audit and strategy to a full AI-powered business or team operating system, all set up in your name and yours to keep.",
-      href: "https://www.aipowered.xyz/",
-      image: { src: asset("images/ross/dsc00028.jpg"), alt: "Ross presenting beside a projector screen" },
-    },
-    {
-      title: "Events",
-      body: "where it all comes alive",
-      desc: "Live AI workshops and community sessions in Bali and online, where people build together in the room.",
-      href: "https://www.aipowered.xyz/events",
-      image: { src: asset("images/events/event-09.jpg"), alt: "Ross walking the room during a session in a bamboo hall" },
-    },
-  ],
-  closing: "AI-powered, not AI-replaced.",
-};
+/** The ticker under the hero (Andi's build guide, step 05), repeated to fill the loop. */
+export const ticker = ["making ai simple", "founder of ai powered", "speaker", "educator"];
 
 /**
  * Student quotes from AI Powered case studies (aipowered-website src/lib/page-content/stories.ts),
@@ -182,8 +198,8 @@ export const aiPowered = {
  */
 // TODO(ross): confirm these quotes and photos can be used on rosspower.ai as well as aipowered.xyz.
 export const quotes = {
-  eyebrow: "Success stories",
-  intro: "Founders, coaches and consultants who learned AI with Ross, in their own words.",
+  // The number matches the "Founders trained" stat.
+  heading: { plain: "130+ founders trained by Ross,", accent: "in their own words." },
   items: [
     {
       quote: "…he's very good at making AI accessible.",
@@ -242,3 +258,9 @@ export const quotes = {
   ],
 };
 
+/** "Work with ross": the closing call to action above the footer, sending people to AI Powered (from Andi's board). */
+export const work = {
+  heading: { plain: "ai, explained", accent: "for non-techies." },
+  line: "AI-powered, not AI-replaced.",
+  cta: { label: "Work with Ross", href: "https://www.aipowered.xyz/" },
+};
