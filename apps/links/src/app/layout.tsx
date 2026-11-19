@@ -1,15 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif } from "next/font/google";
+import { Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
 import { asset } from "@rosspower/ui/lib/asset";
 import { profile } from "@/content/links";
 import "./globals.css";
 
-/** Titles and the italic "voice" accents. Body is Helvetica (system), as on rosspower.ai. */
+/** The italic "voice" accents and the follower counts. */
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
+});
+
+/** Everything else: titles, body, buttons and labels, as on rosspower.ai. */
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  weight: ["400", "600", "800"],
 });
 
 const title = "Ross Power | Links";
@@ -45,12 +52,12 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#eee9df",
+  themeColor: "#f1ece1",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" className={instrumentSerif.variable}>
+    <html lang="en-GB" className={`${instrumentSerif.variable} ${bricolage.variable}`}>
       {/* Phones: the page is the column. 480px and up: the column floats on sand. */}
       <body className="bg-cream min-[480px]:bg-sand">{children}</body>
     </html>
