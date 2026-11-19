@@ -4,18 +4,16 @@ import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { formats, talks } from "@/content/home";
+import { Button } from "@/components/ui/Button";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { bookLink } from "@/content/nav";
+import { workshopsPage } from "@/content/workshops";
 import { workshopsGraph } from "@/lib/structured-data";
-import { Button } from "@rosspower/ui/components/Button";
-import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
 import { ArrowUpRight } from "@rosspower/ui/components/Icon";
 import { asset } from "@rosspower/ui/lib/asset";
 
-const workshop = formats[1];
-const workshopTalk = talks.find((talk) => talk.kind === "Workshop");
-const title = "Hands-on AI workshops for teams | Ross Power";
-const description = "Explore Ross Power's hands-on AI workshop format for teams and leaders, including From Chat to Command. Enquire about a workshop for your team.";
+const { title, description } = workshopsPage.meta;
+const { format, theme } = workshopsPage;
 const shareImage = {
   url: asset("images/og/og-ross-power.jpg"),
   width: 1200,
@@ -31,50 +29,89 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description, images: [shareImage] },
 };
 
+/** /workshops: the hands-on workshop format and its theme, in the homepage's look. */
 export default function WorkshopsPage() {
+  const at = theme.title.indexOf(theme.accent);
   return (
     <>
       <JsonLd data={workshopsGraph} />
-      <Section aria-labelledby="workshops-page-title">
-        <Container className="grid gap-10 laptop:grid-cols-12 laptop:gap-x-10">
-          <div className="flex flex-col gap-6 laptop:col-span-6">
-            <Eyebrow>Workshops</Eyebrow>
-            <h1 id="workshops-page-title" className="type-h2 normal-case">
+
+      {/* Laptop up: title and intro left, workshop photo right. Phones: stacked. */}
+      <Section aria-labelledby="workshops-title">
+        <Container className="grid gap-10 laptop:grid-cols-12 laptop:items-center laptop:gap-x-10">
+          <div className="flex flex-col items-start gap-6 laptop:col-span-6">
+            <Eyebrow>{workshopsPage.eyebrow}</Eyebrow>
+            <h1 id="workshops-title" className="type-h2 normal-case">
               Hands-on AI workshops for <span className="voice">teams and leaders</span>
             </h1>
-            <p className="type-p-lg measure">{workshop.body}</p>
-            <Button href={bookLink.href} variant="ink" className="self-start">Enquire about a workshop <ArrowUpRight /></Button>
+            <p className="type-p-lg measure">{workshopsPage.intro}</p>
+            <Button href={bookLink.href} variant="ink">
+              Enquire about a workshop
+            </Button>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-panel bg-stone laptop:col-span-5 laptop:col-start-8">
-            <Image src={workshop.photos[0].src} alt={workshop.photos[0].alt} fill priority sizes="(min-width: 1200px) 520px, 100vw" className="object-cover" />
-          </div>
-        </Container>
-      </Section>
-
-      <Section tone="wash" aria-labelledby="workshop-format-title">
-        <Container className="grid gap-8 laptop:grid-cols-12 laptop:gap-x-10">
-          <div className="flex flex-col gap-5 laptop:col-span-5">
-            <Eyebrow>Workshop format</Eyebrow>
-            <h2 id="workshop-format-title">Build something <span className="voice">in the room</span></h2>
-          </div>
-          <div className="flex flex-col gap-5 laptop:col-span-6 laptop:col-start-7">
-            <span className="type-label text-ink/60">{workshop.length}</span>
-            <p className="type-p-lg measure">{workshop.body}</p>
-            <p className="type-p measure text-ink/80">If your event calls for a keynote or panel, explore <Link href="/speaking" className="underline underline-offset-4">Ross’s speaking formats</Link>.</p>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-panel bg-sage laptop:col-span-6">
+            <Image
+              src={workshopsPage.photo.src}
+              alt={workshopsPage.photo.alt}
+              fill
+              priority
+              sizes="(min-width: 1440px) 640px, (min-width: 1200px) 50vw, 100vw"
+              className="object-cover"
+            />
           </div>
         </Container>
       </Section>
 
-      {workshopTalk && (
-        <Section aria-labelledby="workshop-talk-title">
-          <Container className="flex flex-col gap-6">
-            <Eyebrow>Workshop theme</Eyebrow>
-            <h2 id="workshop-talk-title">{workshopTalk.title}</h2>
-            <p className="type-p-lg measure">{workshopTalk.body}</p>
-            <Button href={bookLink.href} variant="ink" className="self-start">Discuss your team’s workshop <ArrowUpRight /></Button>
-          </Container>
-        </Section>
-      )}
+      {/* The format: photo left, how long it runs and the link to speaking right. */}
+      <Section tone="sand" aria-labelledby="workshops-format-title">
+        <Container className="grid gap-10 laptop:grid-cols-12 laptop:items-center laptop:gap-x-10">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-card bg-sage laptop:col-span-5">
+            <Image
+              src={format.photo.src}
+              alt={format.photo.alt}
+              fill
+              sizes="(min-width: 1440px) 520px, (min-width: 1200px) 40vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="flex flex-col items-start gap-6 laptop:col-span-6 laptop:col-start-7">
+            <span className="rounded-full bg-sage px-3 py-1 text-[13px] font-semibold whitespace-nowrap">{format.length}</span>
+            <h2 id="workshops-format-title">
+              Build something <span className="voice">in the room</span>
+            </h2>
+            <p className="type-p-lg measure">
+              If your event calls for a keynote or panel, see{" "}
+              <Link href="/speaking" className="underline underline-offset-4 hover:text-mid">
+                Ross&apos;s speaking formats
+              </Link>
+              .
+            </p>
+          </div>
+        </Container>
+      </Section>
+
+      {/* The workshop theme, in the keynote pop-out's layout, on navy. */}
+      <Section tone="ink" aria-labelledby="workshops-theme-title">
+        <Container className="flex flex-col items-start gap-6">
+          <span className="rounded-full bg-sage px-4 py-1.5 text-[14px] font-semibold text-ink">
+            {theme.tag} · {format.length}
+          </span>
+          <h2 id="workshops-theme-title">
+            {theme.title.slice(0, at)}
+            <span className="voice">{theme.accent}</span>
+            {theme.title.slice(at + theme.accent.length)}
+          </h2>
+          <p className="type-p-lg measure">{theme.body}</p>
+          <div className="flex flex-col gap-3 border-t-[1.5px] border-cream/30 pt-6">
+            <h3 className="type-label">the room walks away with</h3>
+            <p className="measure">{theme.walksAway}</p>
+          </div>
+          <Button href={bookLink.href} variant="cream">
+            Discuss your team&apos;s workshop
+            <ArrowUpRight />
+          </Button>
+        </Container>
+      </Section>
     </>
   );
 }
