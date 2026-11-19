@@ -90,26 +90,30 @@ export default function WorkshopsPage() {
         </Container>
       </Section>
 
-      {/* The workshop theme, in the keynote pop-out's layout, on navy. */}
+      {/* The workshop theme on navy. Laptop up: pill and title left, the rest right. Phones: stacked. */}
       <Section tone="ink" aria-labelledby="workshops-theme-title">
-        <Container className="flex flex-col items-start gap-6">
-          <span className="rounded-full bg-sage px-4 py-1.5 text-[14px] font-semibold text-ink">
-            {theme.tag} · {format.length}
-          </span>
-          <h2 id="workshops-theme-title">
-            {theme.title.slice(0, at)}
-            <span className="voice">{theme.accent}</span>
-            {theme.title.slice(at + theme.accent.length)}
-          </h2>
-          <p className="type-p-lg measure">{theme.body}</p>
-          <div className="flex flex-col gap-3 border-t-[1.5px] border-cream/30 pt-6">
-            <h3 className="type-label">the room walks away with</h3>
-            <p className="measure">{theme.walksAway}</p>
+        <Container className="grid gap-8 laptop:grid-cols-12 laptop:items-center laptop:gap-x-10">
+          <div className="flex flex-col items-start gap-6 laptop:col-span-5">
+            <span className="rounded-full bg-sage px-4 py-1.5 text-[14px] font-semibold text-ink">
+              {theme.tag} · {format.length}
+            </span>
+            <h2 id="workshops-theme-title">
+              {theme.title.slice(0, at)}
+              <span className="voice">{theme.accent}</span>
+              {theme.title.slice(at + theme.accent.length)}
+            </h2>
           </div>
-          <Button href={bookLink.href} variant="cream">
-            Discuss your team&apos;s workshop
-            <ArrowUpRight />
-          </Button>
+          <div className="flex flex-col items-start gap-6 laptop:col-span-6 laptop:col-start-7">
+            <p className="type-p-lg measure">{theme.body}</p>
+            <div className="flex flex-col gap-3 border-t-[1.5px] border-cream/30 pt-6">
+              <h3 className="type-label">the room walks away with</h3>
+              <p className="measure">{theme.walksAway}</p>
+            </div>
+            <Button href={bookLink.href} variant="cream">
+              Discuss your team&apos;s workshop
+              <ArrowUpRight />
+            </Button>
+          </div>
         </Container>
       </Section>
     </>
