@@ -11,7 +11,7 @@ import { bookLink, mainNav, menuNav } from "@/content/nav";
 function Brand({ onClick, light = true }: { onClick?: () => void; light?: boolean }) {
   return (
     <Link href="/" onClick={onClick} aria-label="Ross Power, home" className="flex items-center py-2">
-      <Logo className="w-[148px] tablet:w-[176px]" color={light ? "#f1ece1" : "#17332a"} />
+      <Logo className="w-[148px] tablet:w-[176px]" color={light ? "#f4f0e8" : "#0f1e33"} />
     </Link>
   );
 }
@@ -96,7 +96,7 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 onClick={close}
-                className="group flex items-baseline gap-4 border-b border-cream/10 py-3 font-sans text-[44px] leading-none font-extrabold tracking-[-0.05em] lowercase transition-colors hover:text-accent tablet:text-[72px]"
+                className="group flex items-baseline gap-4 border-b border-cream/10 py-3 font-sans text-[44px] leading-none font-medium tracking-[-0.03em] lowercase transition-colors hover:text-accent tablet:text-[72px]"
               >
                 <span className="type-label font-sans text-cream/50 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
                 {link.label}

@@ -24,7 +24,7 @@ export function Chats() {
           </Button>
         </div>
 
-        <ol className="flex list-decimal flex-col gap-4 pl-7 text-[19px] leading-[1.35] font-semibold marker:font-extrabold marker:text-mid laptop:self-center">
+        <ol className="flex list-decimal flex-col gap-4 pl-7 text-[19px] leading-[1.35] font-semibold marker:font-bold marker:text-mid laptop:self-center">
           {podcast.topics.map((topic) => (
             <li key={topic} className="pl-2">
               {topic}

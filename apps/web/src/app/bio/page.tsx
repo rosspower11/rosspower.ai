@@ -61,7 +61,7 @@ export default function BioPage() {
               ))}
             </div>
             <Button href={bookLink.href} variant="ink" className="self-start">
-              book ross
+              Book Ross
               <ArrowUpRight />
             </Button>
           </div>

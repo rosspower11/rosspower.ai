@@ -21,16 +21,15 @@ export function Talks() {
           />
         </div>
 
-        <div className="mb-6 grid gap-5 laptop:grid-cols-12 laptop:gap-x-10">
-          <h2 id="keynotes-title" className="laptop:col-span-8">
+        {/* Centred header: title, the line under it, then book ross. */}
+        <div className="mx-auto mb-6 flex max-w-[880px] flex-col items-center gap-6 text-center">
+          <h2 id="keynotes-title">
             Keynotes Ross is ready to give <span className="voice">on your stage</span>
           </h2>
-          <div className="flex flex-col items-start gap-6 laptop:col-span-4 laptop:col-start-9 laptop:self-end">
-            <p className="type-p-lg measure">{keynotesIntro.body}</p>
-            <Button href={bookLink.href} variant="ink">
-              {bookLink.label}
-            </Button>
-          </div>
+          <p className="type-p-lg measure">{keynotesIntro.body}</p>
+          <Button href={bookLink.href} variant="ink">
+            {bookLink.label}
+          </Button>
         </div>
         <TalkList talks={talks} />
       </Container>

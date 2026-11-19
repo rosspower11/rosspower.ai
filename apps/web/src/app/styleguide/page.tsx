@@ -8,15 +8,14 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-/** rosspower.ai colours (Andi's palette; the links site keeps the shared theme's). */
+/** rosspower.ai colours: aipowered.xyz's palette (globals.css maps the other names onto these). */
 const colours = [
-  ["ink (forest)", "#17332a"],
-  ["cream", "#f1ece1"],
-  ["wash (sage light)", "#cfdcc8"],
-  ["mid (green)", "#2f5a4a"],
-  ["sand", "#e6dfd0"],
-  ["sage", "#a9b9a0"],
-  ["pine", "#23473a"],
+  ["ink (navy)", "#0f1e33"],
+  ["cream (paper)", "#f4f0e8"],
+  ["sand", "#ece6d9"],
+  ["wash", "#b7c6e2"],
+  ["mid", "#4a6284"],
+  ["card", "#faf7f3"],
 ];
 
 const scale = [

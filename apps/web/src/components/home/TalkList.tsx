@@ -58,10 +58,10 @@ export function TalkList({ talks }: { talks: Talk[] }) {
               )}
             >
               <span className="rounded-full bg-sage px-3 py-1 text-[13px] font-semibold whitespace-nowrap text-ink">{t.tag}</span>
-              <span className="type-h3">{t.title}</span>
+              <span className="text-[22px] leading-[1.4] font-medium tracking-[-0.02em] text-balance laptop:text-[24px]">{t.title}</span>
               <span className="text-[16px] leading-[1.5] opacity-85">{t.card}</span>
               <span className="mt-auto inline-flex items-center gap-1.5 text-[16px] font-semibold">
-                see the keynote
+                See the keynote
                 <ArrowUpRight className="size-3.5" />
               </span>
             </button>
@@ -75,7 +75,7 @@ export function TalkList({ talks }: { talks: Talk[] }) {
         onClose={() => triggerRef.current?.focus()}
         // A click on the overlay lands on the dialog itself (the panel inside covers the rest).
         onClick={(e) => e.target === e.currentTarget && close()}
-        className="m-auto max-h-[calc(100dvh-32px)] w-[calc(100%-32px)] max-w-[880px] overflow-y-auto rounded-panel bg-cream p-0 text-ink [--voice:currentColor] backdrop:bg-[rgba(23,51,42,0.6)]"
+        className="m-auto max-h-[calc(100dvh-32px)] w-[calc(100%-32px)] max-w-[880px] overflow-y-auto rounded-panel bg-cream p-0 text-ink [--voice:var(--color-mid)] backdrop:bg-[rgba(15,30,51,0.6)]"
       >
         <div className="flex flex-col gap-6 p-6 laptop:p-12">
           <div className="flex items-center justify-between gap-4">
@@ -117,7 +117,7 @@ export function TalkList({ talks }: { talks: Talk[] }) {
           ) : null}
 
           <Link href={`/contact?talk=${talk.slug}`} className={`${buttonClass("ink")} self-start`}>
-            book ross
+            Book Ross
           </Link>
         </div>
       </dialog>

@@ -178,7 +178,7 @@ export const events = [
 export const podcast = {
   line: "Ross is ready to have a chat.",
   body: "Practical AI your listeners can use the same day, founder stories from Bali to London, and real numbers from the rooms he runs.",
-  cta: { label: "book ross for your podcast", href: "/contact?type=podcast" },
+  cta: { label: "Book Ross for your podcast", href: "/contact?type=podcast" },
   topics: [
     "AI and ADHD: using AI to work with the way your brain works",
     "Growing up at Ecademy and what it taught him about tech hype",
@@ -262,5 +262,5 @@ export const quotes = {
 export const work = {
   heading: { plain: "ai, explained", accent: "for non-techies." },
   line: "AI-powered, not AI-replaced.",
-  cta: { label: "work with ross", href: "https://aipowered.xyz" },
+  cta: { label: "Work with Ross", href: "https://aipowered.xyz" },
 };
