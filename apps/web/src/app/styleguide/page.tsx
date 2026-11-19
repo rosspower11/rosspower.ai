@@ -1,24 +1,21 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { Button } from "@rosspower/ui/components/Button";
-import { Eyebrow } from "@rosspower/ui/components/Eyebrow";
+import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Styleguide",
   robots: { index: false, follow: false },
 };
 
+/** rosspower.ai colours: aipowered.xyz's palette (globals.css maps the other names onto these). */
 const colours = [
-  ["cream", "#eee9df"],
-  ["ink", "#101317"],
-  ["ice", "#dde7f2"],
-  ["sky", "#bfd7ea"],
-  ["accent", "#8fb3d9"],
-  ["blue", "#4f7fb3"],
-  ["stone", "#c9cdd2"],
-  ["sand", "#e1dccf"],
-  ["card", "#f6f3ec"],
+  ["ink (navy)", "#0f1e33"],
+  ["cream (paper)", "#f4f0e8"],
+  ["sand", "#ece6d9"],
+  ["wash", "#b7c6e2"],
+  ["mid", "#4a6284"],
+  ["card", "#faf7f3"],
 ];
 
 const scale = [
@@ -28,7 +25,7 @@ const scale = [
   { name: "H4", cls: "type-h4", spec: "Helvetica 700 · 26 / 24 / 22 / 20", sample: "AI for Private Equity" },
   { name: "H5", cls: "type-h5", spec: "Helvetica 700 · 24 / 22 / 20 / 18", sample: "making ai simple" },
   { name: "H6", cls: "type-h6", spec: "Helvetica 700 · 18 / 18 / 16 / 16", sample: "programmes that teach you" },
-  { name: "Subtitle", cls: "type-p-lg", spec: "Helvetica 400 · 18 at all sizes · 1.5", sample: "Keynotes, workshops and panels for founders, teams and leaders." },
+  { name: "Subtitle", cls: "type-p-lg", spec: "Helvetica 400 · 18 at all sizes · 1.5", sample: "Keynotes and podcasts for founders, teams and leaders." },
   { name: "P", cls: "type-p", spec: "Helvetica 400 · 17 / 17 / 16 / 16", sample: "Practical AI your listeners can use the same day, founder stories from Bali to London." },
   { name: "P sm", cls: "type-p-sm", spec: "Helvetica 400 · 15 / 15 / 14 / 14", sample: "Bali, September 2026" },
   { name: "Label", cls: "type-label", spec: "Helvetica 600 · 13 / 13 / 13 / 12", sample: "hosting a podcast?" },
@@ -55,7 +52,7 @@ export default function StyleguidePage() {
         <div className="mx-auto w-full max-w-site bg-accent/40">
           <Container className="bg-cream">
             <div className="rounded-card border-[1.5px] border-dashed border-ink p-6 type-p-sm">
-              Content box. The blue around it is the Container padding.
+              Content box. The sage around it is the Container padding.
             </div>
           </Container>
         </div>
@@ -94,7 +91,6 @@ export default function StyleguidePage() {
             <Button href="#" variant="cream">cream</Button>
             <Button href="#" variant="accent" size="sm">small</Button>
           </div>
-          <Eyebrow>Eyebrow label</Eyebrow>
         </Container>
       </Section>
     </>

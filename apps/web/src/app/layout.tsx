@@ -17,7 +17,7 @@ const anton = Anton({
   weight: "400",
 });
 
-/** H2 and the italic "voice" accents. Body and H3–H6 are Helvetica (system). */
+/** The italic "voice" accents and the hero line. */
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
   subsets: ["latin"],
@@ -28,7 +28,7 @@ const instrumentSerif = Instrument_Serif({
 /** Homepage SEO, from the build pack (00. START HERE). */
 const title = "Ross Power | AI speaker, educator and founder of AI Powered";
 const description =
-  "Book Ross Power, the AI speaker who makes AI simple. Keynotes, workshops, panels and podcasts for founders, teams and leaders, from Bali to London.";
+  "Book Ross Power, the AI speaker who makes AI simple. Keynotes and podcasts for founders, teams and leaders, from Bali to London.";
 
 /** Share image: a still from the HR APAC keynote with the name on it (1200×630, R2 via /assets). */
 const shareImage = {
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#eee9df",
+  themeColor: "#f4f0e8",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -75,8 +75,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <JsonLd data={siteGraph} />
         <SiteHeader />
         <SmoothAnchors />
-        {/* The header is fixed, so pages start below it. Full-bleed heroes pull back up with -mt-(--header-h). */}
-        <main className="flex-1 pt-(--header-h)">{children}</main>
+        <main className="flex-1">{children}</main>
         <SiteFooter />
         <GoogleAnalytics />
       </body>

@@ -1,4 +1,4 @@
-import { aiPowered, events, formats, talks } from "@/content/home";
+import { events, podcast, talks, work } from "@/content/home";
 import { bio } from "@/content/bio";
 import { url } from "@/lib/site";
 import { socials } from "@rosspower/ui/content/brand";
@@ -14,7 +14,7 @@ export function GET() {
   const body = [
     "# Ross Power",
     "",
-    "> Ross Power is an AI speaker, educator and the founder of AI Powered. He makes AI simple for founders, teams and leaders through keynotes, workshops, executive briefings, panels and podcast appearances, from Bali to London. Book him at " +
+    "> Ross Power is an AI speaker, educator and the founder of AI Powered. He makes AI simple for founders, teams and leaders through keynotes and podcast appearances, from Bali to London. Book him at " +
       url("/contact") +
       ".",
     "",
@@ -23,26 +23,28 @@ export function GET() {
     ...bio.paragraphs.flatMap((p) => [p, ""]),
     "## Book Ross",
     "",
-    `- [Booking enquiry form](${url("/contact")}): for keynotes, workshops, executive briefings, panels and podcasts. Share the event, the audience and what they should leave with; the team replies within two working days.`,
-    ...formats.map((f) => `- ${f.title} (${f.length}): ${f.body}`),
+    `- [Booking enquiry form](${url("/contact")}): for keynotes and podcasts. Share the event, the audience and what they should leave with; the team replies within two working days.`,
     "",
-    "## Talks",
+    "## Keynotes",
     "",
     ...talks.map((t) => `- **${t.title}** (${t.kind}): ${t.body}`),
     "",
-    "## Past events",
+    "## Podcasts",
     "",
-    ...events.map((e) => `- ${e.title}, ${e.meta}: ${e.role}`),
+    `${podcast.line} ${podcast.body} Topics:`,
+    ...podcast.topics.map((t) => `- ${t}`),
+    "",
+    "## Past speeches",
+    "",
+    ...events.map((e) => `- ${e.title}: ${e.meta}`),
     "",
     "## AI Powered, Ross's company",
     "",
-    aiPowered.body,
-    "",
-    ...aiPowered.pillars.map((p) => `- [${p.title}](${p.href}): ${p.desc}`),
+    `AI Powered helps people and organisations adapt to the changing world of work, at the intersection of AI, work and human connection. ${work.line} More at [aipowered.xyz](${work.cta.href}).`,
     "",
     "## Pages",
     "",
-    `- [Home](${url("/")}): talks, past events, AI Powered and success stories`,
+    `- [Home](${url("/")}): keynotes, podcasts, past speeches and success stories`,
     `- [About Ross Power](${url("/bio")}): full bio, plus 25 and 50 word bios and a portrait for event organisers`,
     `- [Book Ross](${url("/contact")}): the booking enquiry form`,
     "- [Links](https://links.rosspower.ai): Ross's link page, with free tools, programmes and the tools he uses",

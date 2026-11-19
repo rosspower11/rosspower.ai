@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
     // deployment (it returns 404), so it's switched off.
     unoptimized: true,
   },
+  experimental: {
+    // Nudges coding agents to apply Next.js security releases (set by `next upgrade --agent=security`).
+    agentUpgrade: "security",
+  },
   // Deployed, vercel.json proxies /assets to R2; this does the same under `next dev`.
   ...(process.env.NODE_ENV === "development" ? { rewrites: devAssetRewrites } : {}),
 };
