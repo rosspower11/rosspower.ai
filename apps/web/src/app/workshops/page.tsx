@@ -109,7 +109,8 @@ export default function WorkshopsPage() {
               <h3 className="type-label">the room walks away with</h3>
               <p className="measure">{theme.walksAway}</p>
             </div>
-            <Button href={bookLink.href} variant="cream">
+            {/* The longest button label on the site: less side padding on phones, and it may wrap below 360px. */}
+            <Button href={bookLink.href} variant="cream" className="max-w-full px-5! text-center whitespace-normal! tablet:px-7!">
               Discuss your team&apos;s workshop
               <ArrowUpRight />
             </Button>
