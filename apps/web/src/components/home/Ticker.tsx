@@ -25,7 +25,7 @@ export function Ticker() {
       <p className="sr-only">{ticker.join(", ")}</p>
       <div
         aria-hidden
-        className="ticker-track flex w-max gap-12 pr-12 text-[24px] leading-none font-extrabold tracking-[-0.03em] whitespace-nowrap tablet:text-[34px]"
+        className="ticker-track flex w-max gap-12 pr-12 text-[24px] leading-none font-medium tracking-[-0.02em] whitespace-nowrap tablet:text-[34px]"
       >
         <Run />
         <Run />

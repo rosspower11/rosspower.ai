@@ -23,7 +23,7 @@ const ross = {
   jobTitle: "AI speaker and educator",
   description: bio.shortBios.items[0].text,
   worksFor: { "@id": ids.aiPowered },
-  knowsAbout: ["Artificial intelligence", "AI adoption", "Claude", "AI for teams", "AI for leaders", "AI workshops"],
+  knowsAbout: ["Artificial intelligence", "AI adoption", "Claude", "AI for teams", "AI for leaders"],
   sameAs: [...socials.map((s) => s.href), "https://links.rosspower.ai"],
 };
 

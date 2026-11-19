@@ -5,40 +5,40 @@
 @source "../../../../packages/ui/src";
 
 /* ------------------------------------------------------------------
-   rosspower.ai look: Andi's colours and text style on our layout.
+   rosspower.ai look: Andi's text style on our layout, in aipowered.xyz's colours
+   (aipowered-website src/app/globals.css, its "ground-soft" paper and sand).
    packages/ui/theme.css stays as it is (links.rosspower.ai uses it); these override it here only.
    ------------------------------------------------------------------ */
 @theme {
-  /* The seven colours. */
-  --color-ink: #17332a; /* forest: text, dark sections, buttons, borders */
-  --color-cream: #f1ece1; /* page background, text on dark */
-  --color-wash: #cfdcc8; /* sage light */
-  --color-mid: #2f5a4a; /* green: accents, link hover */
-  --color-sand: #e6dfd0;
-  --color-sage: #a9b9a0;
-  --color-pine: #23473a;
-  /* The old names, mapped onto the palette, so every existing class turns green and no blue is left. */
-  --color-blue: #2f5a4a;
-  --color-accent: #a9b9a0;
-  --color-ice: #cfdcc8;
-  --color-sky: #cfdcc8;
-  --color-stone: #e6dfd0;
-  --color-card: #e6dfd0;
+  --color-cream: #f4f0e8; /* paper: page background, text on dark */
+  --color-sand: #ece6d9; /* alternate sections and cards */
+  --color-ink: #0f1e33; /* navy: text, buttons, dark panels */
+  --color-mid: #4a6284; /* blue: accents, link hover */
+  --color-wash: #b7c6e2; /* light blue: ticker, pills */
+  --color-card: #faf7f3; /* raised cards on paper */
+  /* The other names used here, mapped onto those. */
+  --color-pine: #4a6284; /* Ross's line band and hovers on navy */
+  --color-sage: #b7c6e2; /* pills and photo placeholders */
+  --color-ice: #b7c6e2;
+  --color-sky: #b7c6e2;
+  --color-accent: #b7c6e2;
+  --color-blue: #4a6284;
+  --color-stone: #ece6d9;
 
-  /* Bricolage Grotesque replaces Helvetica (layout.tsx loads it). */
-  --font-sans: var(--font-bricolage), system-ui, sans-serif;
+  /* Helvetica Neue, as on aipowered.xyz (no web font to load). */
+  --font-sans: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
 }
 
-/* Type sizes: section titles 52 to 84px, intros 19px, body 17px, labels 15px. */
+/* Type sizes: section titles 40 to 56px, intros 19px, body 17px, labels 15px. */
 :root {
-  --fs-h2: 52px;
+  --fs-h2: 40px;
   --fs-p-lg: 17px;
   --fs-p: 17px;
   --fs-label: 15px;
 }
 @media (min-width: 810px) {
   :root {
-    --fs-h2: 64px;
+    --fs-h2: 48px;
     --fs-p-lg: 19px;
     --fs-p: 17px;
     --fs-label: 15px;
@@ -46,13 +46,14 @@
 }
 @media (min-width: 1200px) {
   :root {
-    --fs-h2: 84px;
+    --fs-h2: 56px;
     --fs-p: 17px;
   }
 }
 
 /*
- * Andi's heading style: bold Bricolage, tight, with the .voice words in Instrument Serif italic.
+ * Section titles, as on aipowered.xyz: all Instrument Serif, with the .voice words in italic and the second
+ * colour (mid blue on light grounds, wash on dark; set per Section). Card titles (h3) stay medium sans.
  * In the utilities layer, after the shared theme: beats its serif headings and base element styles,
  * while classes on an element (type-label, text-*, leading-*) still win over these element rules.
  * Sizes still come from the type scale above.
@@ -65,16 +66,21 @@
 @layer utilities {
   h2,
   .type-h2 {
-    font-family: var(--font-sans);
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    line-height: 0.9;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+  /* Two lines: the italic accent always starts the second line. */
+  h2 .voice,
+  .type-h2 .voice {
+    display: block;
   }
   h3,
   .type-h3 {
     font-family: var(--font-sans);
-    font-weight: 800;
-    letter-spacing: -0.03em;
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
   /* Labels are plain, not spaced-out capitals. */
   .type-label {
@@ -84,7 +90,7 @@
   .type-p {
     line-height: 1.55;
   }
-  /* The booking form (shared with links, which keeps its capitals): lowercase labels and a pill button here. */
+  /* The booking form (shared with links, which keeps its capitals): lowercase labels and a sentence-case pill button here. */
   form label > span:first-child {
     letter-spacing: 0;
     text-transform: lowercase;
@@ -92,7 +98,7 @@
   form button[type="submit"] {
     border-radius: 999px;
     letter-spacing: 0;
-    text-transform: lowercase;
+    text-transform: none;
   }
 }
 
@@ -114,47 +120,6 @@
 .ticker-track {
   animation: ticker 30s linear infinite;
 }
-/* AI Powered card icons: gentle loops, faster while the card is hovered. */
-.aip-page {
-  transform-box: view-box;
-  transform-origin: 24px 24px;
-  animation: aip-page 3.2s ease-in-out infinite;
-}
-@keyframes aip-page {
-  0%, 35% { transform: scaleX(1); opacity: 1; }
-  60% { transform: scaleX(-1); opacity: 0.6; }
-  61%, 100% { transform: scaleX(1); opacity: 0; }
-}
-.aip-gear-a,
-.aip-gear-b {
-  transform-box: fill-box;
-  transform-origin: center;
-}
-.aip-gear-a { animation: aip-spin 8s linear infinite; }
-.aip-gear-b { animation: aip-spin 5.8s linear infinite reverse; }
-@keyframes aip-spin { to { transform: rotate(360deg); } }
-.aip-ring {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: aip-ring 2.4s ease-out infinite;
-}
-.aip-ring-2 { animation-delay: 1.2s; }
-@keyframes aip-ring {
-  from { transform: scale(0.9); opacity: 0.7; }
-  to { transform: scale(2); opacity: 0; }
-}
-.aip-card:hover .aip-page,
-.aip-card:hover .aip-ring { animation-duration: 1.4s; }
-.aip-card:hover .aip-gear-a { animation-duration: 2.4s; }
-.aip-card:hover .aip-gear-b { animation-duration: 1.75s; }
-@media (prefers-reduced-motion: reduce) {
-  .aip-page,
-  .aip-gear-a,
-  .aip-gear-b,
-  .aip-ring { animation: none; }
-  .aip-ring { opacity: 0; }
-}
-
 /* Ross's line: words rise in one by one once the section is on screen (RossLine sets data-shown). */
 .line-reveal .line-word,
 .line-reveal .line-sign {
@@ -183,15 +148,6 @@
     filter: none;
     transition: none;
   }
-}
-
-/* Speaking: timer line under the active format. */
-@keyframes speaking-progress {
-  from { width: 0; }
-  to { width: 100%; }
-}
-.speaking-progress {
-  animation: speaking-progress linear forwards;
 }
 
 @keyframes scroll-cue {

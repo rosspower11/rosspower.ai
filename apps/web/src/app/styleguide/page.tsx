@@ -2,22 +2,20 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = {
   title: "Styleguide",
   robots: { index: false, follow: false },
 };
 
-/** rosspower.ai colours (Andi's palette; the links site keeps the shared theme's). */
+/** rosspower.ai colours: aipowered.xyz's palette (globals.css maps the other names onto these). */
 const colours = [
-  ["ink (forest)", "#17332a"],
-  ["cream", "#f1ece1"],
-  ["wash (sage light)", "#cfdcc8"],
-  ["mid (green)", "#2f5a4a"],
-  ["sand", "#e6dfd0"],
-  ["sage", "#a9b9a0"],
-  ["pine", "#23473a"],
+  ["ink (navy)", "#0f1e33"],
+  ["cream (paper)", "#f4f0e8"],
+  ["sand", "#ece6d9"],
+  ["wash", "#b7c6e2"],
+  ["mid", "#4a6284"],
+  ["card", "#faf7f3"],
 ];
 
 const scale = [
@@ -27,7 +25,7 @@ const scale = [
   { name: "H4", cls: "type-h4", spec: "Helvetica 700 · 26 / 24 / 22 / 20", sample: "AI for Private Equity" },
   { name: "H5", cls: "type-h5", spec: "Helvetica 700 · 24 / 22 / 20 / 18", sample: "making ai simple" },
   { name: "H6", cls: "type-h6", spec: "Helvetica 700 · 18 / 18 / 16 / 16", sample: "programmes that teach you" },
-  { name: "Subtitle", cls: "type-p-lg", spec: "Helvetica 400 · 18 at all sizes · 1.5", sample: "Keynotes, workshops and panels for founders, teams and leaders." },
+  { name: "Subtitle", cls: "type-p-lg", spec: "Helvetica 400 · 18 at all sizes · 1.5", sample: "Keynotes and podcasts for founders, teams and leaders." },
   { name: "P", cls: "type-p", spec: "Helvetica 400 · 17 / 17 / 16 / 16", sample: "Practical AI your listeners can use the same day, founder stories from Bali to London." },
   { name: "P sm", cls: "type-p-sm", spec: "Helvetica 400 · 15 / 15 / 14 / 14", sample: "Bali, September 2026" },
   { name: "Label", cls: "type-label", spec: "Helvetica 600 · 13 / 13 / 13 / 12", sample: "hosting a podcast?" },
@@ -93,7 +91,6 @@ export default function StyleguidePage() {
             <Button href="#" variant="cream">cream</Button>
             <Button href="#" variant="accent" size="sm">small</Button>
           </div>
-          <Eyebrow>Eyebrow label</Eyebrow>
         </Container>
       </Section>
     </>

@@ -1,15 +1,15 @@
 import type { ComponentPropsWithoutRef, ElementType } from "react";
 import { cn } from "@rosspower/ui/lib/cn";
 
-// The italic accent words in titles (.voice) take the title's own colour, as in Andi's type style.
+// The italic accent words in titles (.voice): mid blue on light grounds, wash on dark ones (as on aipowered.xyz).
 const tones = {
-  cream: "bg-cream text-ink [--voice:currentColor]",
-  ice: "bg-ice text-ink [--voice:currentColor]",
-  sky: "bg-sky text-ink [--voice:currentColor]",
-  sand: "bg-sand text-ink [--voice:currentColor]",
-  wash: "bg-wash text-ink [--voice:currentColor]",
-  ink: "bg-ink text-cream [--voice:currentColor]",
-  pine: "bg-pine text-cream [--voice:currentColor]",
+  cream: "bg-cream text-ink [--voice:var(--color-mid)]",
+  ice: "bg-ice text-ink [--voice:var(--color-mid)]",
+  sky: "bg-sky text-ink [--voice:var(--color-mid)]",
+  sand: "bg-sand text-ink [--voice:var(--color-mid)]",
+  wash: "bg-wash text-ink [--voice:var(--color-mid)]",
+  ink: "bg-ink text-cream [--voice:var(--color-wash)]",
+  pine: "bg-pine text-cream [--voice:var(--color-wash)]",
 } as const;
 
 export type SectionTone = keyof typeof tones;

@@ -35,8 +35,8 @@ export function HeroQuote() {
           className="absolute inset-0"
           style={{
             background: [
-              "linear-gradient(90deg, rgba(23,51,42,0.85) 0%, rgba(23,51,42,0.55) 55%, rgba(23,51,42,0.35) 100%)",
-              "linear-gradient(180deg, rgba(23,51,42,0.6) 0%, rgba(23,51,42,0.5) 35%, rgba(23,51,42,0.95) 100%)",
+              "linear-gradient(90deg, rgba(15,30,51,0.85) 0%, rgba(15,30,51,0.55) 55%, rgba(15,30,51,0.35) 100%)",
+              "linear-gradient(180deg, rgba(15,30,51,0.6) 0%, rgba(15,30,51,0.5) 35%, rgba(15,30,51,0.95) 100%)",
             ].join(","),
           }}
         />

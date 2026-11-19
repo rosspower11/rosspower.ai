@@ -11,7 +11,7 @@ import { bookLink, mainNav, menuNav } from "@/content/nav";
 function Brand({ onClick, light = true }: { onClick?: () => void; light?: boolean }) {
   return (
     <Link href="/" onClick={onClick} aria-label="Ross Power, home" className="flex items-center py-2">
-      <Logo className="w-[148px] tablet:w-[176px]" color={light ? "#f1ece1" : "#17332a"} />
+      <Logo className="w-[148px] tablet:w-[176px]" color={light ? "#f4f0e8" : "#0f1e33"} />
     </Link>
   );
 }
@@ -34,7 +34,7 @@ export function SiteHeader() {
 
   return (
     // Full width, flat on the page, not fixed (scrolls away with it). Ross's roles on the left,
-    // see the talks and book ross on the right. Phones: the menu button on the left instead (the roles are in the menu).
+    // book ross on the right. Phones: the menu button on the left instead (the roles are in the menu).
     <header className="w-full bg-cream text-ink">
       <div className="mx-auto flex w-full max-w-site items-center justify-between gap-4 px-(--section-px) pt-4 pb-2 tablet:pt-[18px] tablet:pb-2.5">
         <button
@@ -63,17 +63,9 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <div className="flex items-center justify-end gap-2">
-          {/* Tablet up only: phones have no room, and the talks are in the menu there. */}
-          <span className="hidden tablet:contents">
-            <Button href="/#talks" variant="outline" size="sm">
-              see the talks
-            </Button>
-          </span>
-          <Button href={bookLink.href} variant="ink" size="sm">
-            {bookLink.label}
-          </Button>
-        </div>
+        <Button href={bookLink.href} variant="ink" size="sm">
+          {bookLink.label}
+        </Button>
       </div>
 
       <dialog
@@ -104,7 +96,7 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 onClick={close}
-                className="group flex items-baseline gap-4 border-b border-cream/10 py-3 font-sans text-[44px] leading-none font-extrabold tracking-[-0.05em] lowercase transition-colors hover:text-accent tablet:text-[72px]"
+                className="group flex items-baseline gap-4 border-b border-cream/10 py-3 font-sans text-[44px] leading-none font-medium tracking-[-0.03em] lowercase transition-colors hover:text-accent tablet:text-[72px]"
               >
                 <span className="type-label font-sans text-cream/50 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
                 {link.label}

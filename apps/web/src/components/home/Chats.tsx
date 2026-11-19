@@ -1,36 +1,33 @@
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { chats } from "@/content/home";
+import { podcast } from "@/content/home";
 
-const pad = (n: number) => String(n).padStart(2, "0");
-
-/** Chats (from Andi's guide): Ross as a podcast guest. Six topics, not links, and a podcast booking button. */
+/**
+ * Podcast (Andi's feedback, step 05): Ross as a podcast guest, on sand. The text and booking button on the left,
+ * the six topics as a plain numbered list beside them (stacked on phones and tablets). The topics aren't links.
+ */
 export function Chats() {
   return (
-    <Section id="chats" tone="wash" aria-labelledby="chats-title">
-      <Container className="flex flex-col gap-10 tablet:gap-14">
-        <div className="mb-6 grid gap-5 laptop:grid-cols-2 laptop:gap-x-10">
-          <div className="flex flex-col gap-5">
-            <Eyebrow>{chats.label}</Eyebrow>
-            <h2 id="chats-title">
-              Ready to <span className="voice">have a chat?</span>
+    <Section id="podcast" tone="sand" aria-labelledby="podcast-title">
+      <Container className="grid gap-12 laptop:grid-cols-2 laptop:gap-x-10">
+        <div className="flex flex-col items-start gap-6">
+          <div className="flex flex-col gap-4">
+            <h2 id="podcast-title">
+              Hosting <span className="voice">a podcast?</span>
             </h2>
+            <p className="text-[19px] leading-[1.4] font-semibold">{podcast.line}</p>
           </div>
-          <div className="flex flex-col items-start gap-6 laptop:self-end">
-            <p className="type-p-lg measure">{chats.body}</p>
-            <Button href={chats.cta.href} variant="ink">
-              {chats.cta.label}
-            </Button>
-          </div>
+          <p className="type-p-lg measure">{podcast.body}</p>
+          <Button href={podcast.cta.href} variant="ink">
+            {podcast.cta.label}
+          </Button>
         </div>
 
-        <ol className="grid gap-4 tablet:grid-cols-2 laptop:grid-cols-3">
-          {chats.topics.map((topic, i) => (
-            <li key={topic} className="flex flex-col gap-3 rounded-card border-[1.5px] border-ink bg-cream p-6 transition-colors duration-300 hover:bg-ink hover:text-cream">
-              <span className="text-[14px] tabular-nums">{pad(i + 1)}</span>
-              <span className="text-[22px] leading-[1.15] font-extrabold tracking-[-0.02em]">{topic}</span>
+        <ol className="flex list-decimal flex-col gap-4 pl-7 text-[19px] leading-[1.35] font-semibold marker:font-bold marker:text-mid laptop:self-center">
+          {podcast.topics.map((topic) => (
+            <li key={topic} className="pl-2">
+              {topic}
             </li>
           ))}
         </ol>

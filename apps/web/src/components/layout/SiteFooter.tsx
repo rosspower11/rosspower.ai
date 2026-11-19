@@ -23,7 +23,7 @@ export function SiteFooter() {
         {/* Laptop up: brand and line left; menus, book button and socials right. Below: stacked. */}
         <div className="grid gap-12 laptop:grid-cols-12 laptop:gap-x-10">
           <div className="flex flex-col items-start gap-6 laptop:col-span-6">
-            <Logo className="w-[184px] tablet:w-[216px]" color="#17332a" />
+            <Logo className="w-[184px] tablet:w-[216px]" color="#0f1e33" />
             <p className="max-w-[380px] text-[16px] text-ink/75">
               Keynotes and podcasts for founders, teams and leaders, from Bali to London.
             </p>
@@ -74,7 +74,7 @@ export function SiteFooter() {
           </p>
           <a
             href="#"
-            className="type-label flex items-center gap-3 lowercase transition-colors hover:text-ink"
+            className="type-label flex items-center gap-3 transition-colors hover:text-ink"
           >
             Back to top
             <span className="flex size-9 items-center justify-center rounded-full border border-ink/25">

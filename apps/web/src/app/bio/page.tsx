@@ -8,7 +8,6 @@ import { bioGraph } from "@/lib/structured-data";
 import { bio } from "@/content/bio";
 import { bookLink } from "@/content/nav";
 import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ArrowUpRight } from "@rosspower/ui/components/Icon";
 import { asset } from "@rosspower/ui/lib/asset";
 
@@ -49,7 +48,6 @@ export default function BioPage() {
 
           <div className="flex flex-col gap-8 laptop:col-span-6 laptop:col-start-7 laptop:pt-6">
             <div className="flex flex-col gap-5">
-              <Eyebrow>{bio.eyebrow}</Eyebrow>
               {/* Lowercase serif title: the hero's name is the only all-caps text on the site. */}
               <h1 id="bio-title" className="type-h2 normal-case">
                 About <span className="voice">ross power</span>
@@ -63,7 +61,7 @@ export default function BioPage() {
               ))}
             </div>
             <Button href={bookLink.href} variant="ink" className="self-start">
-              book ross
+              Book Ross
               <ArrowUpRight />
             </Button>
           </div>
@@ -74,7 +72,6 @@ export default function BioPage() {
         <Container className="flex flex-col gap-10 tablet:gap-14">
           {/* Centred header, like the homepage sections. */}
           <div className="mx-auto flex max-w-[640px] flex-col items-center gap-5 text-center">
-            <Eyebrow>{bio.shortBios.eyebrow}</Eyebrow>
             <h2 id="short-bios-title" className="normal-case">
               Short <span className="voice">bios</span>
             </h2>
