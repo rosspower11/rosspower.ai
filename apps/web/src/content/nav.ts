@@ -1,13 +1,13 @@
 export type NavLink = { label: string; href: string };
 
-/** The nav (centre of the header) and the footer: Ross's three roles, each to its section. */
+/** The nav (left of the header) and the footer: Ross's three roles, to his story and the two landing pages. */
 export const mainNav: NavLink[] = [
   { label: "Founder", href: "/#about" },
-  { label: "Speaker", href: "/#keynotes" },
-  { label: "Educator", href: "/#work" },
+  { label: "Speaker", href: "/speaking" },
+  { label: "Educator", href: "/workshops" },
 ];
 
-/** The phone menu adds the rest of the homepage and the bio ("Speaker" already goes to the keynotes). */
+/** The phone menu adds the rest of the homepage and the bio ("Speaker" already covers the keynotes). */
 export const menuNav: NavLink[] = [
   ...mainNav,
   { label: "Podcast", href: "/#podcast" },

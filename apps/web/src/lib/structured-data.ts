@@ -44,7 +44,7 @@ export const siteGraph = {
       "@type": "Organization",
       "@id": ids.aiPowered,
       name: "AI Powered",
-      url: "https://aipowered.xyz",
+      url: "https://www.aipowered.xyz/",
       founder: { "@id": ids.ross },
     },
   ],
@@ -92,4 +92,47 @@ export const contactGraph = {
   description: contactPage.meta.description,
   isPartOf: { "@id": ids.website },
   about: { "@id": ids.ross },
+};
+
+/** Standalone speaking and workshop pages describe only formats already offered on the site. */
+export const speakingGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${url("/speaking")}#webpage`,
+      url: url("/speaking"),
+      name: "AI keynote speaking and corporate events | Ross Power",
+      isPartOf: { "@id": ids.website },
+      about: { "@id": ids.ross },
+    },
+    {
+      "@type": "Service",
+      name: "AI keynote speaking and corporate events",
+      serviceType: "Keynote speaking",
+      provider: { "@id": ids.ross },
+      url: url("/speaking"),
+    },
+  ],
+};
+
+export const workshopsGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${url("/workshops")}#webpage`,
+      url: url("/workshops"),
+      name: "Hands-on AI workshops for teams | Ross Power",
+      isPartOf: { "@id": ids.website },
+      about: { "@id": ids.ross },
+    },
+    {
+      "@type": "Service",
+      name: "AI workshops for teams and leaders",
+      serviceType: "AI workshop",
+      provider: { "@id": ids.ross },
+      url: url("/workshops"),
+    },
+  ],
 };

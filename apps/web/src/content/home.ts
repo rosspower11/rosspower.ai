@@ -262,5 +262,5 @@ export const quotes = {
 export const work = {
   heading: { plain: "ai, explained", accent: "for non-techies." },
   line: "AI-powered, not AI-replaced.",
-  cta: { label: "Work with Ross", href: "https://aipowered.xyz" },
+  cta: { label: "Work with Ross", href: "https://www.aipowered.xyz/" },
 };
