@@ -26,7 +26,7 @@ export function Profile() {
           sizes="440px"
           className="object-cover object-[50%_40%]"
         />
-        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(23,51,42,0.3))]" />
+        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(15,30,51,0.3))]" />
       </div>
 
       {/* Avatar overlaps the cover's bottom-left. */}

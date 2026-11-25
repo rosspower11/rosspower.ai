@@ -3,7 +3,9 @@ import { asset } from "@rosspower/ui/lib/asset";
 
 /**
  * Everything on links.rosspower.ai. Subtitles are one short line, condensed from aipowered.xyz's
- * own copy (aipowered-website src/lib/page-content/hubs.ts, seo.ts, public/llms.txt).
+ * own copy (aipowered-website src/lib/page-content/hubs.ts, seo.ts, constants.ts), checked against
+ * its live services in Nov 2026: AI-OS (was TeamOS), AI Leadership Training (was AI Future Leaders),
+ * Productize Yourself for founders, and the Claude Programme back soon.
  * Photos come from aipowered-website/public/images and live in the R2 assets bucket, cropped to
  * the shape they're shown at, at 2x (images/links/v2, images/profile/v2).
  */
@@ -62,7 +64,7 @@ export const sections: LinkSection[] = [
       {
         kind: "tile",
         title: "Book to speak",
-        href: "https://www.rosspower.ai/contact",
+        href: "https://www.rosspower.ai/speaking",
         image: { src: asset("images/links/v2/speaking.jpg"), alt: "Ross on stage pointing to the room" },
       },
       {
@@ -71,6 +73,13 @@ export const sections: LinkSection[] = [
         href: `${AIP}/game-plan`,
         image: { src: asset("images/links/v2/game-plan.jpg"), alt: "Ross explaining a prompt on a big screen" },
       },
+      {
+        kind: "row",
+        title: "About Ross",
+        desc: "His story, in five chapters",
+        href: "https://www.rosspower.ai/about",
+        image: { src: asset("images/ross/portrait.jpg"), alt: "Black and white portrait of Ross Power" },
+      },
     ],
   },
   {
@@ -78,8 +87,15 @@ export const sections: LinkSection[] = [
     items: [
       {
         kind: "row",
+        title: "Productize Yourself",
+        desc: "Ross's 2027 programme, now applying",
+        href: "https://productizeyourself.ai/",
+        image: { src: asset("images/events/productize-yourself.jpg"), alt: "Ross speaking at a Productize Yourself event in Bali" },
+      },
+      {
+        kind: "row",
         title: "AI Audit & Strategy",
-        desc: "Audit and written AI strategy",
+        desc: "90-min audit, then a written strategy",
         href: `${AIP}/founders/ai-audit`,
         image: { src: asset("images/links/v2/ai-audit.jpg"), alt: "Ross presenting beside a projector screen" },
       },
@@ -93,7 +109,7 @@ export const sections: LinkSection[] = [
       {
         kind: "row",
         title: "Claude Programme",
-        desc: "Waitlist for the next cohort",
+        desc: "Back soon: see how Cohort 4.0 went",
         href: `${AIP}/founders/claude-programme`,
         image: { src: asset("images/links/v2/claude-programme.jpg"), alt: "A live Claude Programme session on video call" },
       },
@@ -104,15 +120,15 @@ export const sections: LinkSection[] = [
     items: [
       {
         kind: "row",
-        title: "TeamOS",
-        desc: "Claude, ClickUp, Granola",
-        href: `${AIP}/organisations/teamos`,
+        title: "AI-OS",
+        desc: "One connected AI system for your team",
+        href: `${AIP}/ai-os`,
         image: { src: asset("images/links/v2/teamos.jpg"), alt: "A full room of laptops at an AI Powered workshop" },
       },
       {
         kind: "row",
-        title: "AI Future Leaders",
-        desc: "Turn AI talent into leaders",
+        title: "AI Leadership Training",
+        desc: "Turn rising AI talent into leaders",
         href: `${AIP}/organisations/ai-future-leaders`,
         image: { src: asset("images/links/v2/ai-future-leaders.jpg"), alt: "A packed evening event at a garden venue" },
       },
@@ -125,7 +141,7 @@ export const sections: LinkSection[] = [
         kind: "feature",
         label: "Ross's company",
         title: "AI Powered",
-        desc: "AI Powered, not AI replaced.",
+        desc: "AI-powered, not AI-replaced.",
         href: AIP,
         image: { src: asset("images/links/v2/ai-powered.jpg"), alt: "Ross speaking at an AI Powered event in a bamboo hall" },
       },
@@ -142,7 +158,7 @@ export const sections: LinkSection[] = [
 
 /** "tools i use": the tools Ross uses, each with its logo (components/ToolLogos.tsx). */
 export const partners = {
-  title: "tools i use",
+  title: "Tools I use",
   links: [
     // Always "HighLevel": one word, capital H and L. Affiliate link, so it's marked rel="sponsored".
     // TODO(ross): swap this dummy link (HighLevel's homepage) for the HighLevel affiliate link.

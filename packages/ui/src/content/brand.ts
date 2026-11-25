@@ -17,5 +17,6 @@ export type SocialLabel = (typeof socials)[number]["label"];
 export const contact = {
   /** "Speak to Ross directly", the same number as the WhatsApp button on aipowered.xyz. */
   whatsapp: "https://wa.me/447790598385",
-  aiPowered: "https://aipowered.xyz",
+  // The served host: aipowered.xyz redirects here, so links skip the extra hop.
+  aiPowered: "https://www.aipowered.xyz",
 };
