@@ -35,7 +35,7 @@ type ContactFormProps = {
 
 /**
  * The booking enquiry form, on rosspower.ai/contact and links.rosspower.ai/book.
- * Posts to /api/contact (served by the web app on both domains), which emails Mary and posts to Slack.
+ * Posts to /api/contact (served by the web app on both domains), which emails Ross and posts to Slack.
  * Sized by its own width, not the screen (container queries): in a narrow column (phones, the links page)
  * it keeps 20px padding and one field per row; from 512px wide it gets 28px padding and two fields across.
  */

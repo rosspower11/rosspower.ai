@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
     // deployment (it returns 404), so it's switched off.
     unoptimized: true,
   },
+  // The bio page moved to /about; keep old links and search results working.
+  async redirects() {
+    return [{ source: "/bio", destination: "/about", permanent: true }];
+  },
   experimental: {
     // Nudges coding agents to apply Next.js security releases (set by `next upgrade --agent=security`).
     agentUpgrade: "security",

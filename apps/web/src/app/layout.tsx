@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { shareImage } from "@/lib/metadata";
 import { Anton, Instrument_Serif } from "next/font/google";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -30,14 +31,6 @@ const title = "Ross Power | AI speaker, educator and founder of AI Powered";
 const description =
   "Book Ross Power, the AI speaker who makes AI simple. Keynotes and podcasts for founders, teams and leaders, from Bali to London.";
 
-/** Share image: a still from the HR APAC keynote with the name on it (1200×630, R2 via /assets). */
-const shareImage = {
-  url: asset("images/og/og-ross-power.jpg"),
-  width: 1200,
-  height: 630,
-  alt: "Ross Power on stage at HR APAC Forum, Bali",
-};
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: title, template: "%s | Ross Power" },
@@ -54,12 +47,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Ross Power",
+    locale: "en_GB",
     title,
     description,
     url: "/",
     images: [shareImage],
   },
-  twitter: { card: "summary_large_image", title, description, images: [shareImage] },
+  twitter: { card: "summary_large_image", creator: "@rosspower", title, description, images: [shareImage] },
 };
 
 export const viewport: Viewport = {

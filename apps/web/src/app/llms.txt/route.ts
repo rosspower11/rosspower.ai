@@ -45,7 +45,7 @@ export function GET() {
     "## Pages",
     "",
     `- [Home](${url("/")}): keynotes, podcasts, past speeches and success stories`,
-    `- [About Ross Power](${url("/bio")}): full bio, plus 25 and 50 word bios and a portrait for event organisers`,
+    `- [About Ross Power](${url("/about")}): full bio, his story in five chapters, plus 25 and 50 word bios and a portrait for event organisers`,
     `- [Book Ross](${url("/contact")}): the booking enquiry form`,
     "- [Links](https://links.rosspower.ai): Ross's link page, with free tools, programmes and the tools he uses",
     "",

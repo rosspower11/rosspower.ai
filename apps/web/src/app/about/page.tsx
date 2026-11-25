@@ -1,56 +1,44 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
-import { ShortBios } from "@/components/bio/ShortBios";
+import { Chapters } from "@/components/about/Chapters";
+import { ShortBios } from "@/components/about/ShortBios";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { bioGraph } from "@/lib/structured-data";
-import { bio } from "@/content/bio";
+import { aboutGraph } from "@/lib/structured-data";
+import { bio, story } from "@/content/bio";
 import { bookLink } from "@/content/nav";
 import { Button } from "@/components/ui/Button";
 import { ArrowUpRight } from "@rosspower/ui/components/Icon";
-import { asset } from "@rosspower/ui/lib/asset";
 
-const shareImage = {
-  url: asset("images/og/og-ross-power.jpg"),
-  width: 1200,
-  height: 630,
-  alt: "Ross Power on stage at HR APAC Forum, Bali",
-};
+export const metadata: Metadata = pageMetadata({ path: "/about", title: bio.meta.title, description: bio.meta.description, type: "profile" });
 
-export const metadata: Metadata = {
-  title: { absolute: bio.meta.title },
-  description: bio.meta.description,
-  alternates: { canonical: "/bio" },
-  openGraph: { type: "profile", title: bio.meta.title, description: bio.meta.description, url: "/bio", images: [shareImage] },
-  twitter: { card: "summary_large_image", title: bio.meta.title, description: bio.meta.description, images: [shareImage] },
-};
-
-export default function BioPage() {
+export default function AboutPage() {
   return (
     <>
-      <JsonLd data={bioGraph} />
+      <JsonLd data={aboutGraph} />
       <Section aria-labelledby="bio-title">
-        {/* Laptop up: portrait left (stays in view), bio right. Phones: portrait, then bio. */}
-        <Container className="grid gap-10 laptop:grid-cols-12 laptop:gap-x-10">
-          <div className="laptop:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-panel bg-stone laptop:sticky laptop:top-28">
+        {/* Tablet up: portrait left (stays in view), bio right. Phones: portrait, then bio. */}
+        <Container className="grid gap-10 tablet:grid-cols-12 tablet:gap-x-8 laptop:gap-x-10">
+          <div className="tablet:col-span-5">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-panel bg-stone tablet:sticky tablet:top-8">
               <Image
                 src={bio.portrait.src}
                 alt={bio.portrait.alt}
                 fill
                 priority
-                sizes="(min-width: 1200px) 520px, 100vw"
+                sizes="(min-width: 1200px) 520px, (min-width: 810px) 40vw, 100vw"
                 className="object-cover"
               />
             </div>
           </div>
 
-          <div className="flex flex-col gap-8 laptop:col-span-6 laptop:col-start-7 laptop:pt-6">
+          <div className="flex flex-col gap-8 tablet:col-span-7 tablet:col-start-6 laptop:col-span-6 laptop:col-start-7 laptop:pt-6">
             <div className="flex flex-col gap-5">
-              {/* Lowercase serif title: the hero's name is the only all-caps text on the site. */}
+              {/* normal-case: the shared h1 style is all caps (the hero's name). */}
               <h1 id="bio-title" className="type-h2 normal-case">
-                About <span className="voice">ross power</span>
+                About <span className="voice">Ross Power</span>
               </h1>
             </div>
             <div className="flex flex-col gap-5">
@@ -67,6 +55,19 @@ export default function BioPage() {
           </div>
         </Container>
       </Section>
+
+      {/* Ross's story: a centred title, then the five chapters as a timeline. */}
+      <section aria-labelledby="story-title">
+        <Section>
+          <Container className="flex flex-col items-center gap-5 text-center">
+            <h2 id="story-title" className="max-tablet:[&_.voice]:block">
+              {story.heading.plain} <span className="voice">{story.heading.accent}</span>
+            </h2>
+            <p className="type-p-lg measure">{story.intro}</p>
+          </Container>
+        </Section>
+        <Chapters chapters={story.chapters} />
+      </section>
 
       <Section tone="ice" aria-labelledby="short-bios-title">
         <Container className="flex flex-col gap-10 tablet:gap-14">

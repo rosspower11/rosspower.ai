@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import { Events } from "@/components/home/Events";
@@ -13,23 +14,10 @@ import { bookLink } from "@/content/nav";
 import { speakingPage } from "@/content/speaking";
 import { speakingGraph } from "@/lib/structured-data";
 import { ArrowUpRight } from "@rosspower/ui/components/Icon";
-import { asset } from "@rosspower/ui/lib/asset";
 
 const { title, description } = speakingPage.meta;
-const shareImage = {
-  url: asset("images/og/og-ross-power.jpg"),
-  width: 1200,
-  height: 630,
-  alt: "Ross Power on stage at HR APAC Forum, Bali",
-};
 
-export const metadata: Metadata = {
-  title: { absolute: title },
-  description,
-  alternates: { canonical: "/speaking" },
-  openGraph: { title, description, url: "/speaking", images: [shareImage] },
-  twitter: { card: "summary_large_image", title, description, images: [shareImage] },
-};
+export const metadata: Metadata = pageMetadata({ path: "/speaking", title, description });
 
 /** /speaking: the keynotes and formats in one place, in the homepage's look. */
 export default function SpeakingPage() {

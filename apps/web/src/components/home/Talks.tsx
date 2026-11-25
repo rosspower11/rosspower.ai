@@ -23,7 +23,7 @@ export function Talks() {
 
         {/* Centred header: title, the line under it, then book ross. */}
         <div className="mx-auto mb-6 flex max-w-[880px] flex-col items-center gap-6 text-center">
-          <h2 id="keynotes-title">
+          <h2 id="keynotes-title" className="title-split">
             Keynotes Ross is ready to give <span className="voice">on your stage</span>
           </h2>
           <p className="type-p-lg measure">{keynotesIntro.body}</p>
