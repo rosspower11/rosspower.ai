@@ -12,10 +12,10 @@ export const menuNav: NavLink[] = [
   ...mainNav,
   { label: "Podcast", href: "/#podcast" },
   { label: "Past speeches", href: "/#events" },
-  { label: "Bio", href: "/bio" },
+  { label: "About", href: "/about" },
 ];
 
-/** Every "book ross" button opens the enquiry form, which goes to Mary. */
+/** Every "book ross" button opens the enquiry form, which goes to Ross. */
 export const bookLink: NavLink = { label: "Book Ross", href: "/contact" };
 
 /** Shared with every app in the monorepo (packages/ui/src/content/brand.ts). */

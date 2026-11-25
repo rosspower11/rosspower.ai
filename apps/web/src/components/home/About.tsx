@@ -14,8 +14,8 @@ function Bio({ className }: { className?: string }) {
           {para}
         </p>
       ))}
-      <Link href="/bio" className="type-p-lg w-fit underline underline-offset-4 hover:no-underline">
-        Read Ross&apos;s full bio
+      <Link href="/about" className="type-p-lg w-fit underline underline-offset-4 hover:no-underline">
+        Read Ross&apos;s full story
       </Link>
     </div>
   );
@@ -51,7 +51,7 @@ export function About() {
 
             {/* Laptop up: title left, bio right. Tablet: stacked. */}
             <div className="absolute inset-x-0 bottom-0 flex flex-col gap-6 p-6 [--voice:var(--color-wash)] tablet:p-10 laptop:grid laptop:grid-cols-12 laptop:items-end laptop:gap-x-8 laptop:p-12">
-              <h2 id="about-title" className="text-cream laptop:col-span-6">
+              <h2 id="about-title" className="title-split text-cream laptop:col-span-6">
                 Meet your speaker, <span className="voice">Ross Power</span>
               </h2>
               <div className="hidden tablet:block laptop:col-span-6 laptop:col-start-7">

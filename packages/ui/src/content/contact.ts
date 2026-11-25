@@ -1,6 +1,6 @@
 /**
  * The booking enquiry form, shared by rosspower.ai/contact and links.rosspower.ai/book.
- * Both post to the same API (apps/web/src/app/api/contact/route.ts), which emails Mary and posts to Slack.
+ * Both post to the same API (apps/web/src/app/api/contact/route.ts), which emails Ross and posts to Slack.
  */
 
 /** What the enquiry is for. Shown in the form and in the email and Slack alert. */

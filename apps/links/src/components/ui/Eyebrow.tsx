@@ -8,12 +8,12 @@ type EyebrowProps = {
 };
 
 /**
- * Section label in Andi's text style: the short rule, then a lowercase Bricolage 600 label.
+ * Section label: the short rule, then a semibold sans label (sentence case, as written).
  * A copy of rosspower.ai's Eyebrow (apps/web), so both sites look the same.
  */
 export function Eyebrow({ children, className, as: Tag = "span" }: EyebrowProps) {
   return (
-    <Tag className={cn("inline-flex items-center gap-3 font-sans text-[15px] leading-none font-semibold lowercase", className)}>
+    <Tag className={cn("inline-flex items-center gap-3 font-sans text-[15px] leading-none font-semibold", className)}>
       <span aria-hidden className="h-[1.5px] w-6 bg-current" />
       {children}
     </Tag>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -6,24 +7,10 @@ import { contactPage, websiteEnquiryTypes } from "@/content/contact";
 import { talks } from "@/content/home";
 import { contactGraph } from "@/lib/structured-data";
 import { ContactForm } from "@rosspower/ui/components/ContactForm";
-import { asset } from "@rosspower/ui/lib/asset";
-
-const shareImage = {
-  url: asset("images/og/og-ross-power.jpg"),
-  width: 1200,
-  height: 630,
-  alt: "Ross Power on stage at HR APAC Forum, Bali",
-};
 
 const { title, description } = contactPage.meta;
 
-export const metadata: Metadata = {
-  title: { absolute: title },
-  description,
-  alternates: { canonical: "/contact" },
-  openGraph: { title, description, url: "/contact", images: [shareImage] },
-  twitter: { card: "summary_large_image", title, description, images: [shareImage] },
-};
+export const metadata: Metadata = pageMetadata({ path: "/contact", title, description });
 
 export default function ContactPage() {
   return (

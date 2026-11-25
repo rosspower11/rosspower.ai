@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
+import { Instrument_Serif } from "next/font/google";
 import { asset } from "@rosspower/ui/lib/asset";
-import { profile } from "@/content/links";
+import { linksGraph, shareImage, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
-/** The italic "voice" accents and the follower counts. */
+/** Titles and their italic "voice" accents. Everything else is Helvetica Neue (no web font). */
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
   subsets: ["latin"],
@@ -12,21 +12,12 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
-/** Everything else: titles, body, buttons and labels, as on rosspower.ai. */
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
-  subsets: ["latin"],
-  weight: ["400", "600", "800"],
-});
-
 const title = "Ross Power | Links";
-const description = "A founder of AI Powered, speaker and Educator. Making AI simple, practical and human";
-
-/** Share thumbnail: the cover photo at the top of the page (1200×630, served from /assets). */
-const shareImage = { url: asset("images/profile/cover.jpg"), width: 1200, height: 630, alt: profile.cover.alt };
+const description =
+  "Ross Power's links: book a call, AI Powered's services for founders and teams, his keynotes, the tools he uses and where to follow him.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://links.rosspower.ai"),
+  metadataBase: new URL(SITE_URL),
   title,
   description,
   alternates: { canonical: "/" },
@@ -41,25 +32,33 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Ross Power",
+    locale: "en_GB",
     title,
     description,
     url: "/",
     images: [shareImage],
   },
-  twitter: { card: "summary_large_image", title, description, images: [shareImage] },
+  twitter: { card: "summary_large_image", creator: "@rosspower", title, description, images: [shareImage] },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f1ece1",
+  themeColor: "#f4f0e8",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" className={`${instrumentSerif.variable} ${bricolage.variable}`}>
+    <html lang="en-GB" className={instrumentSerif.variable}>
       {/* Phones: the page is the column. 480px and up: the column floats on sand. */}
-      <body className="bg-cream min-[480px]:bg-sand">{children}</body>
+      <body className="bg-cream min-[480px]:bg-sand">
+        <script
+          type="application/ld+json"
+          // Static data, escaped so a "<" can't close the script tag.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(linksGraph).replace(/</g, "\\u003c") }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

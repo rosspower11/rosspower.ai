@@ -3,16 +3,16 @@ import { contactSources, enquiryTypes, limits, type ContactSource } from "@rossp
 
 /**
  * Booking enquiries from rosspower.ai/contact and links.rosspower.ai/book (vercel.json sends both here).
- * Each one is emailed to Mary (Resend) and, when a webhook is set, posted to Slack.
+ * Each one is emailed to Ross (Resend) and, when a webhook is set, posted to Slack.
  *
  * Env (Vercel project rosspower-ai):
  * - RESEND_API_KEY   Resend API key. Required for the email.
  * - CONTACT_FROM     Optional sender address, defaults to contact@rosspower.ai (rosspower.ai is verified in Resend).
  *                    The name shown is where the enquiry came from, e.g. "Ross Power Website - Contact".
- * - CONTACT_TO       Optional, defaults to Mary.
+ * - CONTACT_TO       Optional, defaults to ross@aipowered.xyz.
  * - SLACK_WEBHOOK_URL Optional Slack incoming webhook for a lead alert.
  */
-const TO = process.env.CONTACT_TO ?? "mary@aipowered.xyz";
+const TO = process.env.CONTACT_TO ?? "ross@aipowered.xyz";
 /** Sender address on a domain verified in Resend; the display name is the enquiry's source. */
 const FROM_ADDRESS = process.env.CONTACT_FROM ?? "contact@rosspower.ai";
 const EMAIL = /^[^\s@<>|]+@[^\s@<>|]+\.[^\s@<>|]+$/;
@@ -137,7 +137,7 @@ export async function POST(request: Request) {
   if (email.status === "rejected") console.error("[contact] email failed", email.reason);
   if (slack.status === "rejected") console.error("[contact] slack failed", slack.reason);
 
-  // A lead counts as delivered if it reached Mary's inbox or Slack.
+  // A lead counts as delivered if it reached the inbox or Slack.
   const delivered = email.status === "fulfilled" || (slack.status === "fulfilled" && slack.value);
   if (!delivered) {
     return NextResponse.json({ error: "We couldn't send your enquiry just now." }, { status: 502 });

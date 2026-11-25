@@ -73,11 +73,11 @@ export const homeGraph = {
   ],
 };
 
-/** /bio: Ross's profile page. */
-export const bioGraph = {
+/** /about: Ross's profile page. */
+export const aboutGraph = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
-  url: url("/bio"),
+  url: url("/about"),
   name: bio.meta.title,
   isPartOf: { "@id": ids.website },
   mainEntity: { "@id": ids.ross },

@@ -71,9 +71,8 @@
     letter-spacing: -0.01em;
     line-height: 1.05;
   }
-  /* Two lines: the italic accent always starts the second line. */
-  h2 .voice,
-  .type-h2 .voice {
+  /* Long titles take two lines, the italic accent starting the second; short ones stay on one line. */
+  .title-split .voice {
     display: block;
   }
   h3,
